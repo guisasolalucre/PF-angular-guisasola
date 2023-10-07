@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>Alta de alumno</h2>
+
+
+<mat-dialog-content class="mat-typography">
+
+    <form class="example-form">
+
+        <div class="row">
+
+            <mat-form-field class="col" appearance="outline" color="accent">
+                <mat-label>DNI</mat-label>
+                <input type="text" matInput 
+                    [formControl]="idControl">
+                <mat-error *ngIf="idControl.hasError('required')">
+                    El DNI es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col" appearance="outline" color="accent">
+                <mat-label>Nacimiento</mat-label>
+                <input matInput [max]="maxDate" [matDatepicker]="picker"
+                [formControl]="dobControl">
+                <mat-error *ngIf="dobControl.hasError('required')">
+                    La fecha es <strong>requerida</strong>
+                </mat-error>
+                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput 
+                    [formControl]="nameControl">
+                <mat-error *ngIf="nameControl.hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Apellido</mat-label>
+                <input type="text" matInput 
+                    [formControl]="surnameControl">
+                <mat-error *ngIf="surnameControl.hasError('required')">
+                    El apellido es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput 
+                    [formControl]="emailControl">
+                <mat-error *ngIf="emailControl.hasError('required')">
+                    El email es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Cancelar</button>
+    <button mat-flat-button color="accent" [mat-dialog-close]="true">Confirmar</button>
+</mat-dialog-actions>
