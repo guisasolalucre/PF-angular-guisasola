@@ -24,10 +24,25 @@ export class HomeComponent {
     dialogRef.afterClosed()
       .subscribe({
         next: (result) => {
-          console.log(`Dialog result: ${result}`);
-          // if (!!result){
-          //   this.dataSource.push(result);
-          // }
+
+          if (!!result) {
+
+            const newStudent: Student = {
+              id: result.id,
+              active: true,
+              name: result.name,
+              surname: result.surname,
+              dob: result.dob,
+              avgNote: 0,
+              email: result.email,
+              courses: [],
+            }
+
+            this.dataSource.push(newStudent);
+
+            this.page = 'table'
+
+          }
         }
       })
   }

@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     SharedModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatMenuModule,
   ],
   exports: [
     HomeComponent

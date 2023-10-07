@@ -5,10 +5,17 @@
         </button>
         <span>App UNCB</span>
     </div>
+
     <div class="mat-toolbar-content">
-        <button mat-icon-button>
+        <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
             <mat-icon>account_circle</mat-icon>
         </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                Cerrar sesión
+            </button>
+        </mat-menu>
     </div>
 </mat-toolbar>
 
@@ -24,7 +31,8 @@
     <div class="example-sidenav-content">
 
         <span id="welcome" *ngIf="page === 'home'">
-            Bienvenido al sistema de información de la 
+            Bienvenido al sistema de información de la
+            <br>
             Universidad Nacional de Corral de Bustos
         </span>
 

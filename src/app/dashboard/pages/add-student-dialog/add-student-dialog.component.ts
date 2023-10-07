@@ -76,5 +76,11 @@ export class AddStudentDialogComponent {
     return this.emailControl.invalid && this.emailControl.touched;
   }
 
+  submit(){
+
+    return this.addStudentForm.value
+
+  }
+
 
 }
