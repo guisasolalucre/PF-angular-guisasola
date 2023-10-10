@@ -9,11 +9,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FullnamePipe } from './pipes/fullname.pipe';
+import { FontSizeDirective } from './directives/font-size.directive';
 
 
 @NgModule({
   declarations: [
-    FullnamePipe
+    FullnamePipe,
+    FontSizeDirective
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { FullnamePipe } from './pipes/fullname.pipe';
     MatTableModule,
     MatDialogModule,
     FullnamePipe,
+    FontSizeDirective,
   ],
   providers: [
     TitleCasePipe

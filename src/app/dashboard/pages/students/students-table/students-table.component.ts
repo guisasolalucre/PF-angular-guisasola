@@ -8,6 +8,8 @@ import { Student } from 'src/app/model';
 })
 export class StudentsTableComponent {
 
+  titleFontSize: string = '30px'
+
   @Input()
   table: Array<Student> = []
 

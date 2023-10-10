@@ -1,32 +1,32 @@
 <table mat-table [dataSource]="table" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> DNI </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> DNI </th>
         <td mat-cell *matCellDef="let student"> {{student.id | number: '1.0-0'}} </td>
     </ng-container>
 
     <!-- <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> Nombre </th>
         <td mat-cell *matCellDef="let student"> {{student.name | titlecase}} </td>
     </ng-container>
 
     <ng-container matColumnDef="surname">
-        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> Apellido </th>
         <td mat-cell *matCellDef="let student"> {{student.surname | titlecase}} </td>
     </ng-container> -->
 
     <ng-container matColumnDef="fullname">
-        <th mat-header-cell *matHeaderCellDef> Nombre completo </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> Nombre completo </th>
         <td mat-cell *matCellDef="let student"> {{student | fullname }} </td>
     </ng-container>
 
     <ng-container matColumnDef="dob">
-        <th mat-header-cell *matHeaderCellDef> Nacimiento </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> Nacimiento </th>
         <td mat-cell *matCellDef="let student"> {{student.dob | date: 'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <th appFontSize mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let student">
             <mat-icon (click)="updateStudent.emit(student)">edit</mat-icon>
             <mat-icon (click)="desactivateStudent.emit(student.id)">
