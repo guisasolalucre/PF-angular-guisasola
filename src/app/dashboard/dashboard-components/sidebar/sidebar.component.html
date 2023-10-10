@@ -1,0 +1,52 @@
+<mat-drawer-container class="example-container" autosize>
+
+    <mat-drawer class="example-sidenav" mode="side"
+    [opened]="open">
+
+        <button mat-stroked-button 
+                (click)="page = 'home'">
+            HOME
+        </button>
+        <button mat-stroked-button 
+                (click)="onAddStudent()">
+            Crear nuevo alumno
+        </button>
+        <button mat-stroked-button 
+                (click)="page = 'enabledStudents'">
+            Alumnos habilitados
+        </button>
+        <button mat-stroked-button 
+                (click)="page = 'inactiveStudents'">
+            Alumnos deshabilitados
+        </button>
+    </mat-drawer>
+
+    <div class="example-sidenav-content" 
+        [ngClass]="{'background': page === 'home'}">
+
+        <span id="welcome" 
+                *ngIf="page === 'home'">
+            Bienvenido
+            <!-- <app-home></app-home> -->
+        </span>
+
+        <span class="table-container" 
+                *ngIf="page === 'enabledStudents'">
+            <app-students-table 
+                [table]="activeStudents" 
+                (updateStudent)="onUpdateStudent($event)"
+                (desactivateStudent)="onDesactivateStudent($event)">
+            </app-students-table>
+        </span>
+
+        <span class="table-container" 
+                *ngIf="page === 'inactiveStudents'">
+            <app-students-table 
+                [table]="desactiveStudents" 
+                (updateStudent)="onUpdateStudent($event)"
+                (desactivateStudent)="onDesactivateStudent($event)">
+            </app-students-table>
+        </span>
+    </div>
+
+</mat-drawer-container>

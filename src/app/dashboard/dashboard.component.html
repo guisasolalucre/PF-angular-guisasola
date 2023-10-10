@@ -1,1 +1,14 @@
-<app-home></app-home>
+
+<app-toolbar
+    (openDrawer)="drawer.toggle()">
+</app-toolbar>
+
+
+<app-sidebar #drawer>
+    [page]="page"
+</app-sidebar>
+
+
+<app-content>
+    
+</app-content>

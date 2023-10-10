@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <div class="mat-toolbar-content">
+        <button mat-icon-button class="example-icon" (click)="openDrawer.emit()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <span style="cursor: pointer; display: flex;" 
+            (click)="pageChange.emit('home')">
+            <img style="margin-left: 15px; margin-right: 7px" src="../../../../assets/logo-white.png" alt="logo" width="30" height="30">
+            HOME
+        </span> -->
+    </div>
+
+    <div class="mat-toolbar-content">
+        <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                Cerrar sesión
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>

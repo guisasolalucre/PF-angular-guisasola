@@ -1,0 +1,35 @@
+.example-container {
+    height: 100vh;
+}
+
+.example-sidenav-content {
+    //display: flex;
+    height: 100%;
+    padding: 3em;
+    //align-items: center;
+    //justify-content: center;
+}
+
+.example-sidenav,  mat-drawer button{
+    width: 230px;
+}
+
+mat-drawer button{
+    padding: 3em;
+}
+
+#welcome{
+    font-size: 4em;
+    line-height: 1.5em;
+    text-shadow: 10px -10px 0.3em black, //arriba
+                 10px 10px 0.3em black, //derecha
+                 -10px 10px 0.3em black, //izquierda
+                 -10px -10px 0.3em black, //abajo
+}
+
+.background{
+    background-image: url('../../../../assets/escuela-xavier.jpg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+}
