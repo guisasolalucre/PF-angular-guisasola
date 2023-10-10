@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardModule } from './dashboard/dashboard.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserAnimationsModule,
     DashboardModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-AR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

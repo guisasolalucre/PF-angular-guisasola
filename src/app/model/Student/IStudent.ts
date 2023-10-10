@@ -6,7 +6,6 @@ export interface IStudent {
     name: string;
     surname: string;
     dob: Date;
-    avgNote: number;
     email: string;
     courses: Array<Course>;
 }
