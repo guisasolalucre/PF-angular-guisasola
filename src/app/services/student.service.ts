@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../model';
+import { students } from '../data/students';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,10 @@ export class StudentService {
 
   constructor() { }
 
-  //! ABM
-  //* ALTA
+  getStudents(): Array<Student>{
+    return students
+  }
+  
   createStudent(object: any): Student {
     const newStudent: Student = {
       id: object.id,
@@ -23,18 +26,20 @@ export class StudentService {
     return newStudent;
   }
 
-  // //* MODIFICACION
   // updateStudent(student: Student): void {
   //   console.log('modifica el alumno con dni: ' + student.id);
   // }
 
-  //* BAJA
   desactivateStudent(student: Student): void {
-
     student.active = !student.active;
-
-    // this.dataSource.find((s) => s.id === id).active = false;
-
   }
-  // ABM
+
+  studentExistsById(id: string): boolean {
+    return this.getStudents().find( (s) => s.id === id) ? true : false 
+  }
+
+  studentExistsByEmail(email: string): boolean {
+    return this.getStudents().find( (s) => s.email === email) ? true : false
+  }
+
 }

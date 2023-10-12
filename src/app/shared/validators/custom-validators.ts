@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { StudentService } from 'src/app/services/student.service';
 
 
 export function ageValidator(
@@ -16,4 +17,23 @@ export function ageValidator(
     }
 
     return null;
+}
+
+
+export function idExistsValidator(
+    control: AbstractControl
+): ValidationErrors | null {
+    let studentService = new StudentService()
+
+    return studentService.studentExistsById(control.value) ? 
+        {idexists: true} : null
+}
+
+export function emailExistsValidator(
+    control: AbstractControl
+): ValidationErrors | null {
+    let studentService = new StudentService()
+
+    return studentService.studentExistsByEmail(control.value) ? 
+        {emailexists: true} : null
 }

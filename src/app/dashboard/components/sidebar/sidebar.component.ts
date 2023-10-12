@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { StudentFormDialogComponent } from '../../pages/students/student-form-dialog/student-form-dialog.component';
 import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 import { MatDialog } from '@angular/material/dialog';
-import { students } from 'src/app/data/students';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,22 +15,26 @@ export class SidebarComponent {
 
   page: string = 'home';
 
-  allStudents: Array<Student> = students;
+  allStudents: Array<Student> = [];
+  activeStudents: Array<Student> = [];
+  desactiveStudents: Array<Student> = [];
 
-  activeStudents: Array<Student> = this.allStudents.filter((s) => s.active);
-
-  desactiveStudents: Array<Student> = this.allStudents.filter((s) => !s.active);
-
+  
   constructor(
     public dialog: MatDialog,
 
     public studentService: StudentService,
-  ) { }
 
+  ) { 
 
-  toggle(){
-    this.open = !this.open
+    this.allStudents = this.studentService.getStudents();
+    this.activeStudents = this.allStudents.filter((s) => s.active);
+    this.desactiveStudents = this.allStudents.filter((s) => !s.active);
+
   }
+
+
+  toggle(){this.open = !this.open}
 
 
   onAddStudent(): void {
@@ -87,14 +90,8 @@ export class SidebarComponent {
   //* QUE NO SE PUEDA MODIFICAR EL DNI CUANDO SE HACE UPDATE
   // TODO ----------------------------------------------------------------
 
-  // studentExists(id: string, email: string): boolean {
-  //   if (students.find((s) => s.id === id) != undefined ||
-  //       students.find((s) => s.id === email) != undefined ) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
+
+
 
 
 }

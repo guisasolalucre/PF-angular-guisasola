@@ -2,7 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from 'src/app/model';
-import { ageValidator } from 'src/app/shared/validators/custom-validators';
+import { StudentService } from 'src/app/services/student.service';
+import { ageValidator, emailExistsValidator, idExistsValidator } from 'src/app/shared/validators/custom-validators';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class StudentFormDialogComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+
+    public studentService: StudentService,
     
     @Inject(MAT_DIALOG_DATA) 
     public data?: Student,
@@ -30,7 +33,8 @@ export class StudentFormDialogComponent {
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
-          Validators.maxLength(8)]],
+          Validators.maxLength(8),
+          idExistsValidator]],
         name: ['',
           [Validators.required,
           Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+')]],
@@ -42,7 +46,8 @@ export class StudentFormDialogComponent {
             ageValidator]],
         email: ['',
           [Validators.required,
-          Validators.email]],
+          Validators.email,
+          emailExistsValidator]],
       })
 
       if (this.data) {
@@ -50,9 +55,6 @@ export class StudentFormDialogComponent {
       }
     
   }
-
-  
-
 
 
   //* GETTERS
@@ -80,37 +82,43 @@ export class StudentFormDialogComponent {
   //* ERRORS
   get idControlError(): string {
     return this.idControl.hasError('required') ?
-            'El DNI es requerido' :
+            'ID is required' :
           this.idControl.hasError('pattern') ?
-            'El DNI debe contener sólo números' :  
+            'ID must contain numbers only' :  
           this.idControl.hasError('minlength') || this.idControl.hasError('maxlength') ?
-            'El DNI debe tener 8 cifras' : ''
+            'ID must have 8 digits' :
+            this.idControl.hasError('idexists') ?
+            'Student already exists with this ID' : ''
   }
 
-  get nameControlError() {
+  get nameControlError(): string {
     return this.nameControl.hasError('required') ?
-            'El nombre es requerido' :
+            'First name is required' :
           this.nameControl.hasError('pattern') ?
-            'El nombre debe contener sólo letras' : ''
+            'First name must contain only letters' : ''
   }
 
-  get surnameControlError() {
+  get surnameControlError(): string {
     return this.surnameControl.hasError('required') ?
-            'El apellido es requerido' :
+            'Last name is required' :
           this.surnameControl.hasError('pattern') ?
-            'El apellido debe contener sólo letras' : ''
+            'Last name must contain only letters' : ''
   }
 
-  get dobControlError() {
+  get dobControlError(): string {
     return this.dobControl.hasError('required') ?
-            'La fecha de nacimiento es requerida' : ''
+            'Date of bith is required' : ''
   }
 
-  get emailControlError() {
-    return this.surnameControl.hasError('required') ?
-            'El email es requerido' :
-          this.surnameControl.hasError('pattern') ?
-            'El email ingresado no es válido' : ''
+  get emailControlError(): string {
+    return this.emailControl.hasError('required') ?
+            'Email is required' :
+          this.emailControl.hasError('pattern') ?
+            'Invalid email' :
+          this.emailControl.hasError('emailexists') ?
+            'Student already exists with this email' : ''
   }
+
+
 
 }

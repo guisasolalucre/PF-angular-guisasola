@@ -8,19 +8,19 @@
 
         <div class="row">
 
-            <mat-form-field class="col" appearance="outline" color="accent">
-                <mat-label>DNI</mat-label>
+            <mat-form-field class="col">
+                <mat-label>ID</mat-label>
                 <input type="text" matInput
                     [formControl]="idControl">
                 <mat-error> {{ idControlError }} </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="col" appearance="outline" color="accent">
-                <mat-label>Nacimiento</mat-label>
+            <mat-form-field class="col">
+                <mat-label>Birthday</mat-label>
                 <input matInput [max]="maxDate" [matDatepicker]="picker"
                     [formControl]="dobControl">
                     <mat-error> {{ dobControlError }} </mat-error>
-                <mat-hint>DD/MM/AAAA</mat-hint>
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -28,8 +28,8 @@
         </div>
 
         <div class="row">
-            <mat-form-field appearance="outline" color="accent">
-                <mat-label>Nombre</mat-label>
+            <mat-form-field>
+                <mat-label>First name</mat-label>
                 <input type="text" matInput
                     [formControl]="nameControl">
                     <mat-error> {{ nameControlError }} </mat-error>
@@ -38,8 +38,8 @@
 
         <div class="row">
 
-            <mat-form-field appearance="outline" color="accent">
-                <mat-label>Apellido</mat-label>
+            <mat-form-field>
+                <mat-label>Last name</mat-label>
                 <input type="text" matInput
                     [formControl]="surnameControl">
                     <mat-error> {{ surnameControlError }} </mat-error>
@@ -47,11 +47,13 @@
         </div>
 
         <div class="row">
-            <mat-form-field appearance="outline" color="accent">
+            <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input type="email" matInput
                     [formControl]="emailControl">
-                    <mat-error> {{ emailControlError }} </mat-error>
+                    <mat-error>
+                        {{ emailControlError }} 
+                    </mat-error>
             </mat-form-field>
         </div>
 

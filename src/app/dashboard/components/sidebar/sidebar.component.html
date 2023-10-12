@@ -9,15 +9,15 @@
         </button>
         <button mat-stroked-button 
                 (click)="onAddStudent()">
-            Crear nuevo alumno
+            Add new student
         </button>
         <button mat-stroked-button 
                 (click)="page = 'enabledStudents'">
-            Alumnos habilitados
+            Active students
         </button>
         <button mat-stroked-button 
                 (click)="page = 'inactiveStudents'">
-            Alumnos deshabilitados
+            Inactive students
         </button>
     </mat-drawer>
 
@@ -26,7 +26,7 @@
 
         <span id="welcome" 
                 *ngIf="page === 'home'">
-            Bienvenido
+            Welcome
             <!-- <app-home></app-home> -->
         </span>
 

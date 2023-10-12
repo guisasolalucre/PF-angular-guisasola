@@ -8,8 +8,6 @@ import { Student } from 'src/app/model';
 })
 export class StudentsTableComponent {
 
-  titleFontSize: string = '30px'
-
   @Input()
   table: Array<Student> = []
 
@@ -19,6 +17,6 @@ export class StudentsTableComponent {
   @Output()
   desactivateStudent = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['id', /*'name', 'surname',*/ 'fullname', 'dob', 'actions'];
+  displayedColumns: string[] = ['id', 'fullname', 'dob', 'actions'];
 
 }

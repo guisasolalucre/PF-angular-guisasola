@@ -10,9 +10,9 @@ import { HomeModule } from './pages/home/home.module';
 import { StudentsModule } from './pages/students/students.module';
 
 import { DashboardComponent } from './dashboard.component';
-import { SidebarComponent } from './dashboard-components/sidebar/sidebar.component';
-import { ToolbarComponent } from './dashboard-components/toolbar/toolbar.component';
-import { ContentComponent } from './dashboard-components/content/content.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ContentComponent } from './components/content/content.component';
 
 
 @NgModule({
@@ -26,11 +26,11 @@ import { ContentComponent } from './dashboard-components/content/content.compone
     CommonModule,
     SharedModule,
     MatSidenavModule,
-    HomeModule,
     MatNativeDateModule,
     MatToolbarModule,
+    MatMenuModule,
+    HomeModule,
     StudentsModule,
-    MatMenuModule
   ],
   exports: [DashboardComponent]
 })

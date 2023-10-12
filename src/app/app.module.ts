@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,13 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     DashboardModule,
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'es-AR' }
+    { provide: MAT_DATE_LOCALE, useValue: 'es-AR' },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
+              useValue: {
+                appearance: 'outline',
+                color: 'accent',
+              }
+    },
   ],
   bootstrap: [AppComponent]
 })
