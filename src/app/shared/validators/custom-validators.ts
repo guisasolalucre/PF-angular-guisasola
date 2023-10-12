@@ -7,7 +7,6 @@ export function ageValidator(
 ): ValidationErrors | null {
 
     let birthdate = new Date(control.value);
-    let today = new Date();
 
     let timeDiff = Math.abs(Date.now() - birthdate.getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
@@ -25,8 +24,8 @@ export function idExistsValidator(
 ): ValidationErrors | null {
     let studentService = new StudentService()
 
-    return studentService.studentExistsById(control.value) ? 
-        {idexists: true} : null
+    return studentService.studentExistsByIdNumber(control.value) ? 
+        {idnumberexists: true} : null
 }
 
 export function emailExistsValidator(

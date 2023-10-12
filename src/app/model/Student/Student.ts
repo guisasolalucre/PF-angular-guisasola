@@ -1,9 +1,11 @@
+
 import { Course } from "../Course/Course";
 import { IStudent } from "./IStudent"
 
 export class Student implements IStudent{
 
     id: string = '';
+    idnumber: number = 0;
     active: boolean = true;
     name: string = '';
     surname: string = ''; 

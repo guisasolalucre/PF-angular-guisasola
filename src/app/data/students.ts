@@ -2,7 +2,8 @@ import { Student } from "../model";
 
 export let students: Array<Student> = [
     {
-        id: "10000001",
+        id: "2UeoA",
+        idnumber: 98765432,
         active: false,
         name: "Bobby",
         surname: "Drake",
@@ -11,7 +12,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000002",
+        id: "xzBi6",
+        idnumber: 12345678,
         active: true,
         name: "Scott",
         surname: "Summers",
@@ -20,7 +22,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000003",
+        id: "wUHl9",
+        idnumber: 87654321,
         active: true,
         name: "Jean",
         surname: "Grey",
@@ -29,7 +32,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000004",
+        id: "H4Sbf",
+        idnumber: 23456789,
         active: true,
         name: "Ororo",
         surname: "Munroe",
@@ -38,7 +42,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000005",
+        id: "SxAzZ",
+        idnumber: 54321678,
         active: true,
         name: "Logan",
         surname: "Howlett",
@@ -47,7 +52,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000006",
+        id: "rR0uC",
+        idnumber: 34567890,
         active: true,
         name: "Kurt",
         surname: "Wagner",
@@ -56,7 +62,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000007",
+        id: "V2eq2",
+        idnumber: 87654321,
         active: true,
         name: "Kitty",
         surname: "Pryde",
@@ -65,7 +72,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000008",
+        id: "o6dkV",
+        idnumber: 45678901,
         active: false,
         name: "Remy",
         surname: "LeBeau",
@@ -74,7 +82,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000009",
+        id: "M1lkv",
+        idnumber: 56789012,
         active: true,
         name: "Rogue",
         surname: "Doe",
@@ -83,7 +92,8 @@ export let students: Array<Student> = [
         courses: [],
     },
     {
-        id: "10000010",
+        id: "c_7yf",
+        idnumber: 78901234,
         active: true,
         name: "Hank",
         surname: "McCoy",

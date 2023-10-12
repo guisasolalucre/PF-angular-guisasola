@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../model';
 import { students } from '../data/students';
+import { nanoid } from "nanoid";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class StudentService {
   
   createStudent(object: any): Student {
     const newStudent: Student = {
-      id: object.id,
+      id: nanoid(5),
+      idnumber: object.id,
       active: true,
       name: object.name,
       surname: object.surname,
@@ -34,8 +36,8 @@ export class StudentService {
     student.active = !student.active;
   }
 
-  studentExistsById(id: string): boolean {
-    return this.getStudents().find( (s) => s.id === id) ? true : false 
+  studentExistsByIdNumber(idnumber: number): boolean {
+    return this.getStudents().find( (s) => s.idnumber === idnumber) ? true : false 
   }
 
   studentExistsByEmail(email: string): boolean {

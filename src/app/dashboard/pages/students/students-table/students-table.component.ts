@@ -17,6 +17,6 @@ export class StudentsTableComponent {
   @Output()
   desactivateStudent = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['id', 'fullname', 'dob', 'actions'];
+  displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'actions'];
 
 }

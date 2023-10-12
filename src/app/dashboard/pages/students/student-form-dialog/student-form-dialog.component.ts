@@ -29,7 +29,7 @@ export class StudentFormDialogComponent {
 
     ) { 
       this.studentForm = this.formBuilder.group({
-        id: ['',
+        idnumber: ['',
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
@@ -58,8 +58,8 @@ export class StudentFormDialogComponent {
 
 
   //* GETTERS
-  get idControl() {
-    return this.studentForm.controls['id'] as FormControl;
+  get idnumberControl() {
+    return this.studentForm.controls['idnumber'] as FormControl;
   }
 
   get nameControl() {
@@ -80,14 +80,14 @@ export class StudentFormDialogComponent {
 
 
   //* ERRORS
-  get idControlError(): string {
-    return this.idControl.hasError('required') ?
+  get idnumberControlError(): string {
+    return this.idnumberControl.hasError('required') ?
             'ID is required' :
-          this.idControl.hasError('pattern') ?
+          this.idnumberControl.hasError('pattern') ?
             'ID must contain numbers only' :  
-          this.idControl.hasError('minlength') || this.idControl.hasError('maxlength') ?
+          this.idnumberControl.hasError('minlength') || this.idnumberControl.hasError('maxlength') ?
             'ID must have 8 digits' :
-            this.idControl.hasError('idexists') ?
+            this.idnumberControl.hasError('idnumberexists') ?
             'Student already exists with this ID' : ''
   }
 
