@@ -53,6 +53,9 @@ export class StudentFormDialogComponent {
       if (this.data) {
         this.studentForm.patchValue(this.data)
       }
+      
+      console.log(this.studentForm.value);
+      
     
   }
 
@@ -86,9 +89,11 @@ export class StudentFormDialogComponent {
           this.idnumberControl.hasError('pattern') ?
             'ID must contain numbers only' :  
           this.idnumberControl.hasError('minlength') || this.idnumberControl.hasError('maxlength') ?
-            'ID must have 8 digits' :
-            this.idnumberControl.hasError('idnumberexists') ?
-            'Student already exists with this ID' : ''
+            'ID must have 8 digits' : ''
+
+          //! PROBLEMA: no me deja actualizar alumnos
+          // this.idnumberControl.hasError('idnumberexists') ?
+          //   'Student already exists with this ID' : ''
   }
 
   get nameControlError(): string {
@@ -114,11 +119,11 @@ export class StudentFormDialogComponent {
     return this.emailControl.hasError('required') ?
             'Email is required' :
           this.emailControl.hasError('pattern') ?
-            'Invalid email' :
-          this.emailControl.hasError('emailexists') ?
-            'Student already exists with this email' : ''
+            'Invalid email' : ''
+
+          //! PROBLEMA: no me deja actualizar alumnos
+          // this.emailControl.hasError('emailexists') ?
+          //   'Student already exists with this email' : ''
   }
-
-
 
 }
