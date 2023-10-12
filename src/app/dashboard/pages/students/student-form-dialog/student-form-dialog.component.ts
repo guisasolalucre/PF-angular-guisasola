@@ -34,7 +34,7 @@ export class StudentFormDialogComponent {
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
           Validators.maxLength(8),
-          idExistsValidator]],
+          /*idExistsValidator*/]],
         name: ['',
           [Validators.required,
           Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+')]],
@@ -47,14 +47,12 @@ export class StudentFormDialogComponent {
         email: ['',
           [Validators.required,
           Validators.email,
-          emailExistsValidator]],
+          /*emailExistsValidator*/]],
       })
 
       if (this.data) {
         this.studentForm.patchValue(this.data)
       }
-      
-      console.log(this.studentForm.value);
       
     
   }
