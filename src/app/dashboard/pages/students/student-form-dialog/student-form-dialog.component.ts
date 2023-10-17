@@ -33,7 +33,7 @@ export class StudentFormDialogComponent {
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
-          Validators.maxLength(8),
+          Validators.maxLength(8)
           /*idExistsValidator*/]],
         name: ['',
           [Validators.required,
@@ -46,7 +46,7 @@ export class StudentFormDialogComponent {
             ageValidator]],
         email: ['',
           [Validators.required,
-          Validators.email,
+          Validators.email
           /*emailExistsValidator*/]],
       })
 

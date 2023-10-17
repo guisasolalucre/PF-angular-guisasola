@@ -17,7 +17,7 @@ export class StudentService {
   createStudent(object: any): Student {
     const newStudent: Student = {
       id: nanoid(5),
-      idnumber: object.id,
+      idnumber: object.idnumber,
       active: true,
       name: object.name,
       surname: object.surname,

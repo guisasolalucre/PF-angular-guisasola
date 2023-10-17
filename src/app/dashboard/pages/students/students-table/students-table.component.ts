@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/model';
 
@@ -25,6 +26,11 @@ export class StudentsTableComponent {
 
   public dataSource!: MatTableDataSource<Student>
 
+
+
+  constructor() {
+  }
+
   ngOnInit(){
     this.dataSource = new MatTableDataSource(this.table);
   }
@@ -32,4 +38,6 @@ export class StudentsTableComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+
 }

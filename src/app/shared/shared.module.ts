@@ -11,6 +11,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FullnamePipe } from './pipes/fullname.pipe';
 import { FontSizeDirective } from './directives/font-size.directive';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FullnamePipe,
     FontSizeDirective,
     MatPaginatorModule,
+    MatSortModule,
+    MatTooltipModule,
   ],
   providers: [
     TitleCasePipe,

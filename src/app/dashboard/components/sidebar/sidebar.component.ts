@@ -47,6 +47,8 @@ export class SidebarComponent {
             const newStudent = this.studentService.createStudent(result);
             this.allStudents.push(newStudent);
             this.activeStudents = this.allStudents.filter((s) => s.active);
+            console.log(this.allStudents);
+            
           }
         }
       })
