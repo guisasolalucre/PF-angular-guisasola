@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Sort } from '@angular/material/sort';
+import { MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/model';
 
@@ -22,14 +22,17 @@ export class StudentsTableComponent {
 
   displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'actions'];
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) 
+  paginator!: MatPaginator;
 
-  public dataSource!: MatTableDataSource<Student>
+  @ViewChild(MatSort) 
+  sort!: MatSort;
+
+  dataSource!: MatTableDataSource<Student>
 
 
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.table);
@@ -37,11 +40,12 @@ export class StudentsTableComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.table);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-
-
 }

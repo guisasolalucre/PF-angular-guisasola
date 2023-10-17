@@ -13,6 +13,7 @@ import { FontSizeDirective } from './directives/font-size.directive';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatPaginatorModule,
     MatSortModule,
     MatTooltipModule,
+    MatSelectModule,
   ],
   providers: [
     TitleCasePipe,

@@ -1,0 +1,32 @@
+<span class="container">
+    <mat-form-field appearance="fill">
+        <mat-select [formControl]="page">
+            <mat-option value="enabledStudents">Active students</mat-option>
+            <mat-option value="inactiveStudents">Inactive students</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <button mat-flat-button color="accent" (click)="onAddStudent()">
+        <mat-icon>add</mat-icon>
+        New student
+    </button>
+</span>
+
+<span class="table-container" 
+    *ngIf="page.value === 'enabledStudents'">
+    <app-students-table 
+        [table]="activeStudents" 
+        (updateStudent)="onUpdateStudent($event)"
+        (desactivateStudent)="onDesactivateStudent($event)">
+    </app-students-table>
+</span>
+
+<span class="table-container" 
+    *ngIf="page.value === 'inactiveStudents'">
+    <app-students-table 
+        [table]="desactiveStudents" 
+        (updateStudent)="onUpdateStudent($event)"
+        (desactivateStudent)="onDesactivateStudent($event)">
+    </app-students-table>
+</span>

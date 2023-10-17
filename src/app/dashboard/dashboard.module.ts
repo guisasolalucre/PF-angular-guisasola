@@ -12,7 +12,6 @@ import { StudentsModule } from './pages/students/students.module';
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { ContentComponent } from './components/content/content.component';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { ContentComponent } from './components/content/content.component';
     DashboardComponent,
     SidebarComponent,
     ToolbarComponent,
-    ContentComponent,
   ],
   imports: [
     CommonModule,

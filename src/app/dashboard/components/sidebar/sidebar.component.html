@@ -5,47 +5,31 @@
 
         <button mat-stroked-button 
                 (click)="page = 'home'">
+            <mat-icon>home</mat-icon>
             HOME
         </button>
+
         <button mat-stroked-button 
-                (click)="onAddStudent()">
-            Add new student
+                (click)="page = 'students'">
+            <mat-icon>school</mat-icon>
+            STUDENTS
         </button>
-        <button mat-stroked-button 
-                (click)="page = 'enabledStudents'">
-            Active students
-        </button>
-        <button mat-stroked-button 
-                (click)="page = 'inactiveStudents'">
-            Inactive students
+
+        <button mat-stroked-button >
+                <!-- (click)="page = 'courses'" -->
+            <mat-icon>menu_book</mat-icon>
+            COURSES
         </button>
     </mat-drawer>
 
-    <div class="example-sidenav-content" 
-        [ngClass]="{'background': page === 'home'}">
+    <div class="example-sidenav-content background">
 
-        <span id="welcome" 
-                *ngIf="page === 'home'">
-            Welcome
-            <!-- <app-home></app-home> -->
+        <span *ngIf="page === 'home'">
+            <app-home></app-home>
         </span>
 
-        <span class="table-container" 
-                *ngIf="page === 'enabledStudents'">
-            <app-students-table 
-                [table]="activeStudents" 
-                (updateStudent)="onUpdateStudent($event)"
-                (desactivateStudent)="onDesactivateStudent($event)">
-            </app-students-table>
-        </span>
-
-        <span class="table-container" 
-                *ngIf="page === 'inactiveStudents'">
-            <app-students-table 
-                [table]="desactiveStudents" 
-                (updateStudent)="onUpdateStudent($event)"
-                (desactivateStudent)="onDesactivateStudent($event)">
-            </app-students-table>
+        <span *ngIf="page === 'students'">
+            <app-students-content></app-students-content>
         </span>
     </div>
 

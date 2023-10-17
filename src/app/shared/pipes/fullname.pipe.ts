@@ -11,9 +11,9 @@ export class FullnamePipe implements PipeTransform {
     private titlecasePipe: TitleCasePipe,
   ){}
 
-  transform(value: Student, ...args: unknown[]): unknown {
-    const nameTitleCase = this.titlecasePipe.transform(value.name)
-    const surnameTitleCase = this.titlecasePipe.transform(value.surname)
+  transform(name: string, surname: string, ...args: unknown[]): unknown {
+    const nameTitleCase = this.titlecasePipe.transform(name)
+    const surnameTitleCase = this.titlecasePipe.transform(surname)
     const result = `${nameTitleCase} ${surnameTitleCase}`;
 
     return result
