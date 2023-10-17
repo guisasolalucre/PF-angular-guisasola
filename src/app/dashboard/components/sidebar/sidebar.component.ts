@@ -22,15 +22,11 @@ export class SidebarComponent {
   
   constructor(
     public dialog: MatDialog,
-
     public studentService: StudentService,
-
   ) { 
-
     this.allStudents = this.studentService.getStudents();
     this.activeStudents = this.allStudents.filter((s) => s.active);
     this.desactiveStudents = this.allStudents.filter((s) => !s.active);
-
   }
 
 
