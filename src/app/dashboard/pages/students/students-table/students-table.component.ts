@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/model';
 
 @Component({
@@ -19,4 +21,15 @@ export class StudentsTableComponent {
 
   displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'actions'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  public dataSource!: MatTableDataSource<Student>
+
+  ngOnInit(){
+    this.dataSource = new MatTableDataSource(this.table);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 }

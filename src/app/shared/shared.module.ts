@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FullnamePipe } from './pipes/fullname.pipe';
 import { FontSizeDirective } from './directives/font-size.directive';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -32,9 +33,10 @@ import { FontSizeDirective } from './directives/font-size.directive';
     MatDialogModule,
     FullnamePipe,
     FontSizeDirective,
+    MatPaginatorModule,
   ],
   providers: [
-    TitleCasePipe
+    TitleCasePipe,
   ]
 })
 export class SharedModule { }

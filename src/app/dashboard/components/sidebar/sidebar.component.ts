@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SidebarComponent {
 
-  open = false
+  open = true
 
   page: string = 'home';
 

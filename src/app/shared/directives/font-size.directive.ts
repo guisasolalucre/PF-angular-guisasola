@@ -1,9 +1,12 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appFontSize]'
 })
-export class FontSizeDirective {
+export class FontSizeDirective implements OnChanges {
+
+  @Input()
+  size = '20px'
 
   constructor(
     public elementRef: ElementRef, 
@@ -12,16 +15,26 @@ export class FontSizeDirective {
     this.setStyle()
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.size = changes['size']?.currentValue
+    this.setStyle()
+  }
+
   setStyle(){
     this.renderer.setStyle(
       this.elementRef.nativeElement,
       'fontSize',
-      '20px'
+      this.size
     );
     this.renderer.setStyle(
       this.elementRef.nativeElement,
       'textDecoration',
       'underline'
+    );
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'fontWeight',
+      'bolder'
     )
   }
 
