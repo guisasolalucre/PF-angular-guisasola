@@ -32,7 +32,6 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
               "node_modules/bootstrap/dist/css/bootstrap-utilities.min.css",
-              "node_modules/sweetalert2/src/sweetalert2.scss",
               "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
             ],
@@ -43,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,6 +101,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

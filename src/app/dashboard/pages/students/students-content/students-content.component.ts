@@ -44,7 +44,6 @@ export class StudentsContentComponent {
   }
 
   onUpdateStudent(student: Student): void {
-    console.log('abro el update');
 
     this.dialog
       .open(StudentFormDialogComponent, {
@@ -67,7 +66,7 @@ export class StudentsContentComponent {
   }
 
   onDesactivateStudent(id: string): void {
-    if (confirm('Esta seguro?')) {
+    if (confirm('Are you sure?')) {
       const student = this.allStudents.find((s) => s.id === id)
       if (!!student) {
         this.studentService.desactivateStudent(student)

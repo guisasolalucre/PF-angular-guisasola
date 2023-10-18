@@ -10,18 +10,21 @@
 
             <mat-form-field class="col">
                 <mat-label>ID</mat-label>
-                <input type="text" 
-                    inputmode="numeric" 
+                <input type="number"
                     matInput
+                    class="no-spinners"
                     [formControl]="idnumberControl">
                 <mat-error> {{ idnumberControlError }} </mat-error>
             </mat-form-field>
 
             <mat-form-field class="col">
                 <mat-label>Birthday</mat-label>
-                <input matInput [max]="maxDate" [matDatepicker]="picker"
+                <input type="date"
+                    matInput 
+                    [max]="maxDate" 
+                    [matDatepicker]="picker"
                     [formControl]="dobControl">
-                    <mat-error> {{ dobControlError }} </mat-error>
+                <mat-error> {{ dobControlError }} </mat-error>
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -32,9 +35,10 @@
         <div class="row">
             <mat-form-field>
                 <mat-label>First name</mat-label>
-                <input type="text" matInput
+                <input type="text" 
+                    matInput
                     [formControl]="nameControl">
-                    <mat-error> {{ nameControlError }} </mat-error>
+                <mat-error> {{ nameControlError }} </mat-error>
             </mat-form-field>
         </div>
 
@@ -42,20 +46,22 @@
 
             <mat-form-field>
                 <mat-label>Last name</mat-label>
-                <input type="text" matInput
+                <input type="text" 
+                    matInput
                     [formControl]="surnameControl">
-                    <mat-error> {{ surnameControlError }} </mat-error>
+                <mat-error> {{ surnameControlError }} </mat-error>
             </mat-form-field>
         </div>
 
         <div class="row">
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input type="email" matInput
+                <input type="email" 
+                    matInput
                     [formControl]="emailControl">
-                    <mat-error>
-                        {{ emailControlError }} 
-                    </mat-error>
+                <mat-error>
+                    {{ emailControlError }} 
+                </mat-error>
             </mat-form-field>
         </div>
 
@@ -68,7 +74,7 @@
     <button mat-stroked-button mat-dialog-close>Cancelar</button>
     <button mat-flat-button color="accent"
         [disabled]="!studentForm.valid"
-        [mat-dialog-close]="studentForm.value"
-        >Confirmar
+        [mat-dialog-close]="studentForm.value">
+        Confirmar
     </button>
 </mat-dialog-actions>

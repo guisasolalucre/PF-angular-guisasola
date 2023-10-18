@@ -33,8 +33,7 @@ export class StudentFormDialogComponent {
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
-          Validators.maxLength(8)
-          /*idExistsValidator*/]],
+          Validators.maxLength(8)]],
         name: ['',
           [Validators.required,
           Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+')]],
@@ -46,12 +45,15 @@ export class StudentFormDialogComponent {
             ageValidator]],
         email: ['',
           [Validators.required,
-          Validators.email
-          /*emailExistsValidator*/]],
+          Validators.email]],
       })
 
       if (this.data) {
         this.studentForm.patchValue(this.data)
+      } else {
+        //! SOLUCION TEMPORAL PARA EL PROBLEMA DE EDITAR ALUMNO
+        this.idnumberControl.setValidators(idExistsValidator)
+        this.emailControl.setValidators(emailExistsValidator)
       }
       
     
@@ -87,11 +89,9 @@ export class StudentFormDialogComponent {
           this.idnumberControl.hasError('pattern') ?
             'ID must contain numbers only' :  
           this.idnumberControl.hasError('minlength') || this.idnumberControl.hasError('maxlength') ?
-            'ID must have 8 digits' : ''
-
-          //! PROBLEMA: no me deja actualizar alumnos
-          // this.idnumberControl.hasError('idnumberexists') ?
-          //   'Student already exists with this ID' : ''
+            'ID must have 8 digits' : 
+          this.idnumberControl.hasError('idnumberexists') ?
+            'Student already exists with this ID' : ''
   }
 
   get nameControlError(): string {
@@ -117,11 +117,11 @@ export class StudentFormDialogComponent {
     return this.emailControl.hasError('required') ?
             'Email is required' :
           this.emailControl.hasError('pattern') ?
-            'Invalid email' : ''
+            'Invalid email' : 
 
           //! PROBLEMA: no me deja actualizar alumnos
-          // this.emailControl.hasError('emailexists') ?
-          //   'Student already exists with this email' : ''
+          this.emailControl.hasError('emailexists') ?
+            'Student already exists with this email' : ''
   }
 
 }

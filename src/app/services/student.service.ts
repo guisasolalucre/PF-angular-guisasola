@@ -47,11 +47,11 @@ export class StudentService {
   }
 
   studentExistsByIdNumber(idnumber: number): boolean {
-    return this.getStudents().find( (s) => s.idnumber === idnumber) ? true : false 
+    return this.getStudents().some( s => s.idnumber === idnumber);
   }
 
   studentExistsByEmail(email: string): boolean {
-    return this.getStudents().find( (s) => s.email === email) ? true : false
+    return this.getStudents().some( s => s.email === email);
   }
 
 }

@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
 
 
@@ -23,7 +24,7 @@ export function idExistsValidator(
     control: AbstractControl
 ): ValidationErrors | null {
     let studentService = new StudentService()
-
+    
     return studentService.studentExistsByIdNumber(control.value) ? 
         {idnumberexists: true} : null
 }

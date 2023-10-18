@@ -48,4 +48,8 @@ export class StudentsTableComponent {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  sendEmail(email: string){
+    alert('Email has been sent to ' + email)
+  }
 }
