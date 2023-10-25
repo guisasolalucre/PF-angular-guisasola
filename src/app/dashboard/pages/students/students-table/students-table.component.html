@@ -43,7 +43,7 @@
             <mat-icon 
                 *ngIf="student.active"
                 matTooltip="Update student's details"
-                (click)="updateStudent.emit(student)">
+                (click)="onUpdateStudent(student)">
                 edit
             </mat-icon>
             <mat-icon 
@@ -54,7 +54,7 @@
             </mat-icon>
             <mat-icon 
                 matTooltip="Change student's status"
-                (click)="desactivateStudent.emit(student.id)">
+                (click)="onDesactivateStudent(student.id)">
                 {{ student.active ? 'person_remove' : 'person_add' }}
             </mat-icon>
         </td>

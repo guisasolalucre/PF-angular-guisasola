@@ -20,20 +20,20 @@ export function ageValidator(
 }
 
 
-export function idExistsValidator(
-    control: AbstractControl
-): ValidationErrors | null {
-    let studentService = new StudentService()
+// export function idExistsValidator(
+//     control: AbstractControl
+// ): ValidationErrors | null {
+//     let studentService = new StudentService()
     
-    return studentService.studentExistsByIdNumber(control.value) ? 
-        {idnumberexists: true} : null
-}
+//     return studentService.studentExistsByIdNumber(control.value) ? 
+//         {idnumberexists: true} : null
+// }
 
-export function emailExistsValidator(
-    control: AbstractControl
-): ValidationErrors | null {
-    let studentService = new StudentService()
+// export function emailExistsValidator(
+//     control: AbstractControl
+// ): ValidationErrors | null {
+//     let studentService = new StudentService()
 
-    return studentService.studentExistsByEmail(control.value) ? 
-        {emailexists: true} : null
-}
+//     return studentService.studentExistsByEmail(control.value) ? 
+//         {emailexists: true} : null
+// }

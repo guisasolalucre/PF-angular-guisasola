@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
-  page: string = 'home';
+  toggle = true;
 
 
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/services/student.service';
-import { ageValidator, emailExistsValidator, idExistsValidator } from 'src/app/shared/validators/custom-validators';
+import { ageValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
 
 
 @Component({
@@ -50,13 +50,10 @@ export class StudentFormDialogComponent {
 
       if (this.data) {
         this.studentForm.patchValue(this.data)
-      } else {
-        //! SOLUCION TEMPORAL PARA EL PROBLEMA DE EDITAR ALUMNO
-        this.idnumberControl.setValidators(idExistsValidator)
-        this.emailControl.setValidators(emailExistsValidator)
-      }
-      
-    
+        // //! SOLUCION TEMPORAL PARA EL PROBLEMA DE EDITAR ALUMNO
+        // this.idnumberControl.removeValidators(idExistsValidator)
+        // this.emailControl.removeValidators(emailExistsValidator)
+      } 
   }
 
 

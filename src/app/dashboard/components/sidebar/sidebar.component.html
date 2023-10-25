@@ -1,36 +1,17 @@
-<mat-drawer-container class="example-container">
+<button mat-stroked-button 
+    routerLink="home">
+    <mat-icon>home</mat-icon>
+    HOME
+</button>
 
-    <mat-drawer class="example-sidenav" mode="side"
-    [opened]="open">
+<button mat-stroked-button 
+    routerLink="students">
+    <mat-icon>school</mat-icon>
+    STUDENTS
+</button>
 
-        <button mat-stroked-button 
-                (click)="page = 'home'">
-            <mat-icon>home</mat-icon>
-            HOME
-        </button>
-
-        <button mat-stroked-button 
-                (click)="page = 'students'">
-            <mat-icon>school</mat-icon>
-            STUDENTS
-        </button>
-
-        <button mat-stroked-button >
-                <!-- (click)="page = 'courses'" -->
-            <mat-icon>menu_book</mat-icon>
-            COURSES
-        </button>
-    </mat-drawer>
-
-    <div class="example-sidenav-content background">
-
-        <span *ngIf="page === 'home'">
-            <app-home></app-home>
-        </span>
-
-        <span *ngIf="page === 'students'">
-            <app-students-content></app-students-content>
-        </span>
-    </div>
-
-</mat-drawer-container>
+<button mat-stroked-button 
+    routerLink="courses">
+    <mat-icon>menu_book</mat-icon>
+    COURSES
+</button>

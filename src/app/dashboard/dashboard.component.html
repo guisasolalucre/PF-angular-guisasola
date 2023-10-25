@@ -1,9 +1,18 @@
-
 <app-toolbar
-    (openDrawer)="drawer.toggle()">
+    (openDrawer)= 'this.toggle = !this.toggle'>
 </app-toolbar>
 
-<!-- ?? se puede usar una directiva para abrir el sidebar???? -->
-<app-sidebar #drawer>
-    [page]="page"
-</app-sidebar>
+<mat-drawer-container class="example-container" #drawer>
+
+    <mat-drawer class="example-sidenav" 
+        mode="side"
+        [opened]= "toggle">
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+
+    
+    <div class="example-sidenav-content background">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-drawer-container>

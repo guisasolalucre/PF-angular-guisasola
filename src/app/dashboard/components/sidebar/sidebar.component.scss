@@ -1,26 +1,5 @@
-.example-container {
-    height: 100vh;
-}
-
-.example-sidenav-content {
-    //display: flex;
-    height: 100%;
-    padding: 3em;
-    //align-items: center;
-    //justify-content: center;
-}
-
-.example-sidenav,  mat-drawer button{
+button{
     width: 200px;
-}
-
-mat-drawer button{
     padding: 2em;
-}
-
-.background{
-    background-image: url('../../../../assets/escuela-xavier.jpg');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: cover;
+    border-radius: 0;
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Student } from '../model';
 import { students } from '../data/students';
 import { nanoid } from "nanoid";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class StudentService {
   constructor() { }
 
   getStudents(): Array<Student>{
-    return students
+    return students;
   }
   
   createStudent(object: any): Student {
@@ -46,12 +47,12 @@ export class StudentService {
     student.active = !student.active;
   }
 
-  studentExistsByIdNumber(idnumber: number): boolean {
-    return this.getStudents().some( s => s.idnumber === idnumber);
-  }
+  // studentExistsByIdNumber(idnumber: number): boolean {
+  //   return this.getStudents().some( s => s.idnumber === idnumber);
+  // }
 
-  studentExistsByEmail(email: string): boolean {
-    return this.getStudents().some( s => s.email === email);
-  }
+  // studentExistsByEmail(email: string): boolean {
+  //   return this.getStudents().some( s => s.email === email);
+  // }
 
 }

@@ -12,6 +12,8 @@ import { StudentsModule } from './pages/students/students.module';
 import { DashboardComponent } from './dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { RouterModule } from '@angular/router';
+import { CoursesComponent } from './pages/courses/courses.component';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     DashboardComponent,
     SidebarComponent,
     ToolbarComponent,
+    CoursesComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatMenuModule,
     HomeModule,
     StudentsModule,
+    RouterModule,
   ],
   exports: [DashboardComponent]
 })

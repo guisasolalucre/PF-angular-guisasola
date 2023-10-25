@@ -13,20 +13,9 @@
     </button>
 </span>
 
-<span class="table-container" 
-    *ngIf="page.value === 'enabledStudents'">
+<span class="table-container">
     <app-students-table 
-        [table]="activeStudents" 
-        (updateStudent)="onUpdateStudent($event)"
-        (desactivateStudent)="onDesactivateStudent($event)">
-    </app-students-table>
-</span>
-
-<span class="table-container" 
-    *ngIf="page.value === 'inactiveStudents'">
-    <app-students-table 
-        [table]="desactiveStudents" 
-        (updateStudent)="onUpdateStudent($event)"
-        (desactivateStudent)="onDesactivateStudent($event)">
+        [allStudents]="allStudents"
+        [page]="page.value">
     </app-students-table>
 </span>
