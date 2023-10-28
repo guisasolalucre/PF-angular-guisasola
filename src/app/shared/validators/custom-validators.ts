@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { Student } from 'src/app/model';
-import { StudentService } from 'src/app/services/student.service';
+import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 
 
 export function ageValidator(

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from 'src/app/model';
-import { StudentService } from 'src/app/services/student.service';
+import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { ageValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
 
 
@@ -29,6 +29,8 @@ export class StudentFormDialogComponent {
 
     ) { 
       this.studentForm = this.formBuilder.group({
+        id: [''],
+        active: [''],
         idnumber: ['',
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
@@ -58,6 +60,15 @@ export class StudentFormDialogComponent {
 
 
   //* GETTERS
+  get idControl() {
+    return this.studentForm.controls['id'] as FormControl;
+  }
+
+  get activeControl() {
+    return this.studentForm.controls['active'] as FormControl;
+  }
+
+
   get idnumberControl() {
     return this.studentForm.controls['idnumber'] as FormControl;
   }

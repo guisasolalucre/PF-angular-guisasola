@@ -1,10 +1,20 @@
 <p mat-dialog-title>
-    {{ data ? 'Modificar datos de alumno' : 'Alta de alumno' }}
+    {{ data ? 'Updating student' : 'Creating student' }}
 </p>
 
 <mat-dialog-content class="mat-typography">
 
     <form class="example-form">
+
+        <div class="invisible">
+            <mat-form-field>
+                <input matInput [formControl]="idControl">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>ID</mat-label>
+                <input matInput [formControl]="activeControl">
+            </mat-form-field>
+        </div>
 
         <div class="row">
 

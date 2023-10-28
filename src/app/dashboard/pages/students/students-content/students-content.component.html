@@ -1,12 +1,4 @@
 <span class="container">
-    <mat-form-field appearance="fill">
-        <mat-select [formControl]="page">
-            <mat-option value="enabledStudents">Active students</mat-option>
-            <mat-option value="inactiveStudents">Inactive students</mat-option>
-        </mat-select>
-    </mat-form-field>
-
-
     <button mat-flat-button color="accent" (click)="onAddStudent()">
         <mat-icon>add</mat-icon>
         New student
@@ -14,8 +6,9 @@
 </span>
 
 <span class="table-container">
-    <app-students-table 
-        [allStudents]="allStudents"
-        [page]="page.value">
+    <app-students-table
+    [table]="(allStudents$ | async) || []"
+    (updateStudent)="onUpdateStudent($event)"
+    (desactivateStudent)="onDesactivateStudent($event)">
     </app-students-table>
 </span>

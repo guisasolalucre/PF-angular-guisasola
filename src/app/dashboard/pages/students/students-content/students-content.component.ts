@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { StudentFormDialogComponent } from '../student-form-dialog/student-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { StudentService } from 'src/app/services/student.service';
+import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { Student } from 'src/app/model';
-import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { nanoid } from 'nanoid';
 
 @Component({
   selector: 'app-students-content',
@@ -12,15 +13,13 @@ import { FormControl } from '@angular/forms';
 })
 export class StudentsContentComponent {
 
-  page = new FormControl('enabledStudents');
-
-  allStudents: Array<Student> = [];
+  allStudents$: Observable<Student[]>
 
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
   ) {
-      this.allStudents = studentService.getStudents();
+      this.allStudents$ = studentService.getStudents$();
   }
 
   onAddStudent(): void {
@@ -30,13 +29,41 @@ export class StudentsContentComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            const newStudent = this.studentService.createStudent(result);
-            this.allStudents.push(newStudent);;
+            this.allStudents$ = this.studentService.createStudent$({
+              id: nanoid(5),
+              idnumber: result.idnumber,
+              active: true,
+              name: result.name,
+              surname: result.surname,
+              dob: result.dob,
+              email: result.email,
+            });            
           }
         }
       })
   }
 
-  
+  onUpdateStudent(student: Student): void {
+
+    this.dialog
+      .open(StudentFormDialogComponent, {
+        data: student,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+
+          if (!!result) {
+            this.allStudents$ = this.studentService.updateStudent$(student.id, result);
+          }
+        }
+      })
+  }
+
+  onDesactivateStudent(id: string): void {
+    if (confirm('Are you sure?')) {
+      this.allStudents$ = this.studentService.desactivateStudent$(id)
+      }
+  } 
 
 }

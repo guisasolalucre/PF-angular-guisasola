@@ -6,6 +6,13 @@ mat-dialog-actions {
     padding: 0 2em 2em 0;
 }
 
+.invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
 .no-spinners {
     -moz-appearance: textfield;
 }

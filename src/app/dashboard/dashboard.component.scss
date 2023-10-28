@@ -1,16 +1,17 @@
 .example-container {
-    height: 100vh;
-}
-
-.example-sidenav-content {
-    height: 100%;
-    padding: 3em;
-    background-image: url('/src/assets/images/escuela-xavier.jpg');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: cover;
+    height: 90%;
 }
 
 .example-sidenav{
-    width: 200px;
+    max-width: 200px;
+}
+
+.example-sidenav-content {
+    min-height: 94.5%;
+    max-height: 94.5%;
+    padding: 1em 3em;
+    background-image: url('/../assets/images/escuela-xavier.jpg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
 }

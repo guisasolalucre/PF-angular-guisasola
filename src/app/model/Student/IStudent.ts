@@ -1,5 +1,3 @@
-import { Course } from "../Course/Course";
-
 export interface IStudent {
     id: string;
     idnumber: number;
@@ -8,5 +6,4 @@ export interface IStudent {
     surname: string;
     dob: Date;
     email: string;
-    courses: Array<Course>;
 }

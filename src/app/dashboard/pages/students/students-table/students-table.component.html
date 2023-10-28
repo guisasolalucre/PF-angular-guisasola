@@ -40,21 +40,24 @@
             Actions 
         </th>
         <td mat-cell *matCellDef="let student">
+            <mat-icon
+                matTooltip="View student's detail"
+                (click)="goToDetail(student.id)">
+                visibility
+            </mat-icon>
             <mat-icon 
-                *ngIf="student.active"
                 matTooltip="Update student's details"
-                (click)="onUpdateStudent(student)">
+                (click)="updateStudent.emit(student)">
                 edit
             </mat-icon>
             <mat-icon 
-                *ngIf="student.active"
                 [matTooltip]="student.email"
                 (click)="sendEmail(student.email)">
                 mail
             </mat-icon>
             <mat-icon 
                 matTooltip="Change student's status"
-                (click)="onDesactivateStudent(student.id)">
+                (click)="desactivateStudent.emit(student.id)">
                 {{ student.active ? 'person_remove' : 'person_add' }}
             </mat-icon>
         </td>

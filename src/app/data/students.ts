@@ -9,7 +9,6 @@ export let students: Array<Student> = [
         surname: "Drake",
         dob: new Date("1992-02-15"),
         email: "iceman@example.com",
-        courses: [],
     },
     {
         id: "xzBi6",
@@ -19,7 +18,6 @@ export let students: Array<Student> = [
         surname: "Summers",
         dob: new Date("1963-09-01"),
         email: "cyclops@example.com",
-        courses: [],
     },
     {
         id: "wUHl9",
@@ -29,7 +27,6 @@ export let students: Array<Student> = [
         surname: "Grey",
         dob: new Date("1963-09-01"),
         email: "phoenix@example.com",
-        courses: [],
     },
     {
         id: "H4Sbf",
@@ -39,7 +36,6 @@ export let students: Array<Student> = [
         surname: "Munroe",
         dob: new Date("1975-05-01"),
         email: "storm@example.com",
-        courses: [],
     },
     {
         id: "SxAzZ",
@@ -49,7 +45,6 @@ export let students: Array<Student> = [
         surname: "Howlett",
         dob: new Date("1974-11-01"),
         email: "wolverine@example.com",
-        courses: [],
     },
     {
         id: "rR0uC",
@@ -59,7 +54,6 @@ export let students: Array<Student> = [
         surname: "Wagner",
         dob: new Date("1975-05-01"),
         email: "nightcrawler@example.com",
-        courses: [],
     },
     {
         id: "V2eq2",
@@ -69,7 +63,6 @@ export let students: Array<Student> = [
         surname: "Pryde",
         dob: new Date("1980-11-01"),
         email: "shadowcat@example.com",
-        courses: [],
     },
     {
         id: "o6dkV",
@@ -79,7 +72,6 @@ export let students: Array<Student> = [
         surname: "LeBeau",
         dob: new Date("1990-04-01"),
         email: "gambit@example.com",
-        courses: [],
     },
     {
         id: "M1lkv",
@@ -89,7 +81,6 @@ export let students: Array<Student> = [
         surname: "Doe",
         dob: new Date("1981-06-01"),
         email: "rogue@example.com",
-        courses: [],
     },
     {
         id: "c_7yf",
@@ -99,6 +90,5 @@ export let students: Array<Student> = [
         surname: "McCoy",
         dob: new Date("1963-09-01"),
         email: "beast@example.com",
-        courses: [],
     },
 ];
