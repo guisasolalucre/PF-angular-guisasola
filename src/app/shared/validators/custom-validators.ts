@@ -1,11 +1,9 @@
-import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { Student } from 'src/app/model';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { map, of } from 'rxjs';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 
 
-export function ageValidator(
-    control: AbstractControl
-): ValidationErrors | null {
+export function ageValidator(control: AbstractControl): ValidationErrors | null {
 
     let birthdate = new Date(control.value);
 
@@ -20,20 +18,43 @@ export function ageValidator(
 }
 
 
-// export function idExistsValidator(
-//     control: AbstractControl
-// ): ValidationErrors | null {
-//     let studentService = new StudentService()
-    
-//     return studentService.studentExistsByIdNumber(control.value) ? 
-//         {idnumberexists: true} : null
-// }
+export function idExistsValidator(studentService: StudentService): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+        const idControl = control.root.get('id');
+        const idnumber = control.value;
 
-// export function emailExistsValidator(
-//     control: AbstractControl
-// ): ValidationErrors | null {
-//     let studentService = new StudentService()
+        if (!idControl || !idnumber) {
+            return of(null);
+        }
 
-//     return studentService.studentExistsByEmail(control.value) ? 
-//         {emailexists: true} : null
-// }
+        const id = idControl.value;
+
+        return of(null).pipe(
+            map(() => {
+                const exists = studentService.studentExistsByIdNumber(id, idnumber);
+                return exists ? { idnumberexists: true } : null;
+            })
+        );
+    };
+}
+
+
+export function emailExistsValidator(studentService: StudentService): AsyncValidatorFn {
+    return (control: AbstractControl) => {
+        const idControl = control.root.get('id');
+        const email = control.value;
+
+        if (!idControl || !email) {
+            return of(null);
+        }
+
+        const id = idControl.value;
+
+        return of(null).pipe(
+            map(() => {
+                const exists = studentService.studentExistsByEmail(id, email);
+                return exists ? { emailexists: true } : null;
+            })
+        );
+    };
+}

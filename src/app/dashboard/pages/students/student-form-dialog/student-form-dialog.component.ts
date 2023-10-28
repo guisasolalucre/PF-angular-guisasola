@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
-import { ageValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
+import { ageValidator, emailExistsValidator, idExistsValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
 
 
 @Component({
@@ -35,7 +35,8 @@ export class StudentFormDialogComponent {
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
           Validators.minLength(8),
-          Validators.maxLength(8)]],
+          Validators.maxLength(8)],
+          idExistsValidator(studentService)],
         name: ['',
           [Validators.required,
           Validators.pattern('[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+')]],
@@ -47,14 +48,12 @@ export class StudentFormDialogComponent {
             ageValidator]],
         email: ['',
           [Validators.required,
-          Validators.email]],
+          Validators.email],
+          emailExistsValidator(studentService)],
       })
 
       if (this.data) {
         this.studentForm.patchValue(this.data)
-        // //! SOLUCION TEMPORAL PARA EL PROBLEMA DE EDITAR ALUMNO
-        // this.idnumberControl.removeValidators(idExistsValidator)
-        // this.emailControl.removeValidators(emailExistsValidator)
       } 
   }
 
@@ -67,7 +66,6 @@ export class StudentFormDialogComponent {
   get activeControl() {
     return this.studentForm.controls['active'] as FormControl;
   }
-
 
   get idnumberControl() {
     return this.studentForm.controls['idnumber'] as FormControl;
@@ -127,7 +125,6 @@ export class StudentFormDialogComponent {
           this.emailControl.hasError('pattern') ?
             'Invalid email' : 
 
-          //! PROBLEMA: no me deja actualizar alumnos
           this.emailControl.hasError('emailexists') ?
             'Student already exists with this email' : ''
   }

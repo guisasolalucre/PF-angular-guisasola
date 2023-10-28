@@ -56,4 +56,17 @@ export class StudentService {
     return of(this.studentsList.find((s) => s.email === email));
   }
 
+
+  studentExistsByIdNumber(id: string, idnumber: number): boolean {
+    return this.studentsList
+      .filter((s) => s.id !== id)
+      .some((s) => s.idnumber === idnumber)
+  }
+
+  studentExistsByEmail(id: string, email: string): boolean {
+    return this.studentsList
+      .filter((s) => s.id !== id)
+      .some((s) => s.email === email)
+  }
+
 }

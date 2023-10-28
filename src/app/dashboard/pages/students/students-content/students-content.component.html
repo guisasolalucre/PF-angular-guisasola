@@ -1,14 +1,13 @@
-<span class="container">
-    <button mat-flat-button color="accent" (click)="onAddStudent()">
+<div class="container">
+    <button mat-flat-button color="accent" 
+        (click)="onAddStudent()">
         <mat-icon>add</mat-icon>
         New student
     </button>
-</span>
+</div>
 
-<span class="table-container">
-    <app-students-table
+<app-students-table
     [table]="(allStudents$ | async) || []"
     (updateStudent)="onUpdateStudent($event)"
     (desactivateStudent)="onDesactivateStudent($event)">
-    </app-students-table>
-</span>
+</app-students-table>
