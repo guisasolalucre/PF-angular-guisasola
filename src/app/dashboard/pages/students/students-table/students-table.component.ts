@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-students-table',
@@ -49,7 +50,14 @@ export class StudentsTableComponent {
   }
 
   sendEmail(email: string){
-    alert('Email has been sent to ' + email)
+    Swal.fire({
+      text:'Email has been sent to ' + email,
+      icon: 'success',
+      confirmButtonText: 'OK',
+      heightAuto: false,
+      timer: 1500,
+      timerProgressBar:true,
+    })
   }
 
   goToDetail(id: number): void {

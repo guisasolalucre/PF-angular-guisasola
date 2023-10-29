@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/dashboard/pages/students/student.service
 import { Student } from 'src/app/model';
 import { Observable } from 'rxjs';
 import { nanoid } from 'nanoid';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-students-content',
@@ -61,9 +62,28 @@ export class StudentsContentComponent {
   }
 
   onDesactivateStudent(id: string): void {
-    if (confirm('Are you sure?')) {
-      this.allStudents$ = this.studentService.desactivateStudent$(id)
+    Swal.fire({
+      title: 'Are you sure?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      heightAuto: false,
+      customClass:{
+        //!! NO ENTENDÍ CÓMO COMBINAR LOS ESTILOS DE MATERIAL Y SWAL
       }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.allStudents$ = this.studentService.desactivateStudent$(id)
+        Swal.fire({
+          title: 'Done!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          heightAuto: false,
+          timer: 1500,
+          timerProgressBar:true,
+        })
+      }
+    })
   } 
 
 }
