@@ -52,13 +52,13 @@ export class StudentsTableComponent {
     alert('Email has been sent to ' + email)
   }
 
-  goToDetail(userId: number): void {
+  goToDetail(id: number): void {
     this.router.navigate(
       [
         'dashboard',
-        'stuents',
+        'students',
         'detail',
-        userId,
+        id,
       ],
     );
   }

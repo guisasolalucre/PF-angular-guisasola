@@ -1,4 +1,6 @@
 export interface ICourse {
-    id: number;
-    name: string;
+    id: string,
+    name: string,
+    startDate: Date,
+    endDate: Date,
 }

@@ -1,1 +1,61 @@
-<p>course-dialog works!</p>
+<p mat-dialog-title>
+    {{ data ? 'Updating course' : 'Creating course' }}
+</p>
+
+<mat-dialog-content class="mat-typography">
+
+    <form class="example-form">
+
+        <div class="invisible">
+            <mat-form-field>
+                <input matInput [formControl]="idControl">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Course name</mat-label>
+                <input type="text"
+                    matInput
+                    [formControl]="nameControl">
+                <mat-error> {{ nameControlError }} </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col">
+                <mat-label>Start date</mat-label>
+                <input
+                    matInput 
+                    [min]="minDate"
+                    [matDatepicker]="picker"
+                    [formControl]="startDateControl">
+                <mat-error> {{ startDateControlError }} </mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="col">
+                <mat-label>End date</mat-label>
+                <input
+                    matInput 
+                    [matDatepicker]="picker1"
+                    [formControl]="endDateControl">
+                <mat-error> {{ endDateControlError }} </mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="accent"
+        [disabled]="!courseForm.valid"
+        [mat-dialog-close]="courseForm.value">
+        Confirm
+    </button>
+</mat-dialog-actions>
