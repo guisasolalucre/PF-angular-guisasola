@@ -6,6 +6,7 @@ import { StudentsTableComponent } from '../students/students-table/students-tabl
 import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentsContentComponent } from './students-content/students-content.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { StudentsRoutingModule } from './students-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     CommonModule,
     SharedModule,
     MatDatepickerModule,
+    StudentsRoutingModule,
   ],
   exports: [
     StudentFormDialogComponent,

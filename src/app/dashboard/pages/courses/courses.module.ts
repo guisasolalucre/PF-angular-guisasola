@@ -6,6 +6,7 @@ import { CoursesContentComponent } from './courses-content/courses-content.compo
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 
 
@@ -20,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     CommonModule,
     SharedModule,
     MatDatepickerModule,
+    CoursesRoutingModule,
   ],
   exports: [
     CourseDialogComponent,

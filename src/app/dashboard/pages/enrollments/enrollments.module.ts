@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EnrollmentsComponent } from './enrollments.component';
+import { EnrollmentsRoutingModule } from './enrollments-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { EnrollmentsComponent } from './enrollments.component';
     EnrollmentsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    EnrollmentsRoutingModule,
   ]
 })
 export class EnrollmentsModule { }
