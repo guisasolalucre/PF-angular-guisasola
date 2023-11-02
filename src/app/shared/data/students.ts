@@ -1,4 +1,4 @@
-import { Student } from "../model";
+import { Student } from "src/app/dashboard/pages/students/model/Student";
 
 export let students: Array<Student> = [
     {

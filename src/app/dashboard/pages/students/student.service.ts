@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Student } from '../../../model';
-import { students } from '../../../data/students';
-import { nanoid } from "nanoid";
+import { students } from '../../../shared/data/students';
 import { Observable, of } from 'rxjs';
+import { Student } from './model/Student';
 
 @Injectable({
   providedIn: 'root'

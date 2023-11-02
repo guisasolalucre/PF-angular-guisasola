@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { ageValidator, emailExistsValidator, idExistsValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
+import { Student } from '../model/Student';
 
 
 @Component({

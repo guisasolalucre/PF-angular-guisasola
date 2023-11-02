@@ -1,5 +1,8 @@
 <div class="example-sidenav-content">
     <p id="welcome">
-        Welcome
+        Welcome {{authUser?.username}}
+    </p>
+    <p id="session">
+        You are logged in as {{authUser?.role}}
     </p>
 </div>

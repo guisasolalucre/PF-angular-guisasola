@@ -1,0 +1,26 @@
+<h1 style="color: white;">Log in</h1>
+
+<form [formGroup]="loginForm">
+  <div>
+    <mat-form-field class="w-100">
+      <mat-label>Username</mat-label>
+      <input type="text" 
+          matInput
+          [formControl]="usernameControl">
+      <mat-error> {{ usernameControlErrors }} </mat-error>
+  </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Password</mat-label>
+      <input type="password" 
+          matInput
+          [formControl]="passwordControl">
+      <mat-error> {{ passwordControlErrors }} </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button (click)="login()" 
+  mat-flat-button 
+  color="accent">
+    Log in
+  </button>
+</form>

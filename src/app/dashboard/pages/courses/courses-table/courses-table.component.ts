@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Course } from 'src/app/model';
 import { CourseService } from '../course.service';
+import { Course } from '../model/Course';
 
 @Component({
   selector: 'app-courses-table',

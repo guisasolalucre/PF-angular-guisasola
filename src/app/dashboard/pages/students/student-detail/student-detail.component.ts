@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Student } from 'src/app/model';
 import { StudentService } from '../student.service';
+import { Student } from '../model/Student';
 
 @Component({
   selector: 'app-student-detail',

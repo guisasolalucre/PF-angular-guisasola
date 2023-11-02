@@ -16,6 +16,12 @@
         </button>
         <mat-menu #beforeMenu="matMenu" xPosition="before">
             <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                My profile
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item
+                (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 Log out
             </button>

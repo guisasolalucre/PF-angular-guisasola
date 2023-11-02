@@ -1,8 +1,16 @@
-#welcome{
+#welcome {
     font-size: 4em;
     line-height: 1.5em;
-    text-shadow: 10px -10px 0.3em black, //arriba
-                 10px 10px 0.3em black, //derecha
-                 -10px 10px 0.3em black, //izquierda
-                 -10px -10px 0.3em black, //abajo
+    text-shadow: 10px -10px 0.3em black, //top
+                10px 10px 0.3em black, //right
+                -10px 10px 0.3em black, //left
+                -10px -10px 0.3em black, //bottom
+}
+
+#session {
+    font-size: 1.5em;
+    text-shadow: 5px -5px 0.3em black,
+                5px 5px 0.3em black,
+                -5px 5px 0.3em black,
+                -5px -5px 0.3em black,
 }

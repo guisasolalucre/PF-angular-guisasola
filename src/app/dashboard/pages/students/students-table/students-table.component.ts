@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Student } from 'src/app/model';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Student } from '../model/Student';
 
 @Component({
   selector: 'app-students-table',

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { StudentFormDialogComponent } from '../student-form-dialog/student-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
-import { Student } from 'src/app/model';
 import { Observable } from 'rxjs';
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
+import { Student } from '../model/Student';
 
 @Component({
   selector: 'app-students-content',

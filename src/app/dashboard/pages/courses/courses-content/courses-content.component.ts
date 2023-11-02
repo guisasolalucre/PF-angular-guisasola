@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { Course } from 'src/app/model';
 import { CourseService } from '../course.service';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { nanoid } from 'nanoid';
+import { Course } from '../model/Course';
 
 @Component({
   selector: 'app-courses-content',
