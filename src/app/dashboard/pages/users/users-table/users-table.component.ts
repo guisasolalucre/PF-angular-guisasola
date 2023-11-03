@@ -8,13 +8,16 @@ import { User } from '../model/User';
 })
 export class UsersTableComponent {
 
-  displayedColumns: string[] = ['id', 'username', 'adminCheck'];
+  displayedColumns: string[] = ['id', 'username', 'adminCheck', 'actions'];
 
   @Input()
   table: User[] = [];
 
   @Output()
   changeRole = new EventEmitter<string>();
+
+  @Output()
+  deleteUser = new EventEmitter<string>();
 
   constructor(){}
 

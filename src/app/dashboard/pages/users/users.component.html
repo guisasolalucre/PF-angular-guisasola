@@ -1,4 +1,13 @@
+<div class="container">
+   <button mat-flat-button color="accent" 
+      (click)="onAddUser()">
+      <mat-icon>add</mat-icon>
+      New user
+   </button>
+</div>
+
 <app-users-table 
-   [table]="users || []"
-   (changeRole)="onChangeRole($event)">
+   [table]="users || []" 
+   (changeRole)="onChangeRole($event)"
+   (deleteUser)="onDeleteUser($event)">
 </app-users-table>
