@@ -17,8 +17,6 @@ export class HomeComponent {
     this.authService.authUser$.subscribe((user: User | null) => {
       this.authUser = user;
     });
-    console.log(this.authUser);
-    
   }
 
 }

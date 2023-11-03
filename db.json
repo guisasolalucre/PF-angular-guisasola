@@ -1,154 +1,154 @@
 {
-    "users" : [
-        {
-            "id": "Bi6_2",
-            "username": "admin",
-            "password": "admin",
-            "role": "ADMINISTRATOR",
-            "token": "nPXR5cpDLWEf6uktA6x5UST3L"
-        },
-        {
-            "id": "Hl9d3",
-            "username": "assist",
-            "password": "assist",
-            "role": "ASSISTANT",
-            "token": "ywvmIKFblMTGINDuoyZgN_WQD"
-        }
-    ],
-    "students" : [
-        {
-            "id": "2UeoA",
-            "idnumber": 98765432,
-            "active": false,
-            "name": "Bobby",
-            "surname": "Drake",
-            "dob": "1992-02-15T00:00:00.000Z",
-            "email": "iceman@example.com"
-        },
-        {
-            "id": "xzBi6",
-            "idnumber": 12345678,
-            "active": true,
-            "name": "Scott",
-            "surname": "Summers",
-            "dob": "1963-09-01T00:00:00.000Z",
-            "email": "cyclops@example.com"
-        },
-        {
-            "id": "wUHl9",
-            "idnumber": 87654321,
-            "active": true,
-            "name": "Jean",
-            "surname": "Grey",
-            "dob": "1963-09-01T00:00:00.000Z",
-            "email": "phoenix@example.com"
-        },
-        {
-            "id": "H4Sbf",
-            "idnumber": 23456789,
-            "active": true,
-            "name": "Ororo",
-            "surname": "Munroe",
-            "dob": "1975-05-01T00:00:00.000Z",
-            "email": "storm@example.com"
-        },
-        {
-            "id": "SxAzZ",
-            "idnumber": 54321678,
-            "active": true,
-            "name": "Logan",
-            "surname": "Howlett",
-            "dob": "1974-11-01T00:00:00.000Z",
-            "email": "wolverine@example.com"
-        },
-        {
-            "id": "rR0uC",
-            "idnumber": 34567890,
-            "active": true,
-            "name": "Kurt",
-            "surname": "Wagner",
-            "dob": "1975-05-01T00:00:00.000Z",
-            "email": "nightcrawler@example.com"
-        },
-        {
-            "id": "V2eq2",
-            "idnumber": 87654321,
-            "active": true,
-            "name": "Kitty",
-            "surname": "Pryde",
-            "dob": "1980-11-01T00:00:00.000Z",
-            "email": "shadowcat@example.com"
-        },
-        {
-            "id": "o6dkV",
-            "idnumber": 45678901,
-            "active": false,
-            "name": "Remy",
-            "surname": "LeBeau",
-            "dob": "1990-04-01T00:00:00.000Z",
-            "email": "gambit@example.com"
-        },
-        {
-            "id": "M1lkv",
-            "idnumber": 56789012,
-            "active": true,
-            "name": "Rogue",
-            "surname": "Doe",
-            "dob": "1981-06-01T00:00:00.000Z",
-            "email": "rogue@example.com"
-        },
-        {
-            "id": "c_7yf",
-            "idnumber": 78901234,
-            "active": true,
-            "name": "Hank",
-            "surname": "McCoy",
-            "dob": "1963-09-01T00:00:00.000Z",
-            "email": "beast@example.com"
-        }
-    ],
-    "courses" : [
-        {
-            "id": "gfk82",
-            "name": "Control of Mutant Powers",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "hdt37",
-            "name": "Mutant Ethics",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "jop49",
-            "name": "Combat Training",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "qwe73",
-            "name": "Telepathy and Telekinesis",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "lkm56",
-            "name": "Weather Control",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "mnb54",
-            "name": "Mutant History",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        },
-        {
-            "id": "wer81",
-            "name": "Time Control",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
-        }
-    ]
+  "users": [
+    {
+      "id": "Bi6_2",
+      "username": "admin",
+      "password": "admin",
+      "role": "ADMINISTRATOR",
+      "token": "nPXR5cpDLWEf6uktA6x5UST3L"
+    },
+    {
+      "id": "Hl9d3",
+      "username": "assist",
+      "password": "assist",
+      "role": "ASSISTANT",
+      "token": "ywvmIKFblMTGINDuoyZgN_WQD"
+    }
+  ],
+  "students": [
+    {
+      "id": "2UeoA",
+      "idnumber": 98765432,
+      "active": false,
+      "name": "Bobby",
+      "surname": "Drake",
+      "dob": "1992-02-15T00:00:00.000Z",
+      "email": "iceman@example.com"
+    },
+    {
+      "id": "xzBi6",
+      "idnumber": 12345678,
+      "active": true,
+      "name": "Scott",
+      "surname": "Summers",
+      "dob": "1963-09-01T00:00:00.000Z",
+      "email": "cyclops@example.com"
+    },
+    {
+      "id": "wUHl9",
+      "idnumber": 87654321,
+      "active": true,
+      "name": "Jean",
+      "surname": "Grey",
+      "dob": "1963-09-01T00:00:00.000Z",
+      "email": "phoenix@example.com"
+    },
+    {
+      "id": "H4Sbf",
+      "idnumber": 23456789,
+      "active": true,
+      "name": "Ororo",
+      "surname": "Munroe",
+      "dob": "1975-05-01T00:00:00.000Z",
+      "email": "storm@example.com"
+    },
+    {
+      "id": "SxAzZ",
+      "idnumber": 54321678,
+      "active": true,
+      "name": "Logan",
+      "surname": "Howlett",
+      "dob": "1974-11-01T00:00:00.000Z",
+      "email": "wolverine@example.com"
+    },
+    {
+      "id": "rR0uC",
+      "idnumber": 34567890,
+      "active": true,
+      "name": "Kurt",
+      "surname": "Wagner",
+      "dob": "1975-05-01T00:00:00.000Z",
+      "email": "nightcrawler@example.com"
+    },
+    {
+      "id": "V2eq2",
+      "idnumber": 87654321,
+      "active": true,
+      "name": "Kitty",
+      "surname": "Pryde",
+      "dob": "1980-11-01T00:00:00.000Z",
+      "email": "shadowcat@example.com"
+    },
+    {
+      "id": "o6dkV",
+      "idnumber": 45678901,
+      "active": false,
+      "name": "Remy",
+      "surname": "LeBeau",
+      "dob": "1990-04-01T00:00:00.000Z",
+      "email": "gambit@example.com"
+    },
+    {
+      "id": "M1lkv",
+      "idnumber": 56789012,
+      "active": true,
+      "name": "Rogue",
+      "surname": "Doe",
+      "dob": "1981-06-01T00:00:00.000Z",
+      "email": "rogue@example.com"
+    },
+    {
+      "id": "c_7yf",
+      "idnumber": 78901234,
+      "active": true,
+      "name": "Hank",
+      "surname": "McCoy",
+      "dob": "1963-09-01T00:00:00.000Z",
+      "email": "beast@example.com"
+    }
+  ],
+  "courses": [
+    {
+      "id": "gfk82",
+      "name": "Control of Mutant Powers",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "hdt37",
+      "name": "Mutant Ethics",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "jop49",
+      "name": "Combat Training",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "qwe73",
+      "name": "Telepathy and Telekinesis",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "lkm56",
+      "name": "Weather Control",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "mnb54",
+      "name": "Mutant History",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "wer81",
+      "name": "Time Control",
+      "startDate": "1992-02-15T00:00:00.000Z",
+      "endDate": "1992-02-15T00:00:00.000Z"
+    }
+  ]
 }

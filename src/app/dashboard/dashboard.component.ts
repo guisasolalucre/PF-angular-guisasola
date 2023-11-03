@@ -9,5 +9,4 @@ export class DashboardComponent {
 
   toggle = true;
 
-
 }

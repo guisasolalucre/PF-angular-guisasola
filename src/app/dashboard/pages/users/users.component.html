@@ -1,2 +1,4 @@
-<p>acá se van a ver los usuarios admin 
-    y poder editar los distintos permisos que pueden tener</p>
+<app-users-table 
+   [table]="users || []"
+   (changeRole)="onChangeRole($event)">
+</app-users-table>

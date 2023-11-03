@@ -47,15 +47,6 @@ export class StudentService {
     return of(this.studentsList.find((s) => s.id === id));
   }
 
-  getStudentByIdNumber$(idN: number): Observable<Student | undefined> {
-    return of(this.studentsList.find((s) => s.idnumber === idN));
-  }
-
-  getStudentByEmail$(email: string): Observable<Student | undefined> {
-    return of(this.studentsList.find((s) => s.email === email));
-  }
-
-
   studentExistsByIdNumber(id: string, idnumber: number): boolean {
     return this.studentsList
       .filter((s) => s.id !== id)

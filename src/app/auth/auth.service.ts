@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.local';
 import { ILoginPayload } from './pages/login/model/ILoginPayload';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,10 @@ export class AuthService {
       .subscribe({
         next: (r) => {
           if (!r.length) {
-            console.log('usuario invalido');
+            Swal.fire({
+              icon: 'error',
+              text: 'Invalid username or password',
+            })
           } else {
             const authUser = r[0]
             this._authUser$.next(authUser);

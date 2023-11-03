@@ -20,7 +20,7 @@ export class StudentsContentComponent {
     public dialog: MatDialog,
     public studentService: StudentService,
   ) {
-      this.allStudents$ = studentService.getStudents$();
+      this.allStudents$ = this.studentService.getStudents$();
   }
 
   onAddStudent(): void {

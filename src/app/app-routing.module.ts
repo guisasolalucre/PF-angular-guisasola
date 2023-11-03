@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./auth/auth.module').then(r => r.AuthModule)
   }, 
 
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'dashboard/home', pathMatch: 'full'},
   {path: '**', component: Page404Component},
   
 ];
