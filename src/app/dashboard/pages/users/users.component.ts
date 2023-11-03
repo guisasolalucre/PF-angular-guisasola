@@ -32,7 +32,11 @@ export class UsersComponent {
         heightAuto: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          this.usersService.changeRole(id);
+          this.usersService.changeRole(id).subscribe(
+            (data: User[]) => {
+              this.users = data;
+            },
+          )
             Swal.fire({
             title: 'Done!',
             icon: 'success',

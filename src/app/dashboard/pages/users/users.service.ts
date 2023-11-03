@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.local';
 import { User } from './model/User';
-import { Observable } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  private baseURL : string = environment.baseUrl+'/users';
+  private baseURL: string = environment.baseUrl + '/users';
 
   public users: User[] = []
 
@@ -17,30 +17,32 @@ export class UsersService {
     private httpClient: HttpClient,
   ) { }
 
-  getUsers(): Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.baseURL)
   }
 
-  getById(id: string): Observable<User[]>{
+  getById(id: string): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.baseURL}?id=${id}`)
   }
 
-  changeRole(id: string): void{
-    this.getById(id).subscribe({
-      next: (users) => {
-        let newRole = ''
-        let user: User
-        user = users[0]
+  changeRole(id: string): Observable<User[]> {
+    return this.getById(id).pipe(
+      switchMap(users => {
+        let newRole = '';
+        let user = users[0];
 
         user.role === 'ADMINISTRATOR' ?
         newRole = 'ASSISTANT' :
         user.role === 'ASSISTANT' ?
-        newRole = 'ADMINISTRATOR': '';
+        newRole = 'ADMINISTRATOR' : '';
 
-        let changedUser = { ...user, role : newRole}
+        let changedUser = { ...user, role: newRole };
 
-        this.httpClient.put<User[]>(`${this.baseURL}/${id}`,changedUser).subscribe()
-      }
-    })
+        return this.httpClient.put<User>(`${this.baseURL}/${id}`, changedUser).pipe(
+          switchMap(() => this.getUsers())
+        );
+      })
+    );
   }
+
 }
