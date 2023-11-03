@@ -4,14 +4,14 @@
             "id": "Bi6_2",
             "username": "admin",
             "password": "admin",
-            "role": "ADMIN",
+            "role": "ADMINISTRATOR",
             "token": "nPXR5cpDLWEf6uktA6x5UST3L"
         },
         {
             "id": "Hl9d3",
             "username": "assist",
             "password": "assist",
-            "role": "ASSIST",
+            "role": "ASSISTANT",
             "token": "ywvmIKFblMTGINDuoyZgN_WQD"
         }
     ],

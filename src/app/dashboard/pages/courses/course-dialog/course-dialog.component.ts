@@ -26,8 +26,6 @@ export class CourseDialogComponent {
     public data?: Course,
 
     ) { 
-      console.log(this.minDate);
-      
       this.courseForm = this.formBuilder.group({
         id: [''],
         name: ['',
