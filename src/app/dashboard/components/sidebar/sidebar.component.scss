@@ -1,11 +1,22 @@
-button{
-    margin: 0;
-    width: 99.9%;
+mat-list-item{
     padding: 2em;
-    border-radius: 0;
 }
 
 .usersBtn{
     position: absolute;
     bottom: 0.1%;
+} 
+
+.is-active .tag {
+    color: #69F0AE;    
+}
+
+.tag{
+    margin-left: 0.6em;
+}
+
+.option{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

@@ -15,7 +15,6 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService, 
-    private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['',
@@ -52,7 +51,6 @@ export class LoginComponent {
   }
 
   login(): void {
-
     if(this.loginForm.invalid){
       this.loginForm.markAllAsTouched();
     } else {

@@ -7,7 +7,7 @@
 </div>
 
 <app-users-table 
-   [table]="users || []" 
+   [table]="users" 
    (changeRole)="onChangeRole($event)"
    (deleteUser)="onDeleteUser($event)">
 </app-users-table>

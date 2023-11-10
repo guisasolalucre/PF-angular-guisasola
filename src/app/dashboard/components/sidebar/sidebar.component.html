@@ -1,32 +1,49 @@
-<div>
-    <button mat-stroked-button 
-        routerLink="home">
-        <mat-icon>home</mat-icon>
-        HOME
-    </button>
+<mat-nav-list>
+    <div>
+        <mat-list-item 
+            routerLink="home" 
+            [routerLinkActive]="['is-active']">
+            <div class="option">
+                <mat-icon>home</mat-icon>
+                <span class="tag">HOME</span>
+            </div>
+        </mat-list-item>
 
-    <button mat-stroked-button 
-        routerLink="students">
-        <mat-icon>school</mat-icon>
-        STUDENTS
-    </button>
+        <mat-list-item 
+            routerLink="students" 
+            [routerLinkActive]="['is-active']">
+            <div class="option">
+                <mat-icon>school</mat-icon>
+                <span class="tag">STUDENTS</span>
+            </div>
+        </mat-list-item>
 
-    <button mat-stroked-button 
-        routerLink="courses">
-        <mat-icon>menu_book</mat-icon>
-        COURSES
-    </button>
+        <mat-list-item 
+            routerLink="courses" 
+            [routerLinkActive]="['is-active']">
+            <div class="option">
+                <mat-icon>menu_book</mat-icon>
+                <span class="tag">COURSES</span>
+            </div>
+        </mat-list-item>
 
-    <button mat-stroked-button 
-        routerLink="enroll">
-        <mat-icon>badge</mat-icon>
-        ENROLLMENT
-    </button>
-</div>
+        <mat-list-item 
+            routerLink="enroll" 
+            [routerLinkActive]="['is-active']">
+            <div class="option">
+                <mat-icon>badge</mat-icon>
+                <span class="tag">ENROLLMENT</span>
+            </div>
+        </mat-list-item>
+    </div>
 
-    <button mat-stroked-button 
-        routerLink="users"
-        class="usersBtn">
-        <mat-icon>groups</mat-icon>
-        USERS
-    </button>
+    <mat-list-item 
+        class="usersBtn"
+        routerLink="users" 
+        [routerLinkActive]="['is-active']">
+        <div class="option">
+            <mat-icon>groups</mat-icon>
+            <span class="tag">USERS</span>
+        </div>
+    </mat-list-item>
+</mat-nav-list>

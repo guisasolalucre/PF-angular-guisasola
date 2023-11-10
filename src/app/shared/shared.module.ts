@@ -15,6 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTooltipModule,
     MatSelectModule,
     MatDividerModule,
+    MatListModule,
   ],
   providers: [
     TitleCasePipe,
