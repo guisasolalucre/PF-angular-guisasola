@@ -24,10 +24,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('PF-angular-guisasola');
   });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.querySelector('.content span')?.textContent).toContain('PF-angular-guisasola app is running!');
-  // });
 });

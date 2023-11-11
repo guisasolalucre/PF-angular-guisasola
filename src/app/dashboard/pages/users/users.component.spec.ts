@@ -31,13 +31,13 @@ describe('UsersComponent', () => {
 
 
 
-   it('should create users component and get users', () => {
+   it('should create users component', () => {
       expect(usersComponent).toBeTruthy();
    });
 
 
 
-   it('should get users from api', () => {
+   it('should call service to get data', () => {
       const spyOnService = spyOn(
          (usersComponent as any).usersService,
          'getUsers'

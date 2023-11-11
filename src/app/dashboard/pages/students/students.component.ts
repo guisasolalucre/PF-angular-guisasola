@@ -21,9 +21,7 @@ export class StudentsComponent {
 
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(
-      (data: Student[]) => {
-        this.students = data;
-      }
+      (data: Student[]) => this.students = data
     );
   }
 

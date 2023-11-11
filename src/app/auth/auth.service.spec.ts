@@ -50,9 +50,7 @@ describe('AuthService', () => {
       httpController.expectOne({
          method: 'GET',
          url: `${environment.baseUrl}/users?username=${USER_MOCK.username}&password=${USER_MOCK.password}`
-      }).flush([
-         USER_MOCK
-      ])
+      }).flush([USER_MOCK])
 
       authService.authUser$.subscribe({
          next: (authUser) => { 
