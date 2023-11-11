@@ -27,7 +27,7 @@
                 <mat-label>Start date</mat-label>
                 <input
                     matInput 
-                    [min]="minDate"
+                    [min]="data ? null : minDate"
                     [matDatepicker]="picker"
                     [formControl]="startDateControl">
                 <mat-error> {{ startDateControlError }} </mat-error>

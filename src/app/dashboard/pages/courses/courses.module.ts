@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CoursesTableComponent } from './courses-table/courses-table.component';
-import { CoursesContentComponent } from './courses-content/courses-content.component';
+import { CoursesComponent } from './courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -14,7 +14,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
   declarations: [
     CourseDialogComponent,
     CoursesTableComponent,
-    CoursesContentComponent,
+    CoursesComponent,
     CourseDetailComponent,
   ],
   imports: [
@@ -26,7 +26,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
   exports: [
     CourseDialogComponent,
     CoursesTableComponent,
-    CoursesContentComponent,
+    CoursesComponent,
   ]
 })
 export class CoursesModule { }

@@ -13,6 +13,13 @@
       "password": "assist",
       "role": "ASSISTANT",
       "token": "ywvmIKFblMTGINDuoyZgN_WQD"
+    },
+    {
+      "id": "KpC2w",
+      "username": "guisa",
+      "password": "guisa",
+      "role": "ADMINISTRATOR",
+      "token": "DW4I2Vx1GTMldwssZQg7aZd87"
     }
   ],
   "students": [

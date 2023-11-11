@@ -55,4 +55,13 @@ export class UsersService {
   filterAdmin(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.baseURL}?role=ADMINISTRATOR`)
   }
+
+  usernameExists(id: string, username: string): Observable<boolean> {
+    return this.httpClient.get<User[]>(`${this.baseURL}`).pipe(
+      map(users => {
+        let filtered = users.filter(u => u.id !== id);
+        return filtered.some(u => u.username === username);
+      })
+    );
+  }
 }

@@ -42,6 +42,7 @@ describe('LoginComponent', () => {
       expect(loginComponent.passwordControl.touched).toBeTrue();
    });
 
+   
    it('should call login method from AuthService when form is valid', () => {
       loginComponent.loginForm.patchValue({
          username: 'qwert',

@@ -1,31 +1,30 @@
 import { Component } from '@angular/core';
-import { StudentFormDialogComponent } from '../student-form-dialog/student-form-dialog.component';
+import { StudentFormDialogComponent } from './student-form-dialog/student-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
-import { Observable } from 'rxjs';
 import { nanoid } from 'nanoid';
-import Swal from 'sweetalert2';
-import { Student } from '../model/Student';
+import { Student } from './model/Student';
 
 @Component({
-  selector: 'app-students-content',
-  templateUrl: './students-content.component.html',
-  styleUrls: ['./students-content.component.scss']
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrls: ['./students.component.scss']
 })
-export class StudentsContentComponent {
+export class StudentsComponent {
 
   students: Student[] = []
 
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
-  ) {
-    this.studentService.getStudents().subscribe({
-      next: (data: Student[]) => {
+  ) { }
+
+  ngOnInit(): void {
+    this.studentService.getStudents().subscribe(
+      (data: Student[]) => {
         this.students = data;
-      },
-      error: (error) => { console.log(error) }
-    });
+      }
+    );
   }
 
   onAddStudent(): void {

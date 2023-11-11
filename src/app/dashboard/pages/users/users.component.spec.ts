@@ -1,19 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { UsersComponent } from "./users.component"
-import { UsersService } from "./users.service";
-import { MockProvider } from "ng-mocks";
 import { SharedModule } from "src/app/shared/shared.module";
 import { UsersTableComponent } from "./users-table/users-table.component";
 import { UserDialogComponent } from "./user-dialog/user-dialog.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of } from "rxjs";
 
-
-fdescribe('UsersComponent', () => {
+describe('UsersComponent', () => {
 
    let usersComponent: UsersComponent;
+   let fixture: ComponentFixture<UsersComponent>;
 
-   beforeEach( () => {
-
+   beforeEach(() => {
       TestBed.configureTestingModule({
          declarations: [
             UsersComponent,
@@ -22,16 +20,32 @@ fdescribe('UsersComponent', () => {
          ],
          imports: [
             SharedModule,
+            HttpClientTestingModule,
          ],
-         providers: [
-            MockProvider(UsersService)
-         ]
       })
 
-      const fixture = TestBed.createComponent(UsersComponent)
+      fixture = TestBed.createComponent(UsersComponent)
       usersComponent = fixture.componentInstance;
-      
+      fixture.detectChanges();
    })
 
+
+
+   it('should create users component and get users', () => {
+      expect(usersComponent).toBeTruthy();
+   });
+
+
+
+   it('should get users from api', () => {
+      const spyOnService = spyOn(
+         (usersComponent as any).usersService,
+         'getUsers'
+      ).and.returnValue(of([
+         {},{},{},{}
+      ]))
+      usersComponent.ngOnInit();
+      expect(spyOnService).toHaveBeenCalled();
+   })
 
 })

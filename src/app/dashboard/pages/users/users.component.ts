@@ -19,7 +19,9 @@ export class UsersComponent {
   constructor(
     public usersService: UsersService,
     public dialog: MatDialog,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.usersService.getUsers().subscribe(
       (data: User[]) => this.users = data
     )
@@ -49,31 +51,49 @@ export class UsersComponent {
   }
 
   onDeleteUser(id: string): void {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      heightAuto: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.usersService.deleteUser(id).subscribe(
-          (data: User[]) => {
-            this.users = data;
-          },
+
+    this.usersService.filterAdmin().subscribe(
+      admins => {
+        this.usersService.getById(id).subscribe(
+          users => { 
+            let user = users[0]
+            if( (admins.length === 1) && (user.role === 'ADMINISTRATOR')){
+              Swal.fire({
+                icon: "error",
+                text: "There has to be at least one admin",
+                heightAuto: false,
+              });
+            } else {
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                heightAuto: false,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.usersService.deleteUser(id).subscribe(
+                    (data: User[]) => {
+                      this.users = data;
+                    },
+                  )
+                  Swal.fire({
+                    title: 'Deleted!',
+                    text: "The user has been deleted",
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    heightAuto: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                  })
+                }
+              })
+            }
+          }
         )
-        Swal.fire({
-          title: 'Deleted!',
-          text: "The user has been deleted",
-          icon: 'success',
-          confirmButtonText: 'OK',
-          heightAuto: false,
-          timer: 1500,
-          timerProgressBar: true,
-        })
       }
-    })
+    )
   }
 
   onChangeRole(id: string): void {

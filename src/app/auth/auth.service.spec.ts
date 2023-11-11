@@ -56,7 +56,6 @@ describe('AuthService', () => {
 
       authService.authUser$.subscribe({
          next: (authUser) => { 
-            console.log(authUser);
             expect(authUser).toBeTruthy()
             expect(authUser).toEqual(USER_MOCK)
          }

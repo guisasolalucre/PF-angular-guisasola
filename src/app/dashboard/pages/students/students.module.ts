@@ -4,7 +4,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { StudentFormDialogComponent } from '../students/student-form-dialog/student-form-dialog.component';
 import { StudentsTableComponent } from '../students/students-table/students-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { StudentsContentComponent } from './students-content/students-content.component';
+import { StudentsComponent } from './students.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { StudentsRoutingModule } from './students-routing.module';
 
@@ -12,7 +12,7 @@ import { StudentsRoutingModule } from './students-routing.module';
   declarations: [
     StudentFormDialogComponent,
     StudentsTableComponent,
-    StudentsContentComponent,
+    StudentsComponent,
     StudentDetailComponent,
   ],
   imports: [
@@ -24,7 +24,7 @@ import { StudentsRoutingModule } from './students-routing.module';
   exports: [
     StudentFormDialogComponent,
     StudentsTableComponent,
-    StudentsContentComponent,
+    StudentsComponent,
   ]
 })
 export class StudentsModule { }

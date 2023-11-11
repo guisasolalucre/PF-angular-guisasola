@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { usernameExistsValidator } from 'src/app/shared/validators/custom-validators';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -14,12 +16,14 @@ export class UserDialogComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private usersService: UsersService,
   ) {
     this.userForm = this.formBuilder.group({
       id: [''],
       username: ['',
         [Validators.required,
-        Validators.minLength(5)]],
+        Validators.minLength(5)],
+        usernameExistsValidator(usersService)],
       password: ['',
         [Validators.required,
         Validators.minLength(5)]],
@@ -43,6 +47,8 @@ export class UserDialogComponent {
       'Username is required' :
       this.usernameControl.hasError('minlength') ?
       'Username must have at least 5 characters' :
+      this.usernameControl.hasError('usernameexists') ?
+      'Username already exists' :
       '';
   }
   

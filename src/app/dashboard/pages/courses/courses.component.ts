@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { CourseService } from '../course.service';
-import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { CourseService } from './course.service';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { nanoid } from 'nanoid';
-import { Course } from '../model/Course';
+import { Course } from './model/Course';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: 'app-courses-content',
-  templateUrl: './courses-content.component.html',
-  styleUrls: ['./courses-content.component.scss']
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss']
 })
-export class CoursesContentComponent {
+export class CoursesComponent {
 
   courses: Course[] = []
 

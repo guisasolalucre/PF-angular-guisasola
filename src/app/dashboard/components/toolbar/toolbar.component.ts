@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,7 +17,17 @@ export class ToolbarComponent {
   ){}
 
   logout(){
-    this.authService.logout()
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      heightAuto: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logout()
+      }
+    });
   }
 
 }

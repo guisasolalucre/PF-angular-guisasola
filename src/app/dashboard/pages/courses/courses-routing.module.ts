@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoursesContentComponent } from './courses-content/courses-content.component';
+import { CoursesComponent } from './courses.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 const routes: Routes = [
     { 
         path: '',
-        component: CoursesContentComponent 
+        component: CoursesComponent 
     },
     {
         path: 'detail/:id',
