@@ -14,13 +14,18 @@ import { Student } from '../model/Student';
 })
 export class StudentsContentComponent {
 
-  allStudents$: Observable<Student[]>
+  students: Student[] = []
 
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
   ) {
-      this.allStudents$ = this.studentService.getStudents$();
+    this.studentService.getStudents().subscribe({
+      next: (data: Student[]) => {
+        this.students = data;
+      },
+      error: (error) => { console.log(error) }
+    });
   }
 
   onAddStudent(): void {
@@ -30,7 +35,7 @@ export class StudentsContentComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.allStudents$ = this.studentService.createStudent$({
+            this.studentService.createStudent({
               id: nanoid(5),
               idnumber: result.idnumber,
               active: true,
@@ -38,7 +43,11 @@ export class StudentsContentComponent {
               surname: result.surname,
               dob: result.dob,
               email: result.email,
-            });            
+            }).subscribe(
+              (data: Student[]) => {
+                this.students = data;
+              },
+            )            
           }
         }
       })
@@ -53,37 +62,31 @@ export class StudentsContentComponent {
       .afterClosed()
       .subscribe({
         next: (result) => {
-
           if (!!result) {
-            this.allStudents$ = this.studentService.updateStudent$(student.id, result);
+            this.studentService.updateStudent(
+              student.id, 
+              result
+            ).subscribe(
+              (data: Student[]) => {
+                this.students = data;
+              },
+            )
+            ;
           }
         }
       })
   }
 
   onDesactivateStudent(id: string): void {
-    Swal.fire({
-      title: 'Are you sure?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      heightAuto: false,
-      customClass:{
-        //!! NO ENTENDÍ CÓMO COMBINAR LOS ESTILOS DE MATERIAL Y SWAL
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.allStudents$ = this.studentService.desactivateStudent$(id)
-        Swal.fire({
-          title: 'Done!',
-          icon: 'success',
-          confirmButtonText: 'OK',
-          heightAuto: false,
-          timer: 1500,
-          timerProgressBar:true,
-        })
-      }
-    })
+    this.studentService.changeStatus(id).subscribe(
+      (data: Student[]) => {
+        this.students = data;
+      },
+    )
   } 
+
+  onSendEmail(id: string): void {
+    this.studentService.sendEmail(id)
+  }
 
 }

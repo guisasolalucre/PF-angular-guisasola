@@ -1,5 +1,9 @@
 <div class="container">
-    <button mat-flat-button color="accent" 
+    <p>COURSES</p>
+    <button 
+        *ngIf="isAdmin"
+        mat-flat-button 
+        color="accent" 
         (click)="onAddCourse()">
         <mat-icon>add</mat-icon>
         New course
@@ -7,6 +11,7 @@
 </div>
 
 <app-courses-table
-    [table]="(allCourses$ | async) || []"
+    [isAdmin]="isAdmin"
+    [table]="courses"
     (updateCourse)="onUpdateCourse($event)">
 </app-courses-table>

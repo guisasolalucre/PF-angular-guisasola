@@ -11,8 +11,6 @@ export class UsersService {
 
   private baseURL: string = environment.baseUrl + '/users';
 
-  public users: User[] = []
-
   constructor(
     private httpClient: HttpClient,
   ) { }
@@ -54,4 +52,7 @@ export class UsersService {
     );
   }
 
+  filterAdmin(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.baseURL}?role=ADMINISTRATOR`)
+  }
 }

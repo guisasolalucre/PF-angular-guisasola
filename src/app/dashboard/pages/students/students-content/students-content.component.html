@@ -1,4 +1,5 @@
 <div class="container">
+    <p>STUDENTS</p>
     <button mat-flat-button color="accent" 
         (click)="onAddStudent()">
         <mat-icon>add</mat-icon>
@@ -7,7 +8,8 @@
 </div>
 
 <app-students-table
-    [table]="(allStudents$ | async) || []"
+    [table]="students"
     (updateStudent)="onUpdateStudent($event)"
-    (desactivateStudent)="onDesactivateStudent($event)">
+    (desactivateStudent)="onDesactivateStudent($event)"
+    (sendEmail)="onSendEmail($event)">
 </app-students-table>

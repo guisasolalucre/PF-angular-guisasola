@@ -5,6 +5,7 @@ import { CourseService } from '../course.service';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { nanoid } from 'nanoid';
 import { Course } from '../model/Course';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-courses-content',
@@ -13,13 +14,27 @@ import { Course } from '../model/Course';
 })
 export class CoursesContentComponent {
 
-  allCourses$: Observable<Course[]>
+  courses: Course[] = []
+
+  isAdmin: boolean = false
 
   constructor(
     public dialog: MatDialog,
     public courseService: CourseService,
+    private authService: AuthService,
   ) {
-      this.allCourses$ = courseService.getCourses$();
+    this.courseService.getCourses().subscribe({
+      next: (data: Course[]) => {
+        this.courses = data;
+      },
+      error: (error) => { console.log(error) }
+    });
+
+      this.authService.authUser$.subscribe({
+        next: (user) => { 
+          this.isAdmin = user?.role === 'ADMINISTRATOR' ? true : false
+        }
+      })
   }
 
   onAddCourse(): void {
@@ -29,12 +44,16 @@ export class CoursesContentComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.allCourses$ = this.courseService.createCourse$({
+            this.courseService.createCourse({
               id: nanoid(5),
               name: result.name,
               startDate: result.startDate,
               endDate: result.endDate,
-            });            
+            }).subscribe(
+              (data: Course[]) => {
+                this.courses = data;
+              },
+            )            
           }
         }
       })
@@ -51,7 +70,11 @@ export class CoursesContentComponent {
         next: (result) => {
 
           if (!!result) {
-            this.allCourses$ = this.courseService.updateCourse$(course.id, result);
+            this.courseService.updateCourse(course.id, result).subscribe(
+              (data: Course[]) => {
+                this.courses = data;
+              },
+            )
           }
         }
       })

@@ -1,62 +1,86 @@
 import { Injectable } from '@angular/core';
-import { students } from '../../../shared/data/students';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 import { Student } from './model/Student';
+import { environment } from 'src/environments/environment.local';
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  studentsList: Student[] = students
+  private baseURL: string = environment.baseUrl + '/students';
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient,
+  ) { }
 
-  getStudents$(): Observable<Student[]>{
-    return of(students);
-  }
-  
-  createStudent$(student: Student): Observable<Student[]> {
-    this.studentsList.push(student)
-    return of([...this.studentsList]);
+  getStudents(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(this.baseURL)
   }
 
-  updateStudent$(idE: string, object: any): Observable<Student[]> {
-    const student: Student = {
-      id: idE,
-      idnumber: object.idnumber,
-      active: true,
-      name: object.name,
-      surname: object.surname,
-      dob: object.dob,
-      email: object.email,
-    }
-    return of(
-      this.studentsList.map((s) => (s.id === idE ? { ...s, ...student } : s))
-    )
+  getById(id: string): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${this.baseURL}?id=${id}`)
   }
 
-  desactivateStudent$(id: string): Observable<Student[]> {
-    const student = this.getStudentById$(id).subscribe(s => s!.active = !s!.active)
-    return of(
-      this.studentsList.map((s) => ({ ...s, ...student }))
-    )
+  createStudent(student: Student): Observable<Student[]> {
+    return this.httpClient.post<Student>(`${this.baseURL}`, student)
+      .pipe(switchMap(() => this.getStudents()));
   }
 
-  getStudentById$(id: string): Observable<Student | undefined> {
-    return of(this.studentsList.find((s) => s.id === id));
+  updateStudent(id: string, student: Student): Observable<Student[]> {
+    return this.httpClient.put<Student>(`${this.baseURL}/${id}`, student)
+      .pipe(switchMap(() => this.getStudents()));
   }
 
-  studentExistsByIdNumber(id: string, idnumber: number): boolean {
-    return this.studentsList
-      .filter((s) => s.id !== id)
-      .some((s) => s.idnumber === idnumber)
+  changeStatus(id: string): Observable<Student[]> {
+    return this.getById(id).pipe(
+      switchMap(students => {
+        let student = students[0]
+        let changedStudent = { ...student, active: !student.active };
+
+        return this.httpClient.put<Student>(`${this.baseURL}/${id}`, changedStudent)
+        .pipe(switchMap(() => this.getStudents()));
+      })
+    );
   }
 
-  studentExistsByEmail(id: string, email: string): boolean {
-    return this.studentsList
-      .filter((s) => s.id !== id)
-      .some((s) => s.email === email)
+  studentExistsByIdNumber(id: string, idnumber: number): Observable<boolean> {
+    return this.httpClient.get<Student[]>(`${this.baseURL}`).pipe(
+      map(students => {
+        let filtered = students.filter(s => s.id !== id);
+        return filtered.some(s => s.idnumber === idnumber);
+      })
+    );
+  }
+
+  studentExistsByEmail(id: string, email: string): Observable<boolean> {
+    return this.httpClient.get<Student[]>(`${this.baseURL}`).pipe(
+      map(students => {
+        let filtered = students.filter(s => s.id !== id);
+        return filtered.some(s => s.email === email);
+      })
+    );
+  }
+
+  sendEmail(id: string): void{
+    this.getById(id).subscribe( students => {
+      console.log(students);
+      
+        let student = students[0]
+
+        Swal.fire({
+          text:'Email has been sent to ' + student.email,
+          icon: 'success',
+          confirmButtonText: 'OK',
+          heightAuto: false,
+          timer: 1500,
+          timerProgressBar:true,
+        })
+      })
+
+    
   }
 
 }

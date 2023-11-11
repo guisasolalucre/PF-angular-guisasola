@@ -21,10 +21,8 @@ export class UsersComponent {
     public dialog: MatDialog,
   ) {
     this.usersService.getUsers().subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },
-    );
+      (data: User[]) => this.users = data
+    )
   }
 
   onAddUser(): void {
@@ -79,10 +77,28 @@ export class UsersComponent {
   }
 
   onChangeRole(id: string): void {
-    this.usersService.changeRole(id).subscribe(
-      (data: User[]) => {
-        this.users = data;
-      },)
+    this.usersService.filterAdmin().subscribe(
+      admins => {
+        this.usersService.getById(id).subscribe(
+          users => { 
+            let user = users[0]
+            if( (admins.length === 1) && (user.role === 'ADMINISTRATOR')){
+              Swal.fire({
+                icon: "error",
+                text: "There has to be at least one admin",
+                heightAuto: false,
+              });
+            } else {
+              this.usersService.changeRole(id).subscribe(
+                (data: User[]) => {
+                  this.users = data;
+                },
+              )
+            }
+          }
+        )
+      }
+    )
   }
 
 }

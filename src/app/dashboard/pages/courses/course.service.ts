@@ -1,40 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { courses } from 'src/app/shared/data/courses';
+import { Observable, of, switchMap } from 'rxjs';
 import { Course } from './model/Course';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  coursesList: Course[] = courses
+  private baseURL: string = environment.baseUrl + '/courses';
 
-  constructor() { }
+  constructor(
+    private httpClient: HttpClient,
+  ) { }
 
-  getCourses$(): Observable<Course[]>{
-    return of(courses);
-  }
-  
-  createCourse$(course: Course): Observable<Course[]> {
-    this.coursesList.push(course)
-    return of([...this.coursesList]);
+  getCourses(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(this.baseURL)
   }
 
-  updateCourse$(idE: string, object: any): Observable<Course[]> {
-    const student: Course = {
-      id: idE,
-      name: object.name,
-      startDate: object.startDate,
-      endDate: object.endDate,
-    }
-    return of(
-      this.coursesList.map((c) => (c.id === idE ? { ...c, ...student } : c))
-    )
+  getById(id: string): Observable<Course> {
+    return this.httpClient.get<Course>(`${this.baseURL}?id=${id}`)
   }
 
-  getCourseById$(id: string): Observable<Course | undefined> {
-    return of(this.coursesList.find((c) => c.id === id));
+  createCourse(course: Course): Observable<Course[]> {
+    return this.httpClient.post<Course>(`${this.baseURL}`, course)
+      .pipe(switchMap(() => this.getCourses()));
+  }
+
+  updateCourse(id: string, course: Course): Observable<Course[]> {
+    return this.httpClient.put<Course>(`${this.baseURL}/${id}`, course)
+      .pipe(switchMap(() => this.getCourses()));
   }
 
 }

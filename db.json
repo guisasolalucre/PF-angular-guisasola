@@ -19,7 +19,7 @@
     {
       "id": "2UeoA",
       "idnumber": 98765432,
-      "active": false,
+      "active": true,
       "name": "Bobby",
       "surname": "Drake",
       "dob": "1992-02-15T00:00:00.000Z",
@@ -37,7 +37,7 @@
     {
       "id": "wUHl9",
       "idnumber": 87654321,
-      "active": true,
+      "active": false,
       "name": "Jean",
       "surname": "Grey",
       "dob": "1963-09-01T00:00:00.000Z",
@@ -73,7 +73,7 @@
     {
       "id": "V2eq2",
       "idnumber": 87654321,
-      "active": true,
+      "active": false,
       "name": "Kitty",
       "surname": "Pryde",
       "dob": "1980-11-01T00:00:00.000Z",
@@ -100,7 +100,7 @@
     {
       "id": "c_7yf",
       "idnumber": 78901234,
-      "active": true,
+      "active": false,
       "name": "Hank",
       "surname": "McCoy",
       "dob": "1963-09-01T00:00:00.000Z",

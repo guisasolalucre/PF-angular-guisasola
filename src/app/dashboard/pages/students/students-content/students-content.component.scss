@@ -1,9 +1,19 @@
-.container{
+.container {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em 0;
 }
 
-button{
-    margin-right: 1em;
-    margin-bottom: 1em;
+button {
+    margin-right: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    font-size: 2.5em;
+    text-shadow: 5px -5px 0.3em black,
+        5px 5px 0.3em black,
+        -5px 5px 0.3em black,
+        -5px -5px 0.3em black,
 }

@@ -1,5 +1,5 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { map, of } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 
 
@@ -29,12 +29,11 @@ export function idExistsValidator(studentService: StudentService): AsyncValidato
 
         const id = idControl.value;
 
-        return of(null).pipe(
-            map(() => {
-                const exists = studentService.studentExistsByIdNumber(id, idnumber);
-                return exists ? { idnumberexists: true } : null;
-            })
-        );
+        return studentService.studentExistsByIdNumber(id, idnumber)
+            .pipe(
+                map(exists => exists ? { idnumberexists: true } : null),
+                catchError(() => of(null)) // Maneja errores y devuelve null
+            );
     };
 }
 
@@ -50,11 +49,10 @@ export function emailExistsValidator(studentService: StudentService): AsyncValid
 
         const id = idControl.value;
 
-        return of(null).pipe(
-            map(() => {
-                const exists = studentService.studentExistsByEmail(id, email);
-                return exists ? { emailexists: true } : null;
-            })
-        );
+        return studentService.studentExistsByEmail(id, email)
+            .pipe(
+                map(exists => exists ? { emailexists: true } : null),
+                catchError(() => of(null)) // Maneja errores y devuelve null
+            );
     };
 }

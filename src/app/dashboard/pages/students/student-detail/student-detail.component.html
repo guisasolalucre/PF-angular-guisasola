@@ -2,7 +2,7 @@
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{student?.name ?? 'Name' | fullname: student?.surname ?? 'Surname'}}</mat-card-title>
-        <mat-card-subtitle>ID: {{student?.idnumber ?? 'Id number' | number: '1.0-0' }}</mat-card-subtitle>
+        <mat-card-subtitle>ID: {{ (student?.idnumber | number: '1.0-0') ?? 'Id number'  }}</mat-card-subtitle>
         <div class="buttons">
             <mat-icon 
                 matTooltip="Update student's details"
@@ -12,7 +12,7 @@
             <mat-icon 
                 *ngIf="student"
                 [matTooltip]="student.email"
-                (click)="sendEmail(student.email)">
+                (click)="sendEmail.emit(student.id)">
                 mail
             </mat-icon>
         </div>

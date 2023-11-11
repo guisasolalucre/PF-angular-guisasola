@@ -38,6 +38,7 @@
     </div>
 
     <mat-list-item 
+        *ngIf="isAdmin"
         class="usersBtn"
         routerLink="users" 
         [routerLinkActive]="['is-active']">

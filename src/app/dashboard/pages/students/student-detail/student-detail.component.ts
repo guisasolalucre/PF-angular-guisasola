@@ -11,7 +11,7 @@ import { Student } from '../model/Student';
 export class StudentDetailComponent {
 
   id: string
-  student: Student | undefined
+  student?: Student
 
   displayedColumns: string[] = ['position', 'course', 'average'];
   dataSource = [];
@@ -22,17 +22,16 @@ export class StudentDetailComponent {
   @Output()
   updateStudent = new EventEmitter<Student>();
 
+  @Output()
+  sendEmail = new EventEmitter<string>();
+
   constructor(
     public activatedRoute: ActivatedRoute,
     public studentService: StudentService,
     ) {
     this.id = this.activatedRoute.snapshot.params['id']
-    this.studentService.getStudentById$(this.id)
-      .subscribe( s => this.student = s)    
-  }
-
-  sendEmail(email: string){
-    alert('Email has been sent to ' + email)
+    this.studentService.getById(this.id)
+      .subscribe( s => this.student = s[0])    
   }
   
 }

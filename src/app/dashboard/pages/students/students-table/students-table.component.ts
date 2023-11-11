@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort} from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { Student } from '../model/Student';
 
 @Component({
@@ -24,41 +20,16 @@ export class StudentsTableComponent {
   @Output()
   updateStudent = new EventEmitter<Student>();
 
-  displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'actions'];
+  @Output()
+  sendEmail = new EventEmitter<string>();
 
-  @ViewChild(MatPaginator) 
-  paginator!: MatPaginator;
-
-  @ViewChild(MatSort) 
-  sort!: MatSort;
-
-  dataSource = new MatTableDataSource<Student>()
+  displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'active', 'actions'];
 
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
     private router: Router,
   ) {}
-
-  ngOnInit() {
-    this.dataSource = new MatTableDataSource<Student>(this.table)
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  sendEmail(email: string){
-    Swal.fire({
-      text:'Email has been sent to ' + email,
-      icon: 'success',
-      confirmButtonText: 'OK',
-      heightAuto: false,
-      timer: 1500,
-      timerProgressBar:true,
-    })
-  }
 
   goToDetail(id: number): void {
     this.router.navigate(
