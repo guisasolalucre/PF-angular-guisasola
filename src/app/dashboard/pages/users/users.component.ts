@@ -57,7 +57,7 @@ export class UsersComponent {
         this.usersService.getById(id).subscribe(
           users => { 
             let user = users[0]
-            if( (admins.length === 1) && (user.role === 'ADMINISTRATOR')){
+            if( (admins.length === 1) && (user.role === Role[0])){
               Swal.fire({
                 icon: "error",
                 text: "There has to be at least one admin",
@@ -102,7 +102,7 @@ export class UsersComponent {
         this.usersService.getById(id).subscribe(
           users => { 
             let user = users[0]
-            if( (admins.length === 1) && (user.role === 'ADMINISTRATOR')){
+            if( (admins.length === 1) && (user.role === Role[0])){
               Swal.fire({
                 icon: "error",
                 text: "There has to be at least one admin",

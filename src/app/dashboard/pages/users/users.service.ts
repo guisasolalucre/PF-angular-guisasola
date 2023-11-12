@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.local';
 import { User } from './model/User';
 import { Observable, map, switchMap } from 'rxjs';
+import { Role } from './model/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -39,10 +40,10 @@ export class UsersService {
         let newRole = '';
         let user = users[0];
 
-        user.role === 'ADMINISTRATOR' ?
-        newRole = 'ASSISTANT' :
-        user.role === 'ASSISTANT' ?
-        newRole = 'ADMINISTRATOR' : '';
+        user.role === Role[0] ?
+        newRole = Role[1] :
+        user.role === Role[1] ?
+        newRole = Role[0] : '';
 
         let changedUser = { ...user, role: newRole };
 
