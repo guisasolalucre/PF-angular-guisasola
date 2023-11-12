@@ -19,7 +19,7 @@ describe('AuthService', () => {
             RouterTestingModule,
          ],
          providers: [
-            MockProvider(Router)
+            MockProvider(Router),
          ]
       })
 
@@ -53,12 +53,10 @@ describe('AuthService', () => {
       }).flush([USER_MOCK])
 
       authService.authUser$.subscribe({
-         next: (authUser) => { 
+         next: (authUser) => {
             expect(authUser).toBeTruthy()
             expect(authUser).toEqual(USER_MOCK)
          }
       })
-
-      
    })
 })
