@@ -13,11 +13,23 @@
     <ng-container matColumnDef="adminCheck">
         <th appFontSize mat-header-cell *matHeaderCellDef>Admin</th>
         <td mat-cell *matCellDef="let user">
-            <mat-icon 
-                matTooltip="Change role"
-                (click)="changeRole.emit(user.id)">
-                {{user.role === 'ADMINISTRATOR' ? 'check_box' : 'check_box_outline_blank'}}
-            </mat-icon>
+            <div *ngIf="user.id != authUser?.id; else admin">
+                <mat-icon
+                    matTooltip="Change role"
+                    matTooltipPosition="before"
+                    (click)="changeRole.emit(user.id)">
+                    {{user.role === 'ADMINISTRATOR' ? 'check_box' : 'check_box_outline_blank'}}
+                </mat-icon>
+            </div>
+            <ng-template #admin>
+                <mat-icon
+                    matTooltip="This is your user"
+                    matTooltipPosition="before">
+                    accessibility_new
+                </mat-icon>
+            </ng-template>
+            
+            
         </td>
     </ng-container>
 
@@ -25,7 +37,9 @@
         <th appFontSize mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let user">
             <mat-icon 
+                *ngIf="user.id != authUser?.id"
                 matTooltip="Delete"
+                matTooltipPosition="after"
                 (click)="deleteUser.emit(user.id)">
                 delete
             </mat-icon>

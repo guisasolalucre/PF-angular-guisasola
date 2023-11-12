@@ -1,43 +1,51 @@
-<h1 style="color: white;">Log in</h1>
+<main>
+  <mat-card class="login">
+    <mat-card-content>
+      <h1 style="color: white;">Log in</h1>
 
-<mat-divider style="margin-bottom: 1.5em;"></mat-divider>
+      <mat-divider style="margin-bottom: 1.5em;"></mat-divider>
 
-<form [formGroup]="loginForm">
-  <div>
-    <mat-form-field class="w-100">
-      <mat-label>Username</mat-label>
-      <input type="text" 
-          matInput
-          [formControl]="usernameControl">
-      <mat-error> {{ usernameControlErrors }} </mat-error>
-  </mat-form-field>
-    <mat-form-field class="w-100">
-      <mat-label>Password</mat-label>
-      <input type="password" 
-          matInput
-          [formControl]="passwordControl">
-      <mat-error> {{ passwordControlErrors }} </mat-error>
-    </mat-form-field>
-  </div>
+      <form [formGroup]="loginForm">
+        <div>
+          <mat-form-field class="w-100">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput [formControl]="usernameControl">
+            <mat-error> {{ usernameControlErrors }} </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput [formControl]="passwordControl">
+            <mat-error> {{ passwordControlErrors }} </mat-error>
+          </mat-form-field>
+        </div>
 
-  <mat-divider style="margin-top: 0;"></mat-divider>
+        <mat-divider style="margin-top: 0;"></mat-divider>
 
-  <mat-hint><u>Test users:</u>
-    <br>
-    Administrator user: [ username: admin ; password: admin ]
-    <br>
-    Assistant user: [ username: assist ; password: assist ]
-  </mat-hint>
+        <div class="actions" align="end">
+          <button (click)="login()" mat-flat-button color="accent">
+            Log in
+          </button>
+        </div>
 
-  <mat-divider></mat-divider>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-  <div class="actions" align="end">
-    <button 
-      (click)="login()" 
-      mat-flat-button 
-      color="accent">
-      Log in
-    </button>
-  </div>
-
-</form>
+  <mat-card class="help">
+    <mat-card-content>
+        <u>Test users:</u>
+          <mat-divider></mat-divider>
+          Administrator user:
+          <br>
+          username: admin
+          <br>
+          password: admin
+          <mat-divider></mat-divider>
+          Assistant user:
+          <br>
+          username: assist
+          <br>
+          password: assist
+    </mat-card-content>
+  </mat-card>
+</main>

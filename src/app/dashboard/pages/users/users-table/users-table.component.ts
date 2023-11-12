@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../model/User';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-users-table',
@@ -19,6 +20,14 @@ export class UsersTableComponent {
   @Output()
   deleteUser = new EventEmitter<string>();
 
-  constructor(){}
+  authUser: User | null = null
+
+  constructor(
+    private authService: AuthService,
+  ){
+    this.authService.authUser$.subscribe((user: User | null) => {
+      this.authUser = user;
+    });
+  }
 
 }

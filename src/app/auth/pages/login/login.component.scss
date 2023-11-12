@@ -1,7 +1,23 @@
+main{
+   width: 100vw;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
 mat-divider{
    margin: 0.8em 0;
 }
 
-mat-hint{
+.help{
+   text-align: center;
    color: white;
+   width: 20%;
+   margin-right: 4em;
 }
+
+mat-card.login{
+   width: 20%;
+   margin-left: 4em;
+}
+
