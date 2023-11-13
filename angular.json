@@ -52,10 +52,12 @@
                 }
               ],
               "outputHashing": "all",
-              "fileReplacements": [{
-                "replace": "src/environmets/environment.local.ts",
-                "with": "src/environmets/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.local.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
