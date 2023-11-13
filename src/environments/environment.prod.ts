@@ -1,3 +1,3 @@
 export const environment = {
-   baseUrl: 'http://my-api',
+   baseUrl: 'http://guisasolalucre.github.io/PF-angular-guisasola/api',
 };
