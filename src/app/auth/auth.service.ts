@@ -6,32 +6,32 @@ import { environment } from 'src/environments/environment.local';
 import { ILoginPayload } from './pages/login/model/ILoginPayload';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-// import { Store } from '@ngrx/store';
-// import { AuthActions } from '../store/auth/auth.actions';
-// import { selectAuthUser } from '../store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../store/auth/auth.actions';
+import { authUser } from '../store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  //public authUser$ = this.store.select(selectAuthUser);
+  public authUser$ = this.store.select(authUser);
 
-  private _authUser$ = new BehaviorSubject<User | null>(null);
+  // private _authUser$ = new BehaviorSubject<User | null>(null);
 
-  public authUser$ = this._authUser$.asObservable();
+  // public authUser$ = this._authUser$.asObservable();
 
   private baseURL : string = environment.baseUrl
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    //private store: Store,
+    private store: Store,
   ) {}
 
   handleAuthUser(authUser: User): void{
-    //this.store.dispatch(AuthActions.setAuthUser({ data: authUser }))
-    this._authUser$.next(authUser);
+    this.store.dispatch(AuthActions.setAuthUser({ data: authUser }))
+    // this._authUser$.next(authUser);
     localStorage.setItem('token', authUser.token)
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
               text: 'Invalid username or password',
             })
           } else {
-            const authUser = r[0]
+            const authUser = r[0]            
             this.handleAuthUser(authUser)
             this.router.navigate(['/dashboard/home'])
           }
@@ -74,8 +74,8 @@ export class AuthService {
   }
 
   logout(){
-    //this.store.dispatch(AuthActions.resetState())
-    this._authUser$.next(null)
+    this.store.dispatch(AuthActions.resetState())
+    // this._authUser$.next(null)
     localStorage.removeItem('token')
     this.router.navigate(['/auth/login'])
   }

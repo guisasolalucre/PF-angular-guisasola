@@ -1,0 +1,21 @@
+<mat-dialog-content class="mat-typography">
+   <form class="example-form">
+      <div class="row">
+         <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [formControl]="nameControl">
+            <mat-error> {{ nameControlError }} </mat-error>
+         </mat-form-field>
+      </div>
+   </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+   <button mat-stroked-button mat-dialog-close>Cancel</button>
+   <button mat-flat-button color="accent" 
+      [disabled]="!nameForm.valid" 
+      [mat-dialog-close]="nameForm.value">
+      Confirm
+   </button>
+</mat-dialog-actions>

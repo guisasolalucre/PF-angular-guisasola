@@ -11,23 +11,19 @@
     </div>
 
     <div class="mat-toolbar-content">
-
-        <button mat-icon-button 
-            class="example-icon"
-            matTooltip="Log out"
-            matTooltipPosition="before" 
-            (click)="logout()">
-            <mat-icon>logout</mat-icon>
-        </button>
-
-
-        <!-- <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
+        <button mat-icon-button [matMenuTriggerFor]="beforeMenu">
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-            <button mat-menu-item>
-                <mat-icon>person</mat-icon>
-                My profile
+            <div class="userDatails">
+                <p>{{ user?.username }}</p>
+                <p>{{ user?.role }}</p>
+            </div>
+            <mat-divider></mat-divider>
+            <button mat-menu-item
+                (click)="changePass()">
+                <mat-icon>key</mat-icon>
+                Change password
             </button>
             <mat-divider></mat-divider>
             <button mat-menu-item
@@ -35,6 +31,6 @@
                 <mat-icon>logout</mat-icon>
                 Log out
             </button>
-        </mat-menu> -->
+        </mat-menu>
     </div>
 </mat-toolbar>

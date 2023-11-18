@@ -1,1 +1,18 @@
-<p>enrollments works!</p>
+<div class="container">
+    <p>ENROLLMENTS</p>
+    <button mat-flat-button color="accent"
+        (click)="onNewEnrollment()">
+        <mat-icon>add</mat-icon>
+        Create enrollment
+    </button>
+</div>
+
+<div class="loading"
+    *ngIf="isLoading$ | async; else table">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
+
+<ng-template #table>
+    <app-enrollments-table></app-enrollments-table>
+</ng-template>
+

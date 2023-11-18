@@ -1,17 +1,39 @@
 <div class="container">
     <p>COURSES</p>
-    <button 
-        *ngIf="isAdmin"
-        mat-flat-button 
-        color="accent" 
-        (click)="onAddCourse()">
-        <mat-icon>add</mat-icon>
-        New course
-    </button>
+    <div *ngIf="isAdmin">
+        <button 
+            mat-flat-button 
+            color="accent" 
+            (click)="onAddTeacher()">
+            <mat-icon>add</mat-icon>
+            Add teacher
+        </button>
+        <button 
+            mat-flat-button 
+            color="accent" 
+            (click)="onAddName()">
+            <mat-icon>add</mat-icon>
+            Add course name
+        </button>
+        <button 
+            mat-flat-button 
+            color="accent" 
+            (click)="onAddCourse()">
+            <mat-icon>add</mat-icon>
+            New course
+        </button>
+    </div>
 </div>
 
-<app-courses-table
-    [isAdmin]="isAdmin"
-    [table]="courses"
-    (updateCourse)="onUpdateCourse($event)">
-</app-courses-table>
+<div class="loading" *ngIf="isLoading; else table">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
+ 
+<ng-template #table>
+    <app-courses-table
+        [isAdmin]="isAdmin"
+        [table]="courses"
+        (deleteCourse)="onDeleteCourse($event)"
+        (updateCourse)="onUpdateCourse($event)">
+    </app-courses-table>
+</ng-template>

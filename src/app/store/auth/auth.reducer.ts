@@ -12,7 +12,12 @@ const initialState: AuthState = {
    authUser: null,
 }
 
-export const authReducer = createReducer(initialState,
-   on(AuthActions.setAuthUser, (state, {data}) => ({...state, authUser: data})),
+export const authReducer = createReducer(
+   initialState,
+
+   on(AuthActions.setAuthUser, (state, { data }) => (
+      {...state, authUser: data}
+   )),
+   
    on(AuthActions.resetState, () => initialState)
 )

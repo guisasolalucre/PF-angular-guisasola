@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { nanoid } from 'nanoid';
 import { Role } from './model/enums';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -16,14 +17,21 @@ export class UsersComponent {
 
   users: User[] = []
 
+  isLoading: boolean = true
+
   constructor(
     public usersService: UsersService,
     public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe(
-      (data: User[]) => this.users = data
+    this.usersService.getUsers()
+    .pipe(delay(500))
+    .subscribe(
+      (data: User[]) => {
+        this.users = data
+        this.isLoading = false
+      }
     )
   }
 

@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { PassDialogComponent } from './pass-dialog/pass-dialog.component';
 
 
 
@@ -12,7 +13,8 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
   declarations: [
     UsersComponent,
     UsersTableComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    PassDialogComponent
   ],
   imports: [
     CommonModule,

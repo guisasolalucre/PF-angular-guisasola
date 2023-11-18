@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatDividerModule,
     MatListModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     TitleCasePipe,

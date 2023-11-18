@@ -1,6 +1,9 @@
+import { CourseName, Teacher } from ".";
+
 export interface ICourse {
     id: string,
-    name: string,
+    name: CourseName | null,
     startDate: Date,
     endDate: Date,
+    teacher: Teacher | null,
 }

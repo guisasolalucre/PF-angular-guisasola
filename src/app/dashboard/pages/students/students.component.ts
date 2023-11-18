@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { nanoid } from 'nanoid';
 import { Student } from './model/Student';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -14,14 +15,21 @@ export class StudentsComponent {
 
   students: Student[] = []
 
+  isLoading: boolean = true
+
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
   ) { }
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe(
-      (data: Student[]) => this.students = data
+    this.studentService.getStudents()
+    .pipe(delay(500))
+    .subscribe(
+      (data: Student[]) => {
+        this.students = data
+        this.isLoading = false
+      }
     );
   }
 

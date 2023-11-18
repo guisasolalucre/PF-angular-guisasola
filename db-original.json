@@ -1,5 +1,5 @@
 {
-    "users" : [
+    "users": [
         {
             "id": "Bi6_2",
             "username": "admin",
@@ -13,9 +13,16 @@
             "password": "assist",
             "role": "ASSISTANT",
             "token": "ywvmIKFblMTGINDuoyZgN_WQD"
+        },
+        {
+            "id": "KpC2w",
+            "username": "guisa",
+            "password": "guisa",
+            "role": "ASSISTANT",
+            "token": "DW4I2Vx1GTMldwssZQg7aZd87"
         }
     ],
-    "students" : [
+    "students": [
         {
             "id": "2UeoA",
             "idnumber": 98765432,
@@ -107,48 +114,73 @@
             "email": "beast@example.com"
         }
     ],
-    "courses" : [
+    "courses": [
         {
             "id": "gfk82",
             "name": "Control of Mutant Powers",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2023-11-04T03:00:00.000Z",
+            "endDate": "2024-06-14T03:00:00.000Z"
         },
         {
             "id": "hdt37",
             "name": "Mutant Ethics",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2023-12-18T03:00:00.000Z",
+            "endDate": "2024-12-02T03:00:00.000Z"
         },
         {
             "id": "jop49",
             "name": "Combat Training",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2023-12-11T03:00:00.000Z",
+            "endDate": "2024-07-26T03:00:00.000Z"
         },
         {
             "id": "qwe73",
             "name": "Telepathy and Telekinesis",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2024-01-15T03:00:00.000Z",
+            "endDate": "2024-10-11T03:00:00.000Z"
         },
         {
             "id": "lkm56",
             "name": "Weather Control",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2024-02-05T03:00:00.000Z",
+            "endDate": "2024-06-07T03:00:00.000Z"
         },
         {
             "id": "mnb54",
             "name": "Mutant History",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2024-01-02T03:00:00.000Z",
+            "endDate": "2024-12-27T03:00:00.000Z"
         },
         {
             "id": "wer81",
             "name": "Time Control",
-            "startDate": "1992-02-15T00:00:00.000Z",
-            "endDate": "1992-02-15T00:00:00.000Z"
+            "startDate": "2023-12-11T03:00:00.000Z",
+            "endDate": "2024-03-29T03:00:00.000Z"
         }
+    ],
+    "enrollments": [
+        {
+            "id": "e02pd",
+            "studentId": "2UeoA",
+            "courseId": "gfk82"
+        },
+        {
+            "id": "vm2vP",
+            "studentId": "2UeoA",
+            "courseId": "jop49"
+        }
+    ],
+    "teachers": [
+        "Professor Charles Xavier",
+        "Dr. Erik Lehnsher"
+    ],
+    "coursesNames": [
+        "Control of Mutant Powers",
+        "Mutant Ethics",
+        "Combat Training",
+        "Telepathy and Telekinesis",
+        "Weather Control",
+        "Mutant History",
+        "Time Control"
     ]
 }

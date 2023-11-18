@@ -7,8 +7,15 @@
    </button>
 </div>
 
-<app-users-table 
-   [table]="users" 
-   (changeRole)="onChangeRole($event)"
-   (deleteUser)="onDeleteUser($event)">
-</app-users-table>
+<div class="loading" *ngIf="isLoading; else table">
+   <mat-spinner color="accent"></mat-spinner>
+</div>
+
+<ng-template #table>
+   <app-users-table 
+      [table]="users" 
+      (changeRole)="onChangeRole($event)"
+      (deleteUser)="onDeleteUser($event)">
+   </app-users-table>
+</ng-template>
+

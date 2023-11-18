@@ -53,6 +53,10 @@ export class UsersService {
     );
   }
 
+  changePassword(id: string, user: User): Observable<User> {
+    return this.httpClient.put<User>(`${this.baseURL}/${id}`, user);
+  }
+
   filterAdmin(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.baseURL}?role=ADMINISTRATOR`)
   }

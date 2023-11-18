@@ -1,0 +1,41 @@
+<p mat-dialog-title>
+   New enrollment
+</p>
+
+<mat-dialog-content class="mat-typography">
+
+   <form class="example-form">
+
+         <mat-form-field class="col-12">
+            <mat-label>Student</mat-label>
+            <mat-select [formControl]="studentIdControl">
+               <mat-option *ngFor="let student of students$ | async" [value]="student.id">
+                  {{student.name | fullname: student.surname}}
+               </mat-option>
+            </mat-select>
+            <mat-error> {{ studentIdControlError }} </mat-error>
+         </mat-form-field>
+
+         <mat-form-field class="col-12">
+            <mat-label>Course</mat-label>
+            <mat-select [formControl]="courseIdControl">
+               <mat-option *ngFor="let course of courses$ | async" [value]="course.id">
+                  {{course.name?.name}} - ( {{ (course.startDate | date: 'yyyy/MM/dd')}} )
+               </mat-option>
+            </mat-select>
+            <mat-error> {{ courseIdControlError }} </mat-error>
+         </mat-form-field>
+
+   </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+   <button mat-stroked-button mat-dialog-close>Cancel</button>
+   <button mat-flat-button color="accent" 
+      [disabled]="!enrollmentForm.valid" 
+      (click)="onSubmit()">
+      Confirm
+   </button>
+</mat-dialog-actions>

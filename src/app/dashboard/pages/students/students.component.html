@@ -7,9 +7,15 @@
     </button>
 </div>
 
-<app-students-table
-    [table]="students"
-    (updateStudent)="onUpdateStudent($event)"
-    (desactivateStudent)="onDesactivateStudent($event)"
-    (sendEmail)="onSendEmail($event)">
-</app-students-table>
+<div class="loading" *ngIf="isLoading; else table">
+    <mat-spinner color="accent"></mat-spinner>
+</div>
+
+<ng-template #table>
+    <app-students-table
+        [table]="students"
+        (updateStudent)="onUpdateStudent($event)"
+        (desactivateStudent)="onDesactivateStudent($event)"
+        (sendEmail)="onSendEmail($event)">
+    </app-students-table>
+</ng-template>

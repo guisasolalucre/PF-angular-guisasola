@@ -17,7 +17,7 @@ describe('LoginComponent', () => {
             SharedModule,
          ],
          providers: [
-            MockProvider(AuthService)
+            MockProvider(AuthService),
          ]
 
       });

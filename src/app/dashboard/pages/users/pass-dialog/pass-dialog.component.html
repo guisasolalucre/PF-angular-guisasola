@@ -1,0 +1,51 @@
+<p mat-dialog-title>
+   Change password
+</p>
+
+<mat-dialog-content class="mat-typography">
+
+   <form class="example-form">
+
+      <div class="invisible">
+         <mat-form-field>
+            <input matInput [formControl]="idControl">
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput [formControl]="usernameControl">
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput [formControl]="roleControl">
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput [formControl]="tokenControl">
+         </mat-form-field>
+      </div>
+
+      <div>
+         <mat-form-field class="w-100">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput
+            [formControl]="usernameShownControl">
+         </mat-form-field>
+
+         <mat-form-field class="w-100">
+            <mat-label>New password</mat-label>
+            <input type="password" matInput 
+            [formControl]="passwordControl">
+            <mat-error> {{ passwordControlErrors }} </mat-error>
+         </mat-form-field>
+      </div>
+
+   </form>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+   <button mat-stroked-button mat-dialog-close>Cancel</button>
+   <button mat-flat-button color="accent" 
+      [disabled]="!userForm.valid" 
+      [mat-dialog-close]="userForm.value">
+      Confirm
+   </button>
+</mat-dialog-actions>

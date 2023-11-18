@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
-import { ageValidator, emailExistsValidator, idExistsValidator, /*emailExistsValidator, idExistsValidator*/ } from 'src/app/shared/validators/custom-validators';
+import { ageValidator, emailExistsValidator, idExistsValidator } from 'src/app/shared/validators/custom-validators';
 import { Student } from '../model/Student';
 
 
@@ -14,8 +14,6 @@ import { Student } from '../model/Student';
 export class StudentFormDialogComponent {
 
   maxDate: Date = new Date(Date.now() - ((18*365.25)*(1000*3600*24)))
-
-  student = new Student()
 
   studentForm: FormGroup;
 

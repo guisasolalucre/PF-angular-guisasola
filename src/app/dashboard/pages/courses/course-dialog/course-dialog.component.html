@@ -15,9 +15,13 @@
         <div class="row">
             <mat-form-field>
                 <mat-label>Course name</mat-label>
-                <input type="text"
-                    matInput
-                    [formControl]="nameControl">
+                <mat-select [formControl]="nameControl">
+                    <mat-option 
+                        *ngFor="let name of coursesNames"
+                        [value]="name">
+                        {{name.name}}
+                    </mat-option>
+                </mat-select>
                 <mat-error> {{ nameControlError }} </mat-error>
             </mat-form-field>
         </div>
@@ -25,24 +29,36 @@
         <div class="row">
             <mat-form-field class="col">
                 <mat-label>Start date</mat-label>
-                <input
-                    matInput 
-                    [min]="data ? null : minDate"
-                    [matDatepicker]="picker"
+                <input matInput [min]="minStartDate" 
+                    [matDatepicker]="picker" 
                     [formControl]="startDateControl">
                 <mat-error> {{ startDateControlError }} </mat-error>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
             <mat-form-field class="col">
                 <mat-label>End date</mat-label>
-                <input
-                    matInput 
-                    [matDatepicker]="picker1"
+                <input matInput [min]="minEndDate" 
+                    [matDatepicker]="picker1" 
                     [formControl]="endDateControl">
                 <mat-error> {{ endDateControlError }} </mat-error>
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Teacher</mat-label>
+                <mat-select [formControl]="teacherControl">
+                    <mat-option 
+                        *ngFor="let teacher of teachers"
+                        [value]="teacher">
+                        {{teacher.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error> {{ teacherControlError }} </mat-error>
             </mat-form-field>
         </div>
 
@@ -53,9 +69,7 @@
 
 <mat-dialog-actions align="end">
     <button mat-stroked-button mat-dialog-close>Cancel</button>
-    <button mat-flat-button color="accent"
-        [disabled]="!courseForm.valid"
-        [mat-dialog-close]="courseForm.value">
+    <button mat-flat-button color="accent" [disabled]="!courseForm.valid" [mat-dialog-close]="courseForm.value">
         Confirm
     </button>
 </mat-dialog-actions>
