@@ -1,0 +1,15 @@
+mat-card-header{
+   display: flex;
+   align-items: center;
+}
+
+.dates{
+   margin-left: 5%;
+}
+
+.buttons{
+   position: absolute;
+   right: 3em;
+   display: flex;
+   flex-direction: column;
+}

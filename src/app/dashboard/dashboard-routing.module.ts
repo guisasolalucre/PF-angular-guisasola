@@ -37,6 +37,7 @@ const routes: Routes = [
                 path: 'enroll',
                 loadChildren: () =>
                     import('./pages/enrollments/enrollments.module').then((m) => m.EnrollmentsModule),
+                    data: { preload: true }
             },
             //users
             {

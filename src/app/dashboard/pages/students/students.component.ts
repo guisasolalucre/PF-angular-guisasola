@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/dashboard/pages/students/student.service
 import { nanoid } from 'nanoid';
 import { Student } from './model/Student';
 import { delay } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-students',
@@ -24,13 +25,13 @@ export class StudentsComponent {
 
   ngOnInit(): void {
     this.studentService.getStudents()
-    .pipe(delay(500))
-    .subscribe(
-      (data: Student[]) => {
-        this.students = data
-        this.isLoading = false
-      }
-    );
+      .pipe(delay(500))
+      .subscribe(
+        (data: Student[]) => {
+          this.students = data
+          this.isLoading = false
+        }
+      );
   }
 
   onAddStudent(): void {
@@ -52,7 +53,7 @@ export class StudentsComponent {
               (data: Student[]) => {
                 this.students = data;
               },
-            )            
+            )
           }
         }
       })
@@ -69,14 +70,14 @@ export class StudentsComponent {
         next: (result) => {
           if (!!result) {
             this.studentService.updateStudent(
-              student.id, 
+              student.id,
               result
             ).subscribe(
               (data: Student[]) => {
                 this.students = data;
               },
             )
-            ;
+              ;
           }
         }
       })
@@ -88,7 +89,34 @@ export class StudentsComponent {
         this.students = data;
       },
     )
-  } 
+  }
+
+  onDeleteStudent(id: string): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      heightAuto: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.studentService.deleteStudent(id).subscribe(
+          (data: Student[]) => {
+            this.students = data;
+          },
+        )
+        Swal.fire({
+          title: 'Deleted!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          heightAuto: false,
+          timer: 1500,
+          timerProgressBar: true,
+        })
+      }
+    })
+  }
 
   onSendEmail(id: string): void {
     this.studentService.sendEmail(id)

@@ -69,7 +69,7 @@ export class CoursesComponent {
           if (!!result) {
             this.courseService.addCourseName({
               id: nanoid(5),
-              name: result.name
+              nameString: result.name
             }).subscribe();
           }
         },

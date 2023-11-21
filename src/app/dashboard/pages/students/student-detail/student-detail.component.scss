@@ -1,9 +1,9 @@
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+mat-card-header {
+    display: flex;
+    align-items: center;
 }
 
-.buttons{
+.buttons {
     position: absolute;
     right: 3em;
     display: flex;

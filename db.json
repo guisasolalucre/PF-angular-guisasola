@@ -25,8 +25,8 @@
   "students": [
     {
       "id": "2UeoA",
-      "idnumber": 98765432,
       "active": false,
+      "idnumber": 98765432,
       "name": "Bobby",
       "surname": "Drake",
       "dob": "1992-02-15T00:00:00.000Z",
@@ -128,7 +128,7 @@
       "id": "g-Drk",
       "name": {
         "id": "abcde",
-        "name": "Control of Mutant Powers"
+        "nameString": "Control of Mutant Powers"
       },
       "startDate": "2023-11-04T03:00:00.000Z",
       "endDate": "2024-06-14T03:00:00.000Z",
@@ -141,7 +141,7 @@
       "id": "h-Drk",
       "name": {
         "id": "fghij",
-        "name": "Mutant Ethics"
+        "nameString": "Mutant Ethics"
       },
       "startDate": "2023-12-18T03:00:00.000Z",
       "endDate": "2024-12-02T03:00:00.000Z",
@@ -154,7 +154,7 @@
       "id": "j-Drk",
       "name": {
         "id": "klmno",
-        "name": "Combat Training"
+        "nameString": "Combat Training"
       },
       "startDate": "2023-12-11T03:00:00.000Z",
       "endDate": "2024-07-26T03:00:00.000Z",
@@ -167,7 +167,7 @@
       "id": "q-Drk",
       "name": {
         "id": "pqrst",
-        "name": "Telepathy and Telekinesis"
+        "nameString": "Telepathy and Telekinesis"
       },
       "startDate": "2024-01-15T03:00:00.000Z",
       "endDate": "2024-10-11T03:00:00.000Z",
@@ -180,7 +180,7 @@
       "id": "l-Drk",
       "name": {
         "id": "uvwxy",
-        "name": "Weather Control"
+        "nameString": "Weather Control"
       },
       "startDate": "2024-02-05T03:00:00.000Z",
       "endDate": "2024-06-07T03:00:00.000Z",
@@ -193,7 +193,7 @@
       "id": "m-Drk",
       "name": {
         "id": "z1234",
-        "name": "Mutant History"
+        "nameString": "Mutant History"
       },
       "startDate": "2024-01-02T03:00:00.000Z",
       "endDate": "2024-12-27T03:00:00.000Z",
@@ -206,7 +206,7 @@
       "id": "w-Drk",
       "name": {
         "id": "56789",
-        "name": "Time Control"
+        "nameString": "Time Control"
       },
       "startDate": "2023-12-11T03:00:00.000Z",
       "endDate": "2024-03-29T03:00:00.000Z",
@@ -216,10 +216,10 @@
       }
     },
     {
-      "id": "g-Drk",
+      "id": "r-Drk",
       "name": {
         "id": "fghij",
-        "name": "Mutant Ethics"
+        "nameString": "Mutant Ethics"
       },
       "startDate": "2023-11-20T03:00:00.000Z",
       "endDate": "2024-02-02T03:00:00.000Z",
@@ -232,7 +232,7 @@
       "id": "liXGa",
       "name": {
         "id": "pqrst",
-        "name": "Telepathy and Telekinesis"
+        "nameString": "Telepathy and Telekinesis"
       },
       "startDate": "2023-11-20T03:00:00.000Z",
       "endDate": "2024-06-28T03:00:00.000Z",
@@ -277,36 +277,41 @@
       "id": "tfwvG",
       "studentId": "o6dkV",
       "courseId": "m-Drk"
+    },
+    {
+      "id": "oxTq7",
+      "studentId": "V2eq2",
+      "courseId": "q-Drk"
     }
   ],
   "coursesNames": [
     {
       "id": "abcde",
-      "name": "Control of Mutant Powers"
+      "nameString": "Control of Mutant Powers"
     },
     {
       "id": "fghij",
-      "name": "Mutant Ethics"
+      "nameString": "Mutant Ethics"
     },
     {
       "id": "klmno",
-      "name": "Combat Training"
+      "nameString": "Combat Training"
     },
     {
       "id": "pqrst",
-      "name": "Telepathy and Telekinesis"
+      "nameString": "Telepathy and Telekinesis"
     },
     {
       "id": "uvwxy",
-      "name": "Weather Control"
+      "nameString": "Weather Control"
     },
     {
       "id": "z1234",
-      "name": "Mutant History"
+      "nameString": "Mutant History"
     },
     {
       "id": "56789",
-      "name": "Time Control"
+      "nameString": "Time Control"
     }
   ],
   "teachers": [

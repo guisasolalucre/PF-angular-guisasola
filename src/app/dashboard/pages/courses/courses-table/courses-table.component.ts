@@ -31,8 +31,8 @@ export class CoursesTableComponent {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  @ViewChild(MatSort) 
-  sort!: MatSort;
+  @ViewChild('coursesSort', { static: false })
+  coursesSort!: MatSort;
 
   dataSource = new MatTableDataSource<Course>()
 
@@ -40,7 +40,7 @@ export class CoursesTableComponent {
     public dialog: MatDialog,
     public courseService: CourseService,
     private router: Router,
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     this.initialize()
@@ -53,10 +53,24 @@ export class CoursesTableComponent {
   initialize(): void {
     this.dataSource = new MatTableDataSource<Course>(this.table);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (course, sortHeaderId) => {
+      switch (sortHeaderId) {
+        case 'name':
+          return course.name?.nameString || '';
+        case 'teacher':
+          return course.teacher?.name || '';
+        case 'start':
+          return course.startDate?.toString() || 0;
+        case 'end':
+          return course.endDate?.toString() || 0;
+        default:
+          return '';
+      }
+    };
+    this.dataSource.sort = this.coursesSort;
   }
 
-  goToDetail(id: number): void {
+  goToDetail(id: string): void {
     this.router.navigate(
       [
         'dashboard',

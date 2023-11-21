@@ -22,8 +22,8 @@ export class CourseService {
     return this.httpClient.get<Course[]>(this.coursesUrl)
   }
 
-  getById(id: string): Observable<Course> {
-    return this.httpClient.get<Course>(`${this.coursesUrl}?id=${id}`)
+  getById(id: string): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${this.coursesUrl}?id=${id}`)
   }
 
   createCourse(course: Course): Observable<Course[]> {

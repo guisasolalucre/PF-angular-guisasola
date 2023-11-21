@@ -1,6 +1,6 @@
 <table mat-table
     [dataSource]="dataSource"
-    matSort
+    matSort #studentsSort="matSort"
     class="mat-elevation-z8">
 
     <ng-container matColumnDef="idnumber">
@@ -76,6 +76,11 @@
                 (click)="desactivateStudent.emit(student.id)">
                 {{ student.active ? 'person_remove' : 'person_add' }}
             </mat-icon> -->
+            <mat-icon 
+                matTooltip="Delete student"
+                (click)="deleteStudent.emit(student.id)">
+                delete
+            </mat-icon>
         </td>
     </ng-container>
 

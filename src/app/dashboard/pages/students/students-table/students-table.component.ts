@@ -34,8 +34,8 @@ export class StudentsTableComponent {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  @ViewChild(MatSort) 
-  sort!: MatSort;
+  @ViewChild('studentsSort', { static: false }) 
+  studentsSort!: MatSort;
 
   dataSource = new MatTableDataSource<Student>()
 
@@ -56,7 +56,7 @@ export class StudentsTableComponent {
   initialize(): void {
     this.dataSource = new MatTableDataSource<Student>(this.table);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.studentsSort;
   }
 
   goToDetail(id: number): void {

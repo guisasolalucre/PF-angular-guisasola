@@ -19,7 +19,7 @@
                     <mat-option 
                         *ngFor="let name of coursesNames"
                         [value]="name">
-                        {{name.name}}
+                        {{name.nameString}}
                     </mat-option>
                 </mat-select>
                 <mat-error> {{ nameControlError }} </mat-error>

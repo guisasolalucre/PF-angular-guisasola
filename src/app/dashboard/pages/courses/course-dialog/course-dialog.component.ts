@@ -30,6 +30,19 @@ export class CourseDialogComponent {
     public data?: Course,
 
     ) { 
+      this.courseService.getCoursesNames().subscribe(
+        (courses) => {
+          courses.sort((a, b) => a.nameString.localeCompare(b.nameString));
+          this.coursesNames = courses
+        }
+      )
+      this.courseService.getTeachers().subscribe(
+        (teachers) => {
+          teachers.sort((a, b) => a.name.localeCompare(b.name));
+          this.teachers = teachers
+        }
+      )
+
       this.courseForm = this.initializeForm()
 
       if (this.data) {
@@ -69,35 +82,35 @@ export class CourseDialogComponent {
     return form
   }
 
-  ngOnInit() {
-    forkJoin([
-      this.courseService.getCoursesNames(),
-      this.courseService.getTeachers()
-    ]).subscribe(
-      ([courses, teachers]) => {
-        courses.sort((a, b) => a.name.localeCompare(b.name));
-        teachers.sort((a, b) => a.name.localeCompare(b.name));
+ngOnInit() {
+  forkJoin([
+    this.courseService.getCoursesNames(),
+    this.courseService.getTeachers()
+  ]).subscribe(
+    ([courses, teachers]) => {
+      courses.sort((a, b) => a.nameString.localeCompare(b.nameString));
+      teachers.sort((a, b) => a.name.localeCompare(b.name));
 
-        this.coursesNames = courses;
-        this.teachers = teachers;
+      this.coursesNames = courses;
+      this.teachers = teachers;
 
-        this.initializeForm();
+      this.initializeForm();
 
-        if (this.data) {
-          const selectedCourse = this.coursesNames.find(course => course.id === this.data?.name?.id);
-          const selectedTeacher = this.teachers.find(teacher => teacher.id === this.data?.teacher?.id);
+      if (this.data) {
+        const selectedCourse = this.coursesNames.find(course => course.id === this.data?.name?.id);
+        const selectedTeacher = this.teachers.find(teacher => teacher.id === this.data?.teacher?.id);
 
-          if (selectedCourse) {
-            this.nameControl.setValue(selectedCourse);
-          }
+        if (selectedCourse) {
+          this.nameControl.setValue(selectedCourse);
+        }
 
-          if (selectedTeacher) {
-            this.teacherControl.setValue(selectedTeacher);
-          }
+        if (selectedTeacher) {
+          this.teacherControl.setValue(selectedTeacher);
         }
       }
-    );
-  }
+    }
+  );
+}
 
 
 

@@ -1,8 +1,8 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { EnrollmentActions } from './enrollment.actions';
-import { IEnrollment } from '../model/IEnrollment';
-import { Course } from '../../courses/model/Course';
-import { Student } from '../../students/model/Student';
+import { IEnrollment } from '../../model/IEnrollment';
+import { Course } from '../../../courses/model/Course';
+import { Student } from '../../../students/model/Student';
 
 export const enrollmentFeatureKey = 'enrollment';
 
@@ -78,31 +78,6 @@ export const reducer = createReducer(
   )),
 
 
-  // LOAD ENROLLMENTS BY STUDENT
-  on(EnrollmentActions.loadEnrollmentsByStudent, (state) => (
-    {
-      ...state,
-      isLoading: true
-    }
-  )),
-
-  on(EnrollmentActions.loadEnrollmentsByStudentSuccess, (state, { data }) => (
-    {
-      ...state,
-      isLoading: false,
-      enrollments: data
-    }
-  )),
-
-  on(EnrollmentActions.loadEnrollmentsByStudentFailure, (state, { error }) => (
-    {
-      ...state,
-      isLoading: false,
-      error
-    }
-  )),
-
-
   // CREATE ENROLLMENT
   on(EnrollmentActions.createEnrollment, (state) => (
     {
@@ -135,6 +110,49 @@ export const reducer = createReducer(
       error
     }
   )),
+
+
+  // LOAD ENROLLMENTS BY STUDENT
+  on(EnrollmentActions.loadEnrollmentsByStudent, (state) => (
+    {
+      ...state,
+      isLoading: true
+    }
+  )),
+
+  on(EnrollmentActions.loadEnrollmentsByStudentSuccess, (state, { data }) => (
+    {
+      ...state,
+      isLoading: true,
+      enrollments: data
+    }
+  )),
+
+  on(EnrollmentActions.loadEnrollmentsByStudentFailure, (state, { error }) => (
+    {
+      ...state,
+      isLoading: false,
+      error
+    }
+  )),
+
+
+  // LOAD ENROLLMENTS COURSES
+  on(EnrollmentActions.loadEnrollmentsCourses, (state) => (
+    {
+      ...state,
+      isLoading: true
+    }
+  )),
+
+  on(EnrollmentActions.loadEnrollmentsCoursesFailure, (state, { error }) => (
+    {
+      ...state,
+      isLoading: false,
+      error
+    }
+  )),
+
 );
 
 

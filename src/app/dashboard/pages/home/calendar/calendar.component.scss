@@ -1,0 +1,80 @@
+$primary-color: #673ab7; // Purple
+$accent-color: #56e7a1; // Green
+
+.content{
+  color: black;
+}
+
+.month-container{
+  width: 100%;
+  height: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: whitesmoke;
+}
+
+.navigation-icons {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.month-text {
+  font-size: large;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.left-arrow{
+  margin-left: 20%;
+}
+
+.right-arrow{
+  margin-right: 20%;
+}
+
+.today-btn {
+  margin-left: 0;
+  margin-right: 1%;
+}
+
+.cal-event-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.cal-day-cel{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+.day-number{
+  align-self: flex-end;
+}
+
+.day-weekend .day-number {
+  color: red;
+}
+
+.day-prev-month,
+.day-next-month {
+  color: #aaa;
+}
+
+.day-today {
+  font-weight: 700;
+}
+
+.start-day {
+  color: green; /* Color para el inicio del curso */
+}
+
+.end-day {
+  color: maroon; /* Color para el fin del curso */
+}
+

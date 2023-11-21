@@ -5,5 +5,5 @@ export interface Teacher {
 
 export interface CourseName {
    id: string,
-   name: string
+   nameString: string
 }

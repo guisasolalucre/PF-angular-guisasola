@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { EnrollmentActions } from '../store/enrollment.actions';
+import { EnrollmentActions } from '../store/enrollments/enrollment.actions';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, take } from 'rxjs';
 import { Course } from '../../courses/model/Course';
 import { Student } from '../../students/model/Student';
-import { courses, students } from '../store/enrollment.selectors';
+import { courses, students } from '../store/enrollments/enrollment.selectors';
 import { Actions, ofType } from '@ngrx/effects';
 import { MatDialogRef } from '@angular/material/dialog';
 import { nanoid } from 'nanoid';

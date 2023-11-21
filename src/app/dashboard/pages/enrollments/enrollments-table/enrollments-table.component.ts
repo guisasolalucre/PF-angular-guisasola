@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEnrollment } from '../model/IEnrollment';
 import { Store } from '@ngrx/store';
-import { enrollments } from '../store/enrollment.selectors';
-import { EnrollmentActions } from '../store/enrollment.actions';
+import { enrollments } from '../store/enrollments/enrollment.selectors';
+import { EnrollmentActions } from '../store/enrollments/enrollment.actions';
 import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -23,8 +23,8 @@ export class EnrollmentsTableComponent {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  @ViewChild(MatSort) 
-  sort!: MatSort;
+  @ViewChild('enrollmentsSort', { static: false })
+  enrollmentsSort!: MatSort;
 
   dataSource = new MatTableDataSource<IEnrollment>()
 
@@ -34,21 +34,35 @@ export class EnrollmentsTableComponent {
     this.enrollments$ = this.store.select(enrollments)
   }
 
-  ngAfterViewInit() {
-    this.initialize()
+  ngAfterViewInit(): void {
+    this.initialize();
   }
 
   ngOnChanges(): void {
-    this.initialize()
+    this.initialize();
   }
 
   initialize(): void {
-    this.enrollments$.subscribe( (data) => {
+    this.enrollments$.subscribe((data) => {
       this.dataSource = new MatTableDataSource<IEnrollment>(data);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
-  }
+      this.dataSource.sortingDataAccessor = (enrollment, sortHeaderId) => {
+        switch (sortHeaderId) {
+          case 'course':
+            return enrollment.course?.name?.nameString || '';
+          case 'teacher':
+            return enrollment.course?.teacher?.name || '';
+          case 'student':
+            return enrollment.student?.name || '';
+          case 'startDate':
+            return enrollment.course?.startDate?.toString() || 0;
+          default:
+            return '';
+        }
+      };
+      this.dataSource.sort = this.enrollmentsSort;
+    });
+  }  
 
   deleteEnrollment(id: string): void {
     Swal.fire({
