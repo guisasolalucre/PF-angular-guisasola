@@ -1,8 +1,9 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { EnrollmentActions } from './enrollment.actions';
-import { IEnrollment } from '../../model/IEnrollment';
-import { Course } from '../../../courses/model/Course';
-import { Student } from '../../../students/model/Student';
+import { IEnrollment } from '../model/IEnrollment';
+import { Course } from '../../courses/model/Course';
+import { Student } from '../../students/model/Student';
+
 
 export const enrollmentFeatureKey = 'enrollment';
 

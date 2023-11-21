@@ -2,12 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IEnrollment } from '../model/IEnrollment';
 import { Store } from '@ngrx/store';
-import { enrollments } from '../store/enrollments/enrollment.selectors';
-import { EnrollmentActions } from '../store/enrollments/enrollment.actions';
 import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { enrollments } from '../store/enrollment.selectors';
+import { EnrollmentActions } from '../store/enrollment.actions';
 
 @Component({
   selector: 'app-enrollments-table',

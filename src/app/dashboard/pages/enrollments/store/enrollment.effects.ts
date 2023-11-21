@@ -3,11 +3,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, switchMap, delay } from 'rxjs/operators';
 import { Observable, forkJoin, of } from 'rxjs';
 import { EnrollmentActions } from './enrollment.actions';
-import { IEnrollment } from '../../model/IEnrollment';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.local';
-import { Course } from '../../../courses/model/Course';
-import { Student } from '../../../students/model/Student';
+import { IEnrollment } from '../model/IEnrollment';
+import { Course } from '../../courses/model/Course';
+import { Student } from '../../students/model/Student';
+
 
 
 @Injectable()

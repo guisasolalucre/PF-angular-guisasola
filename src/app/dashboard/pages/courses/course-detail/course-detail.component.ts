@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { IEnrollment } from '../../enrollments/model/IEnrollment';
 import { Observable } from 'rxjs';
 import { Course } from '../model/Course';
@@ -6,8 +6,6 @@ import { CourseService } from '../course.service';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StudentService } from '../../students/student.service';
-import { EnrollmentActions } from '../../enrollments/store/enrollments/enrollment.actions';
-import { enrollments } from '../../enrollments/store/enrollments/enrollment.selectors';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 

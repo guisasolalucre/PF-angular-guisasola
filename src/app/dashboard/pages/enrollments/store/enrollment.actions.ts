@@ -1,7 +1,9 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { IEnrollment } from '../../model/IEnrollment';
-import { Course } from '../../../courses/model/Course';
-import { Student } from '../../../students/model/Student';
+import { IEnrollment } from '../model/IEnrollment';
+import { Course } from '../../courses/model/Course';
+import { Student } from '../../students/model/Student';
+
+
 
 export const EnrollmentActions = createActionGroup({
   source: 'Enrollment',
