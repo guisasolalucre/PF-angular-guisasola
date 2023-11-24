@@ -4,7 +4,7 @@ import { map } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Role } from 'src/app/dashboard/pages/users/model/enums';
 
-export const adminGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = () => {
   const router = inject(Router)
   const authService = inject(AuthService)
 

@@ -6,9 +6,6 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of } from "rxjs";
 import { StoreModule } from "@ngrx/store";
-import { studentFeatureKey } from "./store/student.reducer";
-
-
 
 describe('StudentsComponent', () => {
 
@@ -24,8 +21,7 @@ describe('StudentsComponent', () => {
          imports: [
             SharedModule,
             HttpClientTestingModule,
-            StoreModule.forRoot({}),
-            StoreModule.forFeature(studentFeatureKey, {}),
+            StoreModule.forRoot({})
          ],
       })
 
@@ -39,6 +35,7 @@ describe('StudentsComponent', () => {
       expect(studentsComponent).toBeTruthy();
    });
 
+
    // it('should call service to get data', () => {
    //    const spyOnService = spyOn(
    //       (studentsComponent as any).studentService,
@@ -50,12 +47,13 @@ describe('StudentsComponent', () => {
    //    expect(spyOnService).toHaveBeenCalled();
    // })
 
+
    it('should call student service to send email', () => {
       const spyOnService = spyOn(
          (studentsComponent as any).studentService,
          'sendEmail'
       ).and.returnValue(of([
-         {}, {}, {}, {}
+         {},{},{},{}
       ]))
       studentsComponent.onSendEmail('aaaaa');
       expect(spyOnService).toHaveBeenCalled();

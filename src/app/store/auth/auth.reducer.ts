@@ -4,11 +4,11 @@ import { AuthActions } from "./auth.actions";
 
 export const authFeatureKey = 'auth'
 
-export interface AuthState {
+export interface State {
    authUser: User | null;
 }
 
-const initialState: AuthState = {
+const initialState: State = {
    authUser: null,
 }
 

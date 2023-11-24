@@ -1,8 +1,8 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { authFeatureKey, authReducer, AuthState } from "./auth/auth.reducer";
+import { authFeatureKey, authReducer, State } from "./auth/auth.reducer";
 
 export interface AppState {
-   [authFeatureKey]: AuthState
+   [authFeatureKey]: State
 }
 
 export const appReducer: ActionReducerMap<AppState> = {

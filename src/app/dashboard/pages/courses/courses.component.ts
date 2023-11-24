@@ -4,7 +4,6 @@ import { CourseService } from './course.service';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { nanoid } from 'nanoid';
 import { Course } from './model/Course';
-import { AuthService } from 'src/app/auth/auth.service';
 import Swal from 'sweetalert2';
 import { AddNameDialogComponent } from './add-name-dialog/add-name-dialog.component';
 import { Store } from '@ngrx/store';

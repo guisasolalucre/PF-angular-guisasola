@@ -6,7 +6,7 @@ import { User } from "../dashboard/pages/users/model/User"
 import { environment } from "src/environments/environment.local"
 import { MockProvider } from "ng-mocks"
 import { Router } from "@angular/router"
-import { AuthState, authReducer } from "../store/auth/auth.reducer"
+import { State, authReducer } from "../store/auth/auth.reducer"
 import { Store, StoreModule } from "@ngrx/store"
 
 
@@ -14,7 +14,7 @@ describe('AuthService', () => {
 
    let authService: AuthService
    let httpController: HttpTestingController
-   let store: Store<AuthState>;
+   let store: Store<State>;
 
    beforeEach(() => {
       TestBed.configureTestingModule({

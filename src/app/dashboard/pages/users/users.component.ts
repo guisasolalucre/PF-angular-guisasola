@@ -26,6 +26,10 @@ export class UsersComponent {
     private dialog: MatDialog,
     private store: Store,
   ) {
+    
+  }
+
+  ngOnInit(): void {
     this.store.dispatch(UserActions.loadUsers())
     this.store.select(usersSelector).subscribe(
       (users) => this.users = users

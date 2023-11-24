@@ -3,9 +3,6 @@ import { CalendarEvent } from 'angular-calendar';
 import { Course } from '../../courses/model/Course';
 import { CourseService } from '../../courses/course.service';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { CourseActions } from '../../courses/store/course.actions';
-import { coursesSelector } from '../../courses/store/course.selectors';
 
 
 @Component({
@@ -21,7 +18,6 @@ export class CalendarComponent {
 	constructor(
 		private courseService: CourseService,
 		private router: Router,
-		private store: Store,
 	) {
 		this.loadEvents()
 	}
@@ -37,7 +33,7 @@ export class CalendarComponent {
 	transformCoursesToCalendarEvents(courses: Course[]): CalendarEvent[] {
 		const calendarEvents: CalendarEvent[] = [];
 
-		courses.forEach((course, index) => {
+		courses.forEach((course) => {
 			const event: CalendarEvent = {
 				id: course.id,
 				title: course.name!.nameString,
