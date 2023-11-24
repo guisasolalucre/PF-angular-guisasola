@@ -5,8 +5,8 @@
             <mat-card-subtitle>ID: {{ (student?.idnumber | number: '1.0-0') ?? 'Id number'  }}</mat-card-subtitle>
         </div>
         <div class="buttons">
-            <button mat-flat-button color="accent">
-                <!-- (click)="enrollStudent()"> -->
+            <button mat-flat-button color="accent"
+                (click)="enrollStudent()">
                 Enroll
             </button>
         </div>
@@ -36,12 +36,11 @@
                     *matHeaderCellDef> 
                     Actions 
                 </th>
-                <td mat-cell *matCellDef="let student">
-                    <mat-icon >
-                        <!-- 
+                <td mat-cell *matCellDef="let enrollment">
+                    <mat-icon
                         matTooltip="Delete"
                         matTooltipPosition="after"
-                        (click)="deleteUser.emit(user.id)" -->
+                        (click)="deleteEnrollment(enrollment.id)">
                         delete
                     </mat-icon>
                 </td>

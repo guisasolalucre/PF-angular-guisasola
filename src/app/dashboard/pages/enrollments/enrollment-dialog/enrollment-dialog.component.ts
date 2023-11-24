@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, take } from 'rxjs';
 import { Course } from '../../courses/model/Course';
 import { Student } from '../../students/model/Student';
 import { Actions, ofType } from '@ngrx/effects';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { nanoid } from 'nanoid';
 import { IEnrollment } from '../model/IEnrollment';
 import { EnrollmentActions } from '../store/enrollment.actions';
 import { courses, students } from '../store/enrollment.selectors';
-
 
 @Component({
   selector: 'app-enrollment-dialog',
@@ -24,11 +23,19 @@ export class EnrollmentDialogComponent {
 
   enrollmentForm: FormGroup;
 
+  source: string = ''
+
   constructor(
     private formBuilder: FormBuilder,
     private store: Store,
     private actions$: Actions,
-    private dialogRef: MatDialogRef<EnrollmentDialogComponent>
+    private dialogRef: MatDialogRef<EnrollmentDialogComponent>,
+
+    @Inject(MAT_DIALOG_DATA) 
+    private data?: { 
+      student?: Student, 
+      course?: Course 
+    },
   ) {
     this.store.dispatch(EnrollmentActions.loadEnrollmentDialogOptions())
     this.courses$ = this.store.select(courses);
@@ -41,11 +48,17 @@ export class EnrollmentDialogComponent {
         [Validators.required]],
     })
 
-    this.actions$
-      .pipe(ofType(EnrollmentActions.loadEnrollments), take(1))
-      .subscribe({
-        next: () => this.dialogRef.close(),
-      });
+    if (!!this.data?.student) {
+      this.studentIdControl.setValue(this.data.student.id)
+      this.studentIdControl.disable()
+      this.source = 'student'
+    } 
+
+    if (!!this.data?.course) {
+      this.courseIdControl.setValue(this.data.course.id)
+      this.courseIdControl.disable()
+      this.source = 'course'
+    } 
   }
 
   onSubmit(): void{
@@ -61,9 +74,12 @@ export class EnrollmentDialogComponent {
       
       this.store.dispatch(
         EnrollmentActions.createEnrollment({ 
-          payload: payloadValue 
+          payload: payloadValue,
+          source: this.source
         })
       );
+
+      this.dialogRef.close()
   }
 
 

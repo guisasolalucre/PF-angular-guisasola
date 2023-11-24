@@ -4,7 +4,6 @@ import { Course } from '../../courses/model/Course';
 import { Student } from '../../students/model/Student';
 
 
-
 export const EnrollmentActions = createActionGroup({
   source: 'Enrollment',
   events: {
@@ -19,17 +18,18 @@ export const EnrollmentActions = createActionGroup({
     }>(),
     'Load Enrollment Dialog Options Failure': props<{ error: unknown }>(),
 
-    'Create Enrollment': props<{ payload : IEnrollment }>(),
+    'Create Enrollment': props<{ payload: IEnrollment; source: string }>(),
     'Create Enrollment Failure': props<{ error: unknown }>(),
 
-    'Delete Enrollment': props<{ id : string }>(),
+    'Delete Enrollment': props<{ id : string; source: string; sourceId: string }>(),
     'Delete Enrollment Failure': props<{ error: unknown }>(),
 
     'Load Enrollments By Student': props<{ id: string }>(),
     'Load Enrollments By Student Success': props<{ data: IEnrollment[] }>(),
     'Load Enrollments By Student Failure': props<{ error: unknown }>(),
 
-    'Load Enrollments Courses': emptyProps(),
-    'Load Enrollments Courses Failure': props<{ error: unknown }>(),
+    'Load Enrollments By Course': props<{ id: string }>(),
+    'Load Enrollments By Course Success': props<{ data: IEnrollment[] }>(),
+    'Load Enrollments By Course Failure': props<{ error: unknown }>(),
   }
 });

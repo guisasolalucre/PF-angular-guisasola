@@ -64,7 +64,7 @@ export const reducer = createReducer(
   on(EnrollmentActions.loadEnrollmentDialogOptionsSuccess, (state, action) => (
     {
       ...state,
-      isLoadingOptions: true,
+      isLoadingOptions: false,
       courses: action.courses,
       students: action.students,
     }
@@ -124,7 +124,7 @@ export const reducer = createReducer(
   on(EnrollmentActions.loadEnrollmentsByStudentSuccess, (state, { data }) => (
     {
       ...state,
-      isLoading: true,
+      isLoading: false,
       enrollments: data
     }
   )),
@@ -138,15 +138,23 @@ export const reducer = createReducer(
   )),
 
 
-  // LOAD ENROLLMENTS COURSES
-  on(EnrollmentActions.loadEnrollmentsCourses, (state) => (
+  // LOAD ENROLLMENTS BY COURSE
+  on(EnrollmentActions.loadEnrollmentsByCourse, (state) => (
     {
       ...state,
       isLoading: true
     }
   )),
 
-  on(EnrollmentActions.loadEnrollmentsCoursesFailure, (state, { error }) => (
+  on(EnrollmentActions.loadEnrollmentsByCourseSuccess, (state, { data }) => (
+    {
+      ...state,
+      isLoading: false,
+      enrollments: data
+    }
+  )),
+
+  on(EnrollmentActions.loadEnrollmentsByCourseFailure, (state, { error }) => (
     {
       ...state,
       isLoading: false,

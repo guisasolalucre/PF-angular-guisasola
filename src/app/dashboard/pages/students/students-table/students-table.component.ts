@@ -29,7 +29,7 @@ export class StudentsTableComponent {
   @Output()
   sendEmail = new EventEmitter<string>();
 
-  displayedColumns: string[] = ['idnumber', 'fullname', 'dob', /*'active',*/ 'actions'];
+  displayedColumns: string[] = ['idnumber', 'fullname', 'dob', 'actions'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

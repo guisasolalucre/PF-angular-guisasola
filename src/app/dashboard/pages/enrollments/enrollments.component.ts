@@ -30,11 +30,7 @@ export class EnrollmentsComponent {
 
   onNewEnrollment(): void {
     this.dialog.open(EnrollmentDialogComponent)
-      .afterClosed().subscribe((result) => {
-        if (!!result) {
-          
-        }
-      })
+      .afterClosed().subscribe()
   }
 
 }

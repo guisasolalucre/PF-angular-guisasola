@@ -17,9 +17,9 @@
     {
       "id": "KpC2w",
       "username": "guisa",
-      "password": "guisa",
       "role": "ASSISTANT",
-      "token": "DW4I2Vx1GTMldwssZQg7aZd87"
+      "token": "DW4I2Vx1GTMldwssZQg7aZd87",
+      "password": "guisa"
     }
   ],
   "students": [
@@ -71,7 +71,7 @@
     {
       "id": "rR0uC",
       "idnumber": 34567890,
-      "active": true,
+      "active": false,
       "name": "Kurt",
       "surname": "Wagner",
       "dob": "1975-05-01T00:00:00.000Z",
@@ -80,7 +80,7 @@
     {
       "id": "V2eq2",
       "idnumber": 87654321,
-      "active": true,
+      "active": false,
       "name": "Kitty",
       "surname": "Pryde",
       "dob": "1980-11-01T00:00:00.000Z",
@@ -112,15 +112,6 @@
       "surname": "McCoy",
       "dob": "1963-09-01T00:00:00.000Z",
       "email": "beast@example.com"
-    },
-    {
-      "id": "Iv36r",
-      "idnumber": 10101010,
-      "active": true,
-      "name": "Lucrecia",
-      "surname": "Guisasola",
-      "dob": "1992-09-18T03:00:00.000Z",
-      "email": "test@test"
     }
   ],
   "courses": [
@@ -282,6 +273,61 @@
       "id": "oxTq7",
       "studentId": "V2eq2",
       "courseId": "q-Drk"
+    },
+    {
+      "id": "2zxNv",
+      "studentId": "SxAzZ",
+      "courseId": "h-Drk"
+    },
+    {
+      "id": "Z7jX5",
+      "studentId": "M1lkv",
+      "courseId": "l-Drk"
+    },
+    {
+      "id": "U_UUN",
+      "studentId": "xzBi6",
+      "courseId": "w-Drk"
+    },
+    {
+      "id": "aPW9b",
+      "studentId": "xzBi6",
+      "courseId": "j-Drk"
+    },
+    {
+      "id": "Pm4c3",
+      "studentId": "xzBi6",
+      "courseId": "m-Drk"
+    },
+    {
+      "id": "5IMkO",
+      "studentId": "xzBi6",
+      "courseId": "h-Drk"
+    },
+    {
+      "id": "Dj0Wk",
+      "studentId": "c_7yf",
+      "courseId": "liXGa"
+    },
+    {
+      "id": "fI6gm",
+      "studentId": "M1lkv",
+      "courseId": "liXGa"
+    },
+    {
+      "id": "BFjnS",
+      "studentId": "2UeoA",
+      "courseId": "liXGa"
+    },
+    {
+      "id": "LBfxL",
+      "studentId": "SxAzZ",
+      "courseId": "q-Drk"
+    },
+    {
+      "id": "oaVua",
+      "studentId": "SxAzZ",
+      "courseId": "l-Drk"
     }
   ],
   "coursesNames": [

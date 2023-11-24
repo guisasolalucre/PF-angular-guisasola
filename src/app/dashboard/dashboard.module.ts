@@ -13,6 +13,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { enrollmentFeature } from './pages/enrollments/store/enrollment.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { EnrollmentEffects } from './pages/enrollments/store/enrollment.effects';
 
 
 @NgModule({
@@ -31,6 +35,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     MatMenuModule,
     RouterModule,
     DashboardRoutingModule,
+    StoreModule.forFeature('enrollment', enrollmentFeature.reducer),
+    EffectsModule.forFeature([EnrollmentEffects]),
   ],
   exports: [DashboardComponent]
 })

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IEnrollment } from '../../enrollments/model/IEnrollment';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Course } from '../model/Course';
 import { CourseService } from '../course.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,9 @@ import { Store } from '@ngrx/store';
 import { StudentService } from '../../students/student.service';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
+import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
+import { enrollments } from '../../enrollments/store/enrollment.selectors';
 
 @Component({
   selector: 'app-course-detail',
@@ -21,9 +24,7 @@ export class CourseDetailComponent {
 
   displayedColumns: string[] = ['student', 'actions'];
   dataSource: IEnrollment[] = []
-  students: Observable<IEnrollment[]>
-
-
+  students!: Observable<IEnrollment[]>
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,14 +38,32 @@ export class CourseDetailComponent {
     this.courseService.getById(this.id)
       .subscribe(c => this.course = c[0])
 
-    this.students = this.courseService.getEnrollments(this.id)
+    this.getEnrollments()
+    this.students.subscribe((r) => console.log(r))
+    
+  }
 
-    // this.store.dispatch(EnrollmentActions.loadEnrollmentsByCourse({
-    //   id: this.id
-    // }));
-    // this.students = this.store.select(enrollments)
-    // console.log(this.students);
+  getEnrollments(){
+    this.store.dispatch(EnrollmentActions.loadEnrollmentsByCourse({
+      id: this.id
+    }));
+    
+    this.students = this.store.select(enrollments)
+  }
 
+  enrollStudent(): void {
+    this.dialog.open(EnrollmentDialogComponent, {
+      data: {
+        student: null,
+        course: this.course,
+      },
+    })
+    .afterClosed()
+    .subscribe({
+      next: () => {
+        this.store.dispatch(EnrollmentActions.loadEnrollmentsByCourse({ id: this.id }));
+      }
+    });
   }
 
   updateCourse(): void {
@@ -70,6 +89,16 @@ export class CourseDetailComponent {
 
   sendEmail(id: string) {
     this.studentService.sendEmail(id)
+  }
+
+  deleteEnrollment(id: string): void {
+    this.store.dispatch(EnrollmentActions
+      .deleteEnrollment({
+        id: id,
+        source: 'course',
+        sourceId: this.id
+      }))
+    this.getEnrollments()
   }
 
 }

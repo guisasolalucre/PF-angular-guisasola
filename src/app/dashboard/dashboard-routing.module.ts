@@ -36,15 +36,18 @@ const routes: Routes = [
             {
                 path: 'enroll',
                 loadChildren: () =>
-                    import('./pages/enrollments/enrollments.module').then((m) => m.EnrollmentsModule),
-                    data: { preload: true }
+                    import('./pages/enrollments/enrollments.module').then(
+                        (m) => m.EnrollmentsModule
+                    ),
             },
             //users
             {
                 path: 'users',
                 canActivate: [adminGuard],
                 loadChildren: () =>
-                    import('./pages/users/users.module').then((m) => m.UsersModule),
+                    import('./pages/users/users.module').then(
+                        (m) => m.UsersModule
+                    ),
             },
             //default
             {

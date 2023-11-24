@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, switchMap, delay } from 'rxjs/operators';
+import { catchError, map, concatMap, switchMap, delay, tap } from 'rxjs/operators';
 import { Observable, forkJoin, of } from 'rxjs';
 import { EnrollmentActions } from './enrollment.actions';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment.local';
 import { IEnrollment } from '../model/IEnrollment';
 import { Course } from '../../courses/model/Course';
 import { Student } from '../../students/model/Student';
-
 
 
 @Injectable()
@@ -51,78 +50,101 @@ export class EnrollmentEffects {
   ));
 
 
-  createEnrollment$ = createEffect(() => this.actions$.pipe(
-    ofType(EnrollmentActions.createEnrollment),
-    concatMap((action) => this.createEnrollment(action.payload).pipe(
-      switchMap(() => [
-        EnrollmentActions.loadEnrollments(),
-      ]),
-      catchError((error) => of(EnrollmentActions.createEnrollmentFailure({ error })))
-    ))
-  ));
-
-
-  deleteEnrollment$ = createEffect(() => this.actions$.pipe(
-    ofType(EnrollmentActions.deleteEnrollment),
-
-    concatMap((action) =>
-      this.deleteEnrollment(action.id).pipe(
-        map((r) =>
-          EnrollmentActions.loadEnrollments()),
-        catchError((error) =>
-          of(EnrollmentActions.deleteEnrollmentFailure({ error })))
-      ))
-  ))
-
-
-  loadEnrollmentsByStudent$ = createEffect(() => this.actions$.pipe(
-    ofType(EnrollmentActions.loadEnrollmentsByStudent),
-
-    concatMap((action) =>
-      this.getEnrollmentsByStudent(action.id).pipe(
-        map((r) => 
-          EnrollmentActions.loadEnrollmentsByStudentSuccess({data: r}),
-        ),
-        catchError((e) =>
-          of(EnrollmentActions.loadEnrollmentsByStudentFailure({ error: e }))
+  createEnrollment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.createEnrollment),
+      concatMap((action) =>
+        this.createEnrollment(action.payload).pipe(
+          switchMap(() => {
+            switch (action.source) {
+              case 'student':
+                return of(EnrollmentActions.loadEnrollmentsByStudent({ id: action.payload.studentId }));
+              case 'course':
+                return of(EnrollmentActions.loadEnrollmentsByCourse({ id: action.payload.courseId }));
+              default:
+                return of(EnrollmentActions.loadEnrollments());
+            }
+          }),
+          catchError((error) =>
+            of(EnrollmentActions.createEnrollmentFailure({ error }))
+          )
         )
-      ))
-  ))
+      )
+    )
+  );
 
 
-  loadEnrollmentsCourses$ = createEffect(() => this.actions$.pipe(
-    ofType(EnrollmentActions.loadEnrollmentsCourses),
-
-    concatMap(() =>
-      this.getEnrollmentsCourses().pipe(
-        switchMap(() => [
-          EnrollmentActions.loadEnrollments(),
-        ]),
-        catchError((e) => 
-          of(EnrollmentActions.loadEnrollmentsCoursesFailure({error: e}))
+  deleteEnrollment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.deleteEnrollment),
+      concatMap((action) =>
+        this.deleteEnrollment(action.id).pipe(
+          switchMap(() => {
+            switch (action.source) {
+              case 'student':
+                return of(EnrollmentActions.loadEnrollmentsByStudent({ id: action.sourceId }));
+              case 'course':
+                return of(EnrollmentActions.loadEnrollmentsByCourse({ id: action.sourceId }));
+              default:
+                return of(EnrollmentActions.loadEnrollments());
+            }
+          }),
+          catchError((error) =>
+            of(EnrollmentActions.deleteEnrollmentFailure({ error }))
+          )
         )
-      ))
-  ))
+      )
+    )
+  )
+
+
+  loadEnrollmentsByStudent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.loadEnrollmentsByStudent),
+
+      concatMap((action) =>
+        this.getEnrollmentsByStudent(action.id).pipe(
+          map((r) =>
+            EnrollmentActions.loadEnrollmentsByStudentSuccess({ data: r })),
+          catchError((e) =>
+            of(EnrollmentActions.loadEnrollmentsByStudentFailure({ error: e })))
+        ))
+    ));
+
+
+  loadEnrollmentsByCourse$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EnrollmentActions.loadEnrollmentsByCourse),
+
+      concatMap((action) =>
+        this.getEnrollmentsByCourse(action.id).pipe(
+          map((r) =>
+            EnrollmentActions.loadEnrollmentsByCourseSuccess({ data: r })),
+          catchError((e) =>
+            of(EnrollmentActions.loadEnrollmentsByCourseFailure({ error: e })))
+        ))
+    ));
+
 
 
   constructor(
-      private actions$: Actions,
-      private httpClient: HttpClient
-    ) {}
+    private actions$: Actions,
+    private httpClient: HttpClient,
+  ) { }
 
-  getEnrollments(): Observable < IEnrollment[] > {
+  getEnrollments(): Observable<IEnrollment[]> {
     return this.httpClient.get<IEnrollment[]>(
       `${environment.baseUrl}/enrollments?_expand=course&_expand=student`
     );
   }
 
-  getEnrollmentDialogOptions(): Observable < {
+  getEnrollmentDialogOptions(): Observable<{
     courses: Course[],
     students: Student[]
-  } > {
+  }> {
     return forkJoin([
       this.httpClient.get<Course[]>(`${environment.baseUrl}/courses`),
-      this.httpClient.get<Student[]>(`${environment.baseUrl}/students`),
+      this.httpClient.get<Student[]>(`${environment.baseUrl}/students?active=true`),
     ]).pipe(
       map((resp) => {
         return {
@@ -134,28 +156,26 @@ export class EnrollmentEffects {
 
   }
 
-  createEnrollment(payload: IEnrollment): Observable < IEnrollment[] > {
+  createEnrollment(payload: IEnrollment): Observable<IEnrollment[]> {
     return this.httpClient.post<IEnrollment>(`${environment.baseUrl}/enrollments`, payload)
       .pipe(switchMap(() => this.getEnrollments()));
   }
 
-  deleteEnrollment(id: string): Observable < IEnrollment[] > {
+  deleteEnrollment(id: string): Observable<IEnrollment[]> {
     return this.httpClient.delete(`${environment.baseUrl}/enrollments/${id}`)
       .pipe(switchMap(() => this.getEnrollments()));
   }
 
-  getEnrollmentsByStudent(id: string): Observable < IEnrollment[] > {
+  getEnrollmentsByStudent(studentId: string): Observable<IEnrollment[]> {
     return this.httpClient.get<IEnrollment[]>(
-      `${environment.baseUrl}/enrollments?studentId=${id}&_expand=course`
+      `${environment.baseUrl}/enrollments?studentId=${studentId}&_expand=course`
     );
   }
 
-  // getEnrollmentsByCourse(): Observable<IEnrollment[]>{
-  // }
-
-  getEnrollmentsCourses(): Observable < IEnrollment[] > {
+  getEnrollmentsByCourse(courseId: string): Observable<IEnrollment[]> {
     return this.httpClient.get<IEnrollment[]>(
-      `${environment.baseUrl}/enrollments?_expand=course`
+      `${environment.baseUrl}/enrollments?courseId=${courseId}&_expand=student`
     );
   }
+
 }

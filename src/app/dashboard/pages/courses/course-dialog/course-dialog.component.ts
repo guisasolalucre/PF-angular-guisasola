@@ -47,7 +47,7 @@ export class CourseDialogComponent {
 
       if (this.data) {
         this.courseForm.patchValue(this.data)
-        this.disableStartDate(this.data)
+        this.disableStarted(this.data)
         this.endDateControl.enable()
       } 
 
@@ -160,9 +160,10 @@ ngOnInit() {
   }
 
 
-  disableStartDate(data: Course): void {
+  disableStarted(data: Course): void {
     if (new Date(data.startDate) < this.minStartDate) {
       this.startDateControl.disable();
+      this.nameControl.disable();
     }
   }
 

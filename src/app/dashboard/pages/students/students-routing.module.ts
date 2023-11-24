@@ -4,9 +4,15 @@ import { StudentsComponent } from './students.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 
 const routes: Routes = [
-    { 
-        path: '', 
-        component: StudentsComponent 
+    {
+        path: 'active',
+        component: StudentsComponent,
+        data: { activeStatus: true }
+    },
+    {
+        path: 'inactive',
+        component: StudentsComponent,
+        data: { activeStatus: false }
     },
     {
         path: 'detail/:id',

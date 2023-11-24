@@ -21,7 +21,9 @@
             </div>
             <mat-divider></mat-divider>
             <button mat-menu-item
-                (click)="changePass()">
+                (click)="changePass()"
+                [disabled]="user?.id === 'Bi6_2' || user?.id === 'Hl9d3'"
+                >
                 <mat-icon>key</mat-icon>
                 Change password
             </button>

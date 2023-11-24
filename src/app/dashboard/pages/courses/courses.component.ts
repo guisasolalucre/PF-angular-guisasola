@@ -29,19 +29,14 @@ export class CoursesComponent {
   ) {
     this.courseService.getCourses()
     .pipe(delay(500))
-    .subscribe({
-      next: (data: Course[]) => {
+    .subscribe((data: Course[]) => {
         this.courses = data;
         this.isLoading = false
-      },
-      error: (error) => { console.log(error) }
     });
 
-    this.authService.authUser$.subscribe({
-      next: (user) => {
-        this.isAdmin = user?.role === 'ADMINISTRATOR' ? true : false
-      }
-    })
+    this.authService.authUser$.subscribe((user) =>
+      this.isAdmin = user?.role === 'ADMINISTRATOR' ? true : false
+    )
   }
 
   onAddTeacher():void {

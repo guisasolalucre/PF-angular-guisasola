@@ -33,7 +33,7 @@ export function idExistsValidator(studentService: StudentService): AsyncValidato
         return studentService.studentExistsByIdNumber(id, idnumber)
             .pipe(
                 map(exists => exists ? { idnumberexists: true } : null),
-                catchError(() => of(null)) // Maneja errores y devuelve null
+                catchError(() => of(null))
             );
     };
 }
@@ -53,7 +53,7 @@ export function emailExistsValidator(studentService: StudentService): AsyncValid
         return studentService.studentExistsByEmail(id, email)
             .pipe(
                 map(exists => exists ? { emailexists: true } : null),
-                catchError(() => of(null)) // Maneja errores y devuelve null
+                catchError(() => of(null))
             );
     };
 }
@@ -72,7 +72,7 @@ export function usernameExistsValidator(userService: UsersService): AsyncValidat
         return userService.usernameExists(id, username)
             .pipe(
                 map(exists => exists ? { usernameexists: true } : null),
-                catchError(() => of(null)) // Maneja errores y devuelve null
+                catchError(() => of(null))
             );
     };
 }

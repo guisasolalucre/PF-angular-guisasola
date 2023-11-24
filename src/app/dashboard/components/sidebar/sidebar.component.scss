@@ -1,5 +1,5 @@
-$primary-color: #673ab7; // Purple
-$accent-color: #56e7a1; // Green
+$primary-color: #673ab7;
+$accent-color: #56e7a1;
 
 mat-list-item{
     padding: 2em;
@@ -18,7 +18,7 @@ mat-list-item{
     margin-left: 0.6em;
 }
 
-.option{
+.page{
     display: flex;
     align-items: center;
     justify-content: flex-start;

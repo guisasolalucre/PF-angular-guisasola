@@ -1,6 +1,4 @@
-import { Component, Input} from '@angular/core';
-import { User } from '../../pages/users/model/User';
-import { UsersService } from '../../pages/users/users.service';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -11,6 +9,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class SidebarComponent {
 
   isAdmin: boolean = false
+
+  showOptions: boolean = false
 
   constructor(
     private authService: AuthService

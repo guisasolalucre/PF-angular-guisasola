@@ -74,7 +74,12 @@ export class EnrollmentsTableComponent {
       heightAuto: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.store.dispatch(EnrollmentActions.deleteEnrollment({ id }))
+        this.store.dispatch(EnrollmentActions
+          .deleteEnrollment({
+            id: id,
+            source: '',
+            sourceId: ''
+          }))
         this.enrollments$ = this.store.select(enrollments)
       }
       Swal.fire({

@@ -26,6 +26,14 @@ export class LoginComponent {
     })
   }
 
+  login(): void {
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+    } else {
+      this.authService.login(this.loginForm.value);
+    }
+  }
+
   get usernameControl() {
     return this.loginForm.controls['username'] as FormControl;
   }
@@ -48,14 +56,6 @@ export class LoginComponent {
       this.passwordControl.hasError('minlength') ?
       'Password must have at least 5 characters' :
       '';
-  }
-
-  login(): void {
-    if(this.loginForm.invalid){
-      this.loginForm.markAllAsTouched();
-    } else {
-      this.authService.login(this.loginForm.value);
-    }
   }
 
 }

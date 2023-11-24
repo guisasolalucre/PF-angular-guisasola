@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import { Student } from './model/Student';
 import { delay } from 'rxjs';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -14,6 +15,8 @@ import Swal from 'sweetalert2';
 })
 export class StudentsComponent {
 
+  activeStatus: boolean = true;
+
   students: Student[] = []
 
   isLoading: boolean = true
@@ -21,10 +24,13 @@ export class StudentsComponent {
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.studentService.getStudents()
+
+    this.activeStatus = this.route.snapshot.data['activeStatus'];
+    this.studentService.getStudents(this.activeStatus)
       .pipe(delay(500))
       .subscribe(
         (data: Student[]) => {

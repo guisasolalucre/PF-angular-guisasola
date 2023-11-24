@@ -13,8 +13,8 @@
             (click)="updateCourse()">
             Edit course
          </button>
-         <button mat-flat-button color="accent">
-            <!-- (click)="enrollStudent()"> -->
+         <button mat-flat-button color="accent"
+            (click)="enrollStudent()">
             Enroll
          </button>
       </div>
@@ -40,11 +40,10 @@
                      (click)="sendEmail(enrollment.studentId)">
                   email
                </mat-icon>
-               <mat-icon>
-                  <!-- 
+               <mat-icon
                      matTooltip="Delete enrollment"
                      matTooltipPosition="after"
-                     (click)="deleteUser.emit(user.id)" -->
+                     (click)="deleteEnrollment(enrollment.id)">
                   delete
                </mat-icon>
             </td>

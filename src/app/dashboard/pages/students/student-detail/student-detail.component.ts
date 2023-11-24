@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
 import { enrollments } from '../../enrollments/store/enrollment.selectors';
+import { MatDialog } from '@angular/material/dialog';
+import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
 
 
 @Component({
@@ -18,14 +20,15 @@ export class StudentDetailComponent {
 
   id: string
   student?: Student
-
+  courses!: Observable<IEnrollment[]>
+  
   displayedColumns: string[] = ['course', 'startDate', 'teacher', 'actions'];
   dataSource: IEnrollment[] = []
-  courses: Observable<IEnrollment[]>
   
   constructor(
     public activatedRoute: ActivatedRoute,
     public studentService: StudentService,
+    private dialog: MatDialog,
     private store: Store,
   ) {
     this.id = this.activatedRoute.snapshot.params['id']
@@ -33,10 +36,38 @@ export class StudentDetailComponent {
     this.studentService.getById(this.id)
       .subscribe(s => this.student = s[0])
 
-    this.store.dispatch(EnrollmentActions.loadEnrollmentsByStudent({
-      id: this.id
-    }));
+    this.getEnrollments()
+
+  }
+
+  getEnrollments(): void{
+    this.store.dispatch(
+      EnrollmentActions.loadEnrollmentsByStudent({ id: this.id })
+    );
+      
     this.courses = this.store.select(enrollments)
+  }
+
+  enrollStudent(): void {
+    this.dialog.open(EnrollmentDialogComponent, {
+      data: {
+        student: this.student,
+        course: null,
+      },
+    })
+    .afterClosed().subscribe( () => {
+      this.getEnrollments()
+    })
+  }
+
+  deleteEnrollment(id: string): void {
+    this.store.dispatch(EnrollmentActions
+      .deleteEnrollment({
+        id: id,
+        source: 'student',
+        sourceId: this.id
+      }))
+    this.getEnrollments()
   }
 
 }

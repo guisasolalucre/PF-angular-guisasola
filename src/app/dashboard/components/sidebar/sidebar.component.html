@@ -3,25 +3,39 @@
         <mat-list-item 
             routerLink="home" 
             [routerLinkActive]="['is-active']">
-            <div class="option">
+            <div class="page">
                 <mat-icon>home</mat-icon>
                 <span class="tag">HOME</span>
             </div>
         </mat-list-item>
 
         <mat-list-item 
-            routerLink="students" 
+            (click)="showOptions = !showOptions"
             [routerLinkActive]="['is-active']">
-            <div class="option">
+            <div class="page">
                 <mat-icon>school</mat-icon>
                 <span class="tag">STUDENTS</span>
             </div>
         </mat-list-item>
 
+        <div *ngIf="showOptions">
+            <mat-list-item 
+                routerLink="students/active" 
+                [routerLinkActive]="['is-active']">
+                <span class="tag">Active students</span>
+            </mat-list-item>
+
+            <mat-list-item 
+                routerLink="students/inactive" 
+                [routerLinkActive]="['is-active']">
+                <span class="tag">Inactive students</span>
+            </mat-list-item>
+        </div>
+
         <mat-list-item 
             routerLink="courses" 
             [routerLinkActive]="['is-active']">
-            <div class="option">
+            <div class="page">
                 <mat-icon>menu_book</mat-icon>
                 <span class="tag">COURSES</span>
             </div>
@@ -30,7 +44,7 @@
         <mat-list-item 
             routerLink="enroll" 
             [routerLinkActive]="['is-active']">
-            <div class="option">
+            <div class="page">
                 <mat-icon>badge</mat-icon>
                 <span class="tag">ENROLLMENT</span>
             </div>
@@ -42,7 +56,7 @@
         class="usersBtn"
         routerLink="users" 
         [routerLinkActive]="['is-active']">
-        <div class="option">
+        <div class="page">
             <mat-icon>groups</mat-icon>
             <span class="tag">USERS</span>
         </div>

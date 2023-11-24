@@ -17,10 +17,6 @@ export class AuthService {
 
   public authUser$ = this.store.select(authUser);
 
-  // private _authUser$ = new BehaviorSubject<User | null>(null);
-
-  // public authUser$ = this._authUser$.asObservable();
-
   private baseURL : string = environment.baseUrl
 
   constructor(
@@ -31,7 +27,6 @@ export class AuthService {
 
   handleAuthUser(authUser: User): void{
     this.store.dispatch(AuthActions.setAuthUser({ data: authUser }))
-    // this._authUser$.next(authUser);
     localStorage.setItem('token', authUser.token)
   }
 
@@ -75,7 +70,6 @@ export class AuthService {
 
   logout(){
     this.store.dispatch(AuthActions.resetState())
-    // this._authUser$.next(null)
     localStorage.removeItem('token')
     this.router.navigate(['/auth/login'])
   }
