@@ -7,6 +7,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentsComponent } from './students.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { StudentsRoutingModule } from './students-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { studentFeature, studentFeatureKey } from './store/student.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { StudentEffects } from './store/student.effects';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,8 @@ import { StudentsRoutingModule } from './students-routing.module';
     SharedModule,
     MatDatepickerModule,
     StudentsRoutingModule,
+    StoreModule.forFeature(studentFeatureKey, studentFeature.reducer),
+    EffectsModule.forFeature([StudentEffects]),
   ],
   exports: [
     StudentFormDialogComponent,

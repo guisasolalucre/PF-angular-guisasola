@@ -10,7 +10,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
 import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
-import { enrollments, enrollmentsIsLoading } from '../../enrollments/store/enrollment.selectors';
+import { enrollmentsSelector, isLoadingEnrollments } from '../../enrollments/store/enrollment.selectors';
 
 @Component({
   selector: 'app-course-detail',
@@ -47,10 +47,10 @@ export class CourseDetailComponent {
       id: this.id
     }));
     
-    this.students = this.store.select(enrollments)
+    this.students = this.store.select(enrollmentsSelector)
 
-    this.store.select(enrollmentsIsLoading).subscribe(
-      (state) => this.isLoading = state
+    this.store.select(isLoadingEnrollments).subscribe(
+      (isLoading) => this.isLoading = isLoading
     )
   }
 

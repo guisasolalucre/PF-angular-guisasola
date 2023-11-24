@@ -4,7 +4,6 @@ import { Student } from './model/Student';
 import { environment } from 'src/environments/environment.local';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { IEnrollment } from '../enrollments/model/IEnrollment';
 
 @Injectable({
   providedIn: 'root'
@@ -74,11 +73,5 @@ export class StudentService {
       })
 
     
-  }
-
-  getEnrollments(id: string): Observable<IEnrollment[]> {
-    return this.httpClient.get<IEnrollment[]>(
-      `${environment.baseUrl}/enrollments?studentId=${id}&_expand=course`
-    );
   }
 }

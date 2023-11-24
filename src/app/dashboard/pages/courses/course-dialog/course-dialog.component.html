@@ -69,7 +69,9 @@
 
 <mat-dialog-actions align="end">
     <button mat-stroked-button mat-dialog-close>Cancel</button>
-    <button mat-flat-button color="accent" [disabled]="!courseForm.valid" [mat-dialog-close]="courseForm.value">
+    <button mat-flat-button color="accent" 
+        [disabled]="!courseForm.valid" 
+        (click)="onSubmit()">
         Confirm
     </button>
 </mat-dialog-actions>

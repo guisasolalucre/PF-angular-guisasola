@@ -7,6 +7,10 @@ import { Course } from './model/Course';
 import { AuthService } from 'src/app/auth/auth.service';
 import Swal from 'sweetalert2';
 import { AddNameDialogComponent } from './add-name-dialog/add-name-dialog.component';
+import { Store } from '@ngrx/store';
+import { CourseActions } from './store/course.actions';
+import { coursesSelector, isLoadingCourses } from './store/course.selectors';
+import { authUser } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-courses',
@@ -22,18 +26,21 @@ export class CoursesComponent {
   isLoading: boolean = true
 
   constructor(
-    public dialog: MatDialog,
-    public courseService: CourseService,
-    private authService: AuthService,
+    private dialog: MatDialog,
+    private courseService: CourseService,
+    private store: Store,
   ) {
-    this.courseService.getCourses()
-    .subscribe((data: Course[]) => {
-        this.courses = data;
-        this.isLoading = false
-    });
-
-    this.authService.authUser$.subscribe((user) =>
+    this.store.select(authUser).subscribe(
+      (user) => 
       this.isAdmin = user?.role === 'ADMINISTRATOR' ? true : false
+    )
+
+    this.store.dispatch(CourseActions.loadCourses())
+    this.store.select(isLoadingCourses).subscribe(
+      (isLoading) => this.isLoading = isLoading
+    )
+    this.store.select(coursesSelector).subscribe(
+      (courses) => this.courses = courses
     )
   }
 
@@ -76,37 +83,33 @@ export class CoursesComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.courseService.createCourse({
+            let payload: Course = {
               id: nanoid(5),
               name: result.name,
               startDate: result.startDate,
               endDate: result.endDate,
               teacher: result.teacher,
-            }).subscribe(
-              (data: Course[]) => {
-                this.courses = data;
-              },
-            )
+            }
+            this.store.dispatch(CourseActions.createCourse({payload}))
           }
         }
       })
   }
 
   onUpdateCourse(course: Course): void {
-
     this.dialog
       .open(CourseDialogComponent, {
         data: course,
       })
-      .afterClosed()
+      .beforeClosed()
       .subscribe({
         next: (result) => {
-
-          if (!!result) {
-            this.courseService.updateCourse(course.id, result).subscribe(
-              (data: Course[]) => {
-                this.courses = data;
-              },
+          if (!!result) {      
+            this.store.dispatch(CourseActions
+              .updateCourse({
+                id: course.id, 
+                payload: result
+              })
             )
           }
         }
@@ -123,11 +126,7 @@ export class CoursesComponent {
       heightAuto: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.courseService.deleteCourse(id).subscribe(
-          (data: Course[]) => {
-            this.courses = data;
-          },
-        )
+        this.store.dispatch(CourseActions.deleteCourse({id}))
       }
     })
   }

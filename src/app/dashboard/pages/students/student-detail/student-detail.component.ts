@@ -6,7 +6,7 @@ import { IEnrollment } from '../../enrollments/model/IEnrollment';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
-import { enrollments, enrollmentsIsLoading } from '../../enrollments/store/enrollment.selectors';
+import { enrollmentsSelector, isLoadingEnrollments } from '../../enrollments/store/enrollment.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
 
@@ -45,9 +45,9 @@ export class StudentDetailComponent {
       EnrollmentActions.loadEnrollmentsByStudent({ id: this.id })
     );
       
-    this.courses = this.store.select(enrollments)
-    this.store.select(enrollmentsIsLoading).subscribe(
-      (state) => this.isLoading = state
+    this.courses = this.store.select(enrollmentsSelector)
+    this.store.select(isLoadingEnrollments).subscribe(
+      (isLoading) => this.isLoading = isLoading
     )
   }
 

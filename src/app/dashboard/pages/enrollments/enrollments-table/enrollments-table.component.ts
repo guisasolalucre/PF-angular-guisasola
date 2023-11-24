@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { enrollments } from '../store/enrollment.selectors';
+import { enrollmentsSelector } from '../store/enrollment.selectors';
 import { EnrollmentActions } from '../store/enrollment.actions';
 
 @Component({
@@ -31,7 +31,7 @@ export class EnrollmentsTableComponent {
   constructor(
     private store: Store,
   ) {
-    this.enrollments$ = this.store.select(enrollments)
+    this.enrollments$ = this.store.select(enrollmentsSelector)
   }
 
   ngAfterViewInit(): void {
@@ -80,7 +80,7 @@ export class EnrollmentsTableComponent {
             source: '',
             sourceId: ''
           }))
-        this.enrollments$ = this.store.select(enrollments)
+        this.enrollments$ = this.store.select(enrollmentsSelector)
       }
       Swal.fire({
         title: 'Deleted!',

@@ -14,7 +14,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { enrollmentFeature } from './pages/enrollments/store/enrollment.reducer';
+import { enrollmentFeature, enrollmentFeatureKey } from './pages/enrollments/store/enrollment.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { EnrollmentEffects } from './pages/enrollments/store/enrollment.effects';
 
@@ -35,7 +35,7 @@ import { EnrollmentEffects } from './pages/enrollments/store/enrollment.effects'
     MatMenuModule,
     RouterModule,
     DashboardRoutingModule,
-    StoreModule.forFeature('enrollment', enrollmentFeature.reducer),
+    StoreModule.forFeature(enrollmentFeatureKey, enrollmentFeature.reducer),
     EffectsModule.forFeature([EnrollmentEffects]),
   ],
   exports: [DashboardComponent]

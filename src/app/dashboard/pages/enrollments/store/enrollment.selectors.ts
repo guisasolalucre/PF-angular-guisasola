@@ -5,22 +5,22 @@ export const enrollmentState = createFeatureSelector<fromEnrollment.State>(
   fromEnrollment.enrollmentFeatureKey
 );
 
-export const enrollments = createSelector(
+export const enrollmentsSelector = createSelector(
   enrollmentState,
   (state) => state.enrollments
 );
 
-export const enrollmentsIsLoading = createSelector(
+export const isLoadingEnrollments = createSelector(
   enrollmentState,
   (state) => state.isLoading
 );
 
-export const courses = createSelector(
+export const enrollmentCourses = createSelector(
   enrollmentState,
   (state) => state.courses
 )
 
-export const students = createSelector(
+export const enrollmentStudents = createSelector(
   enrollmentState,
   (state) => state.students
 )

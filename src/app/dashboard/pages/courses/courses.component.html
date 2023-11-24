@@ -31,7 +31,6 @@
  
 <ng-template #table>
     <app-courses-table
-        [isAdmin]="isAdmin"
         [table]="courses"
         (deleteCourse)="onDeleteCourse($event)"
         (updateCourse)="onUpdateCourse($event)">

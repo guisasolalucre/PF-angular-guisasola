@@ -5,6 +5,9 @@ import { StudentService } from 'src/app/dashboard/pages/students/student.service
 import { nanoid } from 'nanoid';
 import { Student } from './model/Student';
 import Swal from 'sweetalert2';
+import { Store } from '@ngrx/store';
+import { StudentActions } from './store/student.actions';
+import { isLoadingStudents, studentsSelector } from './store/student.selectors';
 
 @Component({
   selector: 'app-students',
@@ -18,19 +21,21 @@ export class StudentsComponent {
   isLoading: boolean = true
 
   constructor(
-    public dialog: MatDialog,
-    public studentService: StudentService,
-  ) { }
+    private dialog: MatDialog,
+    private studentService: StudentService,
+    private store: Store,
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-
-    this.studentService.getStudents()
-      .subscribe(
-        (data: Student[]) => {
-          this.students = data
-          this.isLoading = false
-        }
-      );
+    this.store.dispatch(StudentActions.loadStudents())
+    this.store.select(studentsSelector).subscribe(
+      (students) => this.students = students
+    )
+    this.store.select(isLoadingStudents).subscribe(
+      (isLoading) => this.isLoading = isLoading
+    )
   }
 
   onAddStudent(): void {
@@ -40,25 +45,21 @@ export class StudentsComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.studentService.createStudent({
+            let payload: Student = {
               id: nanoid(5),
               idnumber: result.idnumber,
               name: result.name,
               surname: result.surname,
               dob: result.dob,
               email: result.email,
-            }).subscribe(
-              (data: Student[]) => {
-                this.students = data;
-              },
-            )
+            }
+            this.store.dispatch(StudentActions.createStudent({payload}))
           }
         }
       })
   }
 
   onUpdateStudent(student: Student): void {
-
     this.dialog
       .open(StudentFormDialogComponent, {
         data: student,
@@ -67,15 +68,10 @@ export class StudentsComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.studentService.updateStudent(
-              student.id,
-              result
-            ).subscribe(
-              (data: Student[]) => {
-                this.students = data;
-              },
-            )
-              ;
+            this.store.dispatch(StudentActions.updateStudent({
+              id: student.id,
+              payload: result
+            }))
           }
         }
       })
@@ -91,11 +87,7 @@ export class StudentsComponent {
       heightAuto: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.studentService.deleteStudent(id).subscribe(
-          (data: Student[]) => {
-            this.students = data;
-          },
-        )
+        this.store.dispatch(StudentActions.deleteStudent({id}))
         Swal.fire({
           title: 'Deleted!',
           icon: 'success',

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Course } from './model/Course';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.local';
 import { CourseName, Teacher } from './model';
-import { IEnrollment } from '../enrollments/model/IEnrollment';
 
 @Injectable({
   providedIn: 'root'
@@ -26,21 +25,17 @@ export class CourseService {
     return this.httpClient.get<Course[]>(`${this.coursesUrl}?id=${id}`)
   }
 
-  createCourse(course: Course): Observable<Course[]> {
+  createCourse(course: Course): Observable<Course> {
     return this.httpClient.post<Course>(`${this.coursesUrl}`, course)
-      .pipe(switchMap(() => this.getCourses()));
   }
 
-  updateCourse(id: string, course: Course): Observable<Course[]> {
+  updateCourse(id: string, course: Course): Observable<Course> {
     return this.httpClient.put<Course>(`${this.coursesUrl}/${id}`, course)
-      .pipe(switchMap(() => this.getCourses()));
   }
 
-  deleteCourse(id: string): Observable<Course[]> {
-    return this.httpClient.delete(`${this.coursesUrl}/${id}`)
-      .pipe(switchMap(() => this.getCourses()));
+  deleteCourse(id: string): Observable<null> {
+    return this.httpClient.delete<null>(`${this.coursesUrl}/${id}`)
   }
-
 
 
   getCoursesNames(): Observable<CourseName[]> {
@@ -57,11 +52,5 @@ export class CourseService {
 
   addTeacher(teacher: Teacher): Observable<Teacher[]> {
     return this.httpClient.post<Teacher[]>(`${this.baseUrl}/teachers`, teacher);
-  }
-
-  getEnrollments(id: string): Observable<IEnrollment[]> {
-    return this.httpClient.get<IEnrollment[]>(
-      `${environment.baseUrl}/enrollments?courseId=${id}&_expand=student`
-    );
   }
 }

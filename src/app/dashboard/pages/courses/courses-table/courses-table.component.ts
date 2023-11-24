@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CourseService } from '../course.service';
 import { Course } from '../model/Course';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { authUser } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-courses-table',
@@ -14,11 +14,10 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CoursesTableComponent {
 
-  @Input()
   isAdmin: boolean = false
 
   @Input()
-  table: Course[] = [];
+  table!: Course[];
 
   @Output()
   deleteCourse = new EventEmitter<string>();
@@ -37,10 +36,14 @@ export class CoursesTableComponent {
   dataSource = new MatTableDataSource<Course>()
 
   constructor(
-    public dialog: MatDialog,
-    public courseService: CourseService,
     private router: Router,
-  ) { }
+    private store: Store,
+  ) { 
+    this.store.select(authUser).subscribe(
+      (user) => 
+      this.isAdmin = user?.role === 'ADMINISTRATOR'
+    )
+  }
 
   ngAfterViewInit(): void {
     this.initialize()

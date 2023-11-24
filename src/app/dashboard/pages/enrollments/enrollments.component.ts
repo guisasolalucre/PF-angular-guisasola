@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from './enrollment-dialog/enrollment-dialog.component';
 import { EnrollmentActions } from './store/enrollment.actions';
-import { enrollments, enrollmentsIsLoading } from './store/enrollment.selectors';
+import { enrollmentsSelector, isLoadingEnrollments } from './store/enrollment.selectors';
 
 
 @Component({
@@ -24,8 +24,8 @@ export class EnrollmentsComponent {
     private store: Store,
   ){
     this.store.dispatch(EnrollmentActions.loadEnrollments());
-    this.isLoading$ = this.store.select(enrollmentsIsLoading)
-    this.enrollments$ = this.store.select(enrollments)
+    this.isLoading$ = this.store.select(isLoadingEnrollments)
+    this.enrollments$ = this.store.select(enrollmentsSelector)
   }
 
   onNewEnrollment(): void {

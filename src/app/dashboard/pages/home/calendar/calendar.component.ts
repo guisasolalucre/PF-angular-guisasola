@@ -3,6 +3,9 @@ import { CalendarEvent } from 'angular-calendar';
 import { Course } from '../../courses/model/Course';
 import { CourseService } from '../../courses/course.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { CourseActions } from '../../courses/store/course.actions';
+import { coursesSelector } from '../../courses/store/course.selectors';
 
 
 @Component({
@@ -18,16 +21,17 @@ export class CalendarComponent {
 	constructor(
 		private courseService: CourseService,
 		private router: Router,
+		private store: Store,
 	) {
 		this.loadEvents()
 	}
 
 	loadEvents(): void {
-		this.courseService.getCourses()
-			.subscribe((courses: Course[]) => {
+		this.courseService.getCourses().subscribe(
+			(courses: Course[]) => {
 				this.events = this.transformCoursesToCalendarEvents(courses);
+				this.isLoading = false
 			});
-		this.isLoading = false
 	}
 
 	transformCoursesToCalendarEvents(courses: Course[]): CalendarEvent[] {

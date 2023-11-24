@@ -8,6 +8,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { AddNameDialogComponent } from './add-name-dialog/add-name-dialog.component';
+import { courseFeature, courseFeatureKey } from './store/course.reducer';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { CourseEffects } from './store/course.effects';
 
 
 
@@ -24,6 +28,8 @@ import { AddNameDialogComponent } from './add-name-dialog/add-name-dialog.compon
     SharedModule,
     MatDatepickerModule,
     CoursesRoutingModule,
+    StoreModule.forFeature(courseFeatureKey, courseFeature.reducer),
+    EffectsModule.forFeature([CourseEffects]),
   ],
   exports: [
     CourseDialogComponent,

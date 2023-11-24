@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { nanoid } from 'nanoid';
 import { IEnrollment } from '../model/IEnrollment';
 import { EnrollmentActions } from '../store/enrollment.actions';
-import { courses, students } from '../store/enrollment.selectors';
+import { enrollmentCourses, enrollmentStudents } from '../store/enrollment.selectors';
 
 @Component({
   selector: 'app-enrollment-dialog',
@@ -38,8 +38,8 @@ export class EnrollmentDialogComponent {
     },
   ) {
     this.store.dispatch(EnrollmentActions.loadEnrollmentDialogOptions())
-    this.courses$ = this.store.select(courses);
-    this.students$ = this.store.select(students);
+    this.courses$ = this.store.select(enrollmentCourses);
+    this.students$ = this.store.select(enrollmentStudents);
 
     this.enrollmentForm = this.formBuilder.group({
       studentId: ['',

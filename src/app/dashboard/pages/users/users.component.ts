@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { nanoid } from 'nanoid';
 import { Role } from './model/enums';
+import { Store } from '@ngrx/store';
+import { UserActions } from './store/user.actions';
+import { isLoadingUsers, usersSelector } from './store/user.selectors';
 
 @Component({
   selector: 'app-users',
@@ -19,17 +22,16 @@ export class UsersComponent {
   isLoading: boolean = true
 
   constructor(
-    public usersService: UsersService,
-    public dialog: MatDialog,
-  ) {}
-
-  ngOnInit(): void {
-    this.usersService.getUsers()
-    .subscribe(
-      (data: User[]) => {
-        this.users = data
-        this.isLoading = false
-      }
+    private usersService: UsersService,
+    private dialog: MatDialog,
+    private store: Store,
+  ) {
+    this.store.dispatch(UserActions.loadUsers())
+    this.store.select(usersSelector).subscribe(
+      (users) => this.users = users
+    )
+    this.store.select(isLoadingUsers).subscribe(
+      (isLoading) => this.isLoading = isLoading
     )
   }
 
@@ -40,24 +42,20 @@ export class UsersComponent {
       .subscribe({
         next: (result) => {
           if (!!result) {
-            this.usersService.createUser({
+            let payload: User = {
               id: nanoid(5),
               username: result.username,
               password: result.password,
               role: Role[1],
               token: nanoid(25)
-            }).subscribe(
-              (data: User[]) => {
-                this.users = data;
-              },
-            )
+            }
+            this.store.dispatch(UserActions.createUser({payload}))
           }
         }
       })
   }
 
   onDeleteUser(id: string): void {
-
     this.usersService.filterAdmin().subscribe(
       admins => {
         this.usersService.getById(id).subscribe(
@@ -79,11 +77,7 @@ export class UsersComponent {
                 heightAuto: false,
               }).then((result) => {
                 if (result.isConfirmed) {
-                  this.usersService.deleteUser(id).subscribe(
-                    (data: User[]) => {
-                      this.users = data;
-                    },
-                  )
+                  this.store.dispatch(UserActions.deleteUser({id}))
                   Swal.fire({
                     title: 'Deleted!',
                     text: "The user has been deleted",
@@ -115,11 +109,7 @@ export class UsersComponent {
                 heightAuto: false,
               });
             } else {
-              this.usersService.changeRole(id).subscribe(
-                (data: User[]) => {
-                  this.users = data;
-                },
-              )
+              this.store.dispatch(UserActions.changeUserRole({id}))
             }
           }
         )

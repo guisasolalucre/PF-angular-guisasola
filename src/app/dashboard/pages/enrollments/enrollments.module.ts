@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EnrollmentsTableComponent } from './enrollments-table/enrollments-table.component';
 import { EnrollmentDialogComponent } from './enrollment-dialog/enrollment-dialog.component';
-import { enrollmentFeature } from './store/enrollment.reducer';
+import { enrollmentFeature, enrollmentFeatureKey } from './store/enrollment.reducer';
 import { EnrollmentEffects } from './store/enrollment.effects';
 
 
@@ -21,8 +21,6 @@ import { EnrollmentEffects } from './store/enrollment.effects';
     CommonModule,
     EnrollmentsRoutingModule,
     SharedModule,
-    StoreModule.forFeature('enrollment', enrollmentFeature.reducer),
-    EffectsModule.forFeature([EnrollmentEffects]),
   ]
 })
 export class EnrollmentsModule { }

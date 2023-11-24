@@ -4,6 +4,8 @@ import { LoginComponent } from "./login.component"
 import { MockProvider } from "ng-mocks"
 import { AuthService } from "../../auth.service"
 import { SharedModule } from "src/app/shared/shared.module"
+import { MockStore, provideMockStore } from "@ngrx/store/testing"
+import { AuthState } from "src/app/store/auth/auth.reducer"
 
 describe('LoginComponent', () => {
 

@@ -6,43 +6,31 @@ import { User } from "../dashboard/pages/users/model/User"
 import { environment } from "src/environments/environment.local"
 import { MockProvider } from "ng-mocks"
 import { Router } from "@angular/router"
-import { provideMockStore } from "@ngrx/store/testing"
-import { AuthState } from "../store/auth/auth.reducer"
-import { authUser } from "../store/auth/auth.selectors"
-import { Store } from "@ngrx/store"
+import { AuthState, authReducer } from "../store/auth/auth.reducer"
+import { Store, StoreModule } from "@ngrx/store"
 
 
 describe('AuthService', () => {
 
    let authService: AuthService
    let httpController: HttpTestingController
-   let store: Store
+   let store: Store<AuthState>;
 
    beforeEach(() => {
       TestBed.configureTestingModule({
          imports: [
             HttpClientTestingModule,
             RouterTestingModule,
+            StoreModule.forRoot({ auth: authReducer }),
          ],
          providers: [
             MockProvider(Router),
-            provideMockStore<AuthState>({
-               initialState: {
-                  authUser: null
-               },
-               selectors: [
-                  {
-                     selector: authUser,
-                     value: null
-                  }
-               ]
-            })
          ]
       })
 
       authService = TestBed.inject(AuthService)
       httpController = TestBed.inject(HttpTestingController)
-      store = TestBed.inject(Store)
+      store = TestBed.inject(Store);
    })
 
 

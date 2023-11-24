@@ -24,17 +24,15 @@ export class UsersService {
     return this.httpClient.get<User[]>(`${this.baseURL}?id=${id}`)
   }
 
-  createUser(user: User): Observable<User[]> {
+  createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(`${this.baseURL}`, user)
-      .pipe(switchMap(() => this.getUsers()));
   }
 
-  deleteUser(id: string): Observable<User[]> {
-    return this.httpClient.delete(`${this.baseURL}/${id}`)
-      .pipe(switchMap(() => this.getUsers()));
+  deleteUser(id: string): Observable<null> {
+    return this.httpClient.delete<null>(`${this.baseURL}/${id}`)
   }
 
-  changeRole(id: string): Observable<User[]> {
+  changeRole(id: string): Observable<User> {
     return this.getById(id).pipe(
       switchMap(users => {
         let newRole = '';
@@ -48,7 +46,6 @@ export class UsersService {
         let changedUser = { ...user, role: newRole };
 
         return this.httpClient.put<User>(`${this.baseURL}/${id}`, changedUser)
-        .pipe(switchMap(() => this.getUsers()));
       })
     );
   }
