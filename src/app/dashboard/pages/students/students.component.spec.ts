@@ -47,18 +47,6 @@ describe('StudentsComponent', () => {
    })
 
 
-   it('should call student service to desactivate student', () => {
-      const spyOnService = spyOn(
-         (studentsComponent as any).studentService,
-         'changeStatus'
-      ).and.returnValue(of([
-         {},{},{},{}
-      ]))
-      studentsComponent.onDesactivateStudent('aaaaa');
-      expect(spyOnService).toHaveBeenCalled();
-   })
-
-
    it('should call student service to send email', () => {
       const spyOnService = spyOn(
          (studentsComponent as any).studentService,

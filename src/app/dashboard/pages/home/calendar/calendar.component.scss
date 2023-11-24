@@ -1,6 +1,13 @@
 $primary-color: #673ab7;
 $accent-color: #56e7a1;
 
+.loading{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .content{
   color: black;
 }

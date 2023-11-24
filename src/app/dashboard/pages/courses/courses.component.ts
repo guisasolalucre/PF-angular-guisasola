@@ -7,7 +7,6 @@ import { Course } from './model/Course';
 import { AuthService } from 'src/app/auth/auth.service';
 import Swal from 'sweetalert2';
 import { AddNameDialogComponent } from './add-name-dialog/add-name-dialog.component';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -28,7 +27,6 @@ export class CoursesComponent {
     private authService: AuthService,
   ) {
     this.courseService.getCourses()
-    .pipe(delay(500))
     .subscribe((data: Course[]) => {
         this.courses = data;
         this.isLoading = false

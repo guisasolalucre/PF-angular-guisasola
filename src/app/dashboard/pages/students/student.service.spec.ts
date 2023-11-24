@@ -3,7 +3,6 @@ import { StudentService } from "./student.service"
 import { TestBed } from "@angular/core/testing"
 import { environment } from "src/environments/environment.local"
 import { Student } from "./model/Student"
-import { MockProvider } from "ng-mocks"
 
 describe('StudentService', () => {
 
@@ -29,8 +28,8 @@ describe('StudentService', () => {
 
    it('should get data from api', () => {
       let STUDENTS_MOCK: Student[] = [
-         { "id": "2UeoA", "idnumber": 98765432, "active": false, "name": "Bobby", "surname": "Drake", "dob": new Date(1992, 1, 15), "email": "iceman@example.com" },
-         { "id": "xzBi6", "idnumber": 12345678, "active": true, "name": "Scott", "surname": "Summers", "dob": new Date(1963, 8, 1), "email": "cyclops@example.com" },
+         { "id": "2UeoA", "idnumber": 98765432, "name": "Bobby", "surname": "Drake", "dob": new Date(1992, 1, 15), "email": "iceman@example.com" },
+         { "id": "xzBi6", "idnumber": 12345678, "name": "Scott", "surname": "Summers", "dob": new Date(1963, 8, 1), "email": "cyclops@example.com" },
       ]
 
       studentService.getStudents().subscribe(
@@ -49,11 +48,11 @@ describe('StudentService', () => {
 
 
    it('should post data to api', () => {
-      let STUDENT_MOCK: Student = { id: "wUHl9", idnumber: 87654321, active: true, name: "Jean", surname: "Grey", "dob": new Date(1963,8,1), email: "phoenix@example.com"}
+      let STUDENT_MOCK: Student = { id: "wUHl9", idnumber: 87654321, name: "Jean", surname: "Grey", "dob": new Date(1963,8,1), email: "phoenix@example.com"}
       
       let STUDENTS_MOCK: Student[] = [
-         { id: "2UeoA", idnumber: 98765432, active: false, name: "Bobby", surname: "Drake", dob: new Date(1992, 1, 15), email: "iceman@example.com" },
-         { id: "xzBi6", idnumber: 12345678, active: true, name: "Scott", surname: "Summers", dob: new Date(1963, 8, 1), email: "cyclops@example.com" },
+         { id: "2UeoA", idnumber: 98765432, name: "Bobby", surname: "Drake", dob: new Date(1992, 1, 15), email: "iceman@example.com" },
+         { id: "xzBi6", idnumber: 12345678, name: "Scott", surname: "Summers", dob: new Date(1963, 8, 1), email: "cyclops@example.com" },
          STUDENT_MOCK,
       ]
 
@@ -76,11 +75,11 @@ describe('StudentService', () => {
 
 
    it('should put data to api', () => {
-      let STUDENT_MOCK: Student = { id: "2UeoA", idnumber: 87654321, active: true, name: "Jean", surname: "Grey", "dob": new Date(1963,8,1), email: "phoenix@example.com"}
+      let STUDENT_MOCK: Student = { id: "2UeoA", idnumber: 87654321, name: "Jean", surname: "Grey", "dob": new Date(1963,8,1), email: "phoenix@example.com"}
       
       let STUDENTS_MOCK: Student[] = [
-         { id: "2UeoA", idnumber: 98765432, active: false, name: "Bobby", surname: "Drake", dob: new Date(1992, 1, 15), email: "iceman@example.com" },
-         { id: "xzBi6", idnumber: 12345678, active: true, name: "Scott", surname: "Summers", dob: new Date(1963, 8, 1), email: "cyclops@example.com" },
+         { id: "2UeoA", idnumber: 98765432, name: "Bobby", surname: "Drake", dob: new Date(1992, 1, 15), email: "iceman@example.com" },
+         { id: "xzBi6", idnumber: 12345678, name: "Scott", surname: "Summers", dob: new Date(1963, 8, 1), email: "cyclops@example.com" },
          STUDENT_MOCK,
       ]
 

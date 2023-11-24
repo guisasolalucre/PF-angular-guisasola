@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/auth/auth.service';
 import Swal from 'sweetalert2';
 import { User } from '../../pages/users/model/User';
 import { authUser } from 'src/app/store/auth/auth.selectors';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PassDialogComponent } from '../../pages/users/pass-dialog/pass-dialog.component';
 import { UsersService } from '../../pages/users/users.service';

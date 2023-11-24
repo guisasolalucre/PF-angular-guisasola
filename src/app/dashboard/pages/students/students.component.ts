@@ -4,9 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentService } from 'src/app/dashboard/pages/students/student.service';
 import { nanoid } from 'nanoid';
 import { Student } from './model/Student';
-import { delay } from 'rxjs';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -15,8 +13,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StudentsComponent {
 
-  activeStatus: boolean = true;
-
   students: Student[] = []
 
   isLoading: boolean = true
@@ -24,14 +20,11 @@ export class StudentsComponent {
   constructor(
     public dialog: MatDialog,
     public studentService: StudentService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
 
-    this.activeStatus = this.route.snapshot.data['activeStatus'];
-    this.studentService.getStudents(this.activeStatus)
-      .pipe(delay(500))
+    this.studentService.getStudents()
       .subscribe(
         (data: Student[]) => {
           this.students = data
@@ -50,7 +43,6 @@ export class StudentsComponent {
             this.studentService.createStudent({
               id: nanoid(5),
               idnumber: result.idnumber,
-              active: true,
               name: result.name,
               surname: result.surname,
               dob: result.dob,
@@ -87,14 +79,6 @@ export class StudentsComponent {
           }
         }
       })
-  }
-
-  onDesactivateStudent(id: string): void {
-    this.studentService.changeStatus(id).subscribe(
-      (data: Student[]) => {
-        this.students = data;
-      },
-    )
   }
 
   onDeleteStudent(id: string): void {

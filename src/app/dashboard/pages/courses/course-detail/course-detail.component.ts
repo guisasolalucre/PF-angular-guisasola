@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IEnrollment } from '../../enrollments/model/IEnrollment';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Course } from '../model/Course';
 import { CourseService } from '../course.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
 import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
-import { enrollments } from '../../enrollments/store/enrollment.selectors';
+import { enrollments, enrollmentsIsLoading } from '../../enrollments/store/enrollment.selectors';
 
 @Component({
   selector: 'app-course-detail',
@@ -25,6 +25,7 @@ export class CourseDetailComponent {
   displayedColumns: string[] = ['student', 'actions'];
   dataSource: IEnrollment[] = []
   students!: Observable<IEnrollment[]>
+  isLoading: boolean = true
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,9 +39,7 @@ export class CourseDetailComponent {
     this.courseService.getById(this.id)
       .subscribe(c => this.course = c[0])
 
-    this.getEnrollments()
-    this.students.subscribe((r) => console.log(r))
-    
+    this.getEnrollments()    
   }
 
   getEnrollments(){
@@ -49,6 +48,10 @@ export class CourseDetailComponent {
     }));
     
     this.students = this.store.select(enrollments)
+
+    this.store.select(enrollmentsIsLoading).subscribe(
+      (state) => this.isLoading = state
+    )
   }
 
   enrollStudent(): void {

@@ -1,6 +1,6 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap, switchMap, delay, tap } from 'rxjs/operators';
+import { catchError, map, concatMap, switchMap } from 'rxjs/operators';
 import { Observable, forkJoin, of } from 'rxjs';
 import { EnrollmentActions } from './enrollment.actions';
 import { HttpClient } from '@angular/common/http';
@@ -21,7 +21,6 @@ export class EnrollmentEffects {
       concatMap(() =>
 
         this.getEnrollments().pipe(
-          delay(500),
           map((data) =>
             EnrollmentActions.loadEnrollmentsSuccess({ data })
           ),
@@ -144,7 +143,7 @@ export class EnrollmentEffects {
   }> {
     return forkJoin([
       this.httpClient.get<Course[]>(`${environment.baseUrl}/courses`),
-      this.httpClient.get<Student[]>(`${environment.baseUrl}/students?active=true`),
+      this.httpClient.get<Student[]>(`${environment.baseUrl}/students`),
     ]).pipe(
       map((resp) => {
         return {

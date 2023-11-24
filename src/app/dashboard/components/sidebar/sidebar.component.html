@@ -10,27 +10,13 @@
         </mat-list-item>
 
         <mat-list-item 
-            (click)="showOptions = !showOptions"
+            routerLink="students" 
             [routerLinkActive]="['is-active']">
             <div class="page">
                 <mat-icon>school</mat-icon>
                 <span class="tag">STUDENTS</span>
             </div>
         </mat-list-item>
-
-        <div *ngIf="showOptions">
-            <mat-list-item 
-                routerLink="students/active" 
-                [routerLinkActive]="['is-active']">
-                <span class="tag">Active students</span>
-            </mat-list-item>
-
-            <mat-list-item 
-                routerLink="students/inactive" 
-                [routerLinkActive]="['is-active']">
-                <span class="tag">Inactive students</span>
-            </mat-list-item>
-        </div>
 
         <mat-list-item 
             routerLink="courses" 

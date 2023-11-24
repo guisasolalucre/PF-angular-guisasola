@@ -17,12 +17,8 @@ export class StudentService {
     private httpClient: HttpClient,
   ) { }
 
-  getAllStudents(): Observable<Student[]> {
+  getStudents(): Observable<Student[]> {
     return this.httpClient.get<Student[]>(this.studentsUrl)
-  }
-
-  getStudents(active: boolean): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(`${this.studentsUrl}?active=${active}`)
   }
 
   getById(id: string): Observable<Student[]> {
@@ -31,29 +27,17 @@ export class StudentService {
 
   createStudent(student: Student): Observable<Student[]> {
     return this.httpClient.post<Student>(`${this.studentsUrl}`, student)
-      .pipe(switchMap(() => this.getStudents(true)));
+      .pipe(switchMap(() => this.getStudents()));
   }
 
   deleteStudent(id: string): Observable<Student[]> {
     return this.httpClient.delete(`${this.studentsUrl}/${id}`)
-      .pipe(switchMap(() => this.getStudents(true)));
+      .pipe(switchMap(() => this.getStudents()));
   }
 
   updateStudent(id: string, student: Student): Observable<Student[]> {
     return this.httpClient.put<Student>(`${this.studentsUrl}/${id}`, student)
-      .pipe(switchMap(() => this.getStudents(true)));
-  }
-
-  changeStatus(id: string): Observable<Student[]> {
-    return this.getById(id).pipe(
-      switchMap(students => {
-        let student = students[0]
-        let changedStudent = { ...student, active: !student.active };
-
-        return this.httpClient.put<Student>(`${this.studentsUrl}/${id}`, changedStudent)
-        .pipe(switchMap(() => this.getStudents(student.active)));
-      })
-    );
+      .pipe(switchMap(() => this.getStudents()));
   }
 
   studentExistsByIdNumber(id: string, idnumber: number): Observable<boolean> {

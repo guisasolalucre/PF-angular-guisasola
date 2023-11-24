@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Course } from './model/Course';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.local';

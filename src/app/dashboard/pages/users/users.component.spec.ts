@@ -5,7 +5,6 @@ import { UsersTableComponent } from "./users-table/users-table.component";
 import { UserDialogComponent } from "./user-dialog/user-dialog.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { of } from "rxjs";
-import { User } from "./model/User";
 import { provideMockStore } from "@ngrx/store/testing";
 import { Role } from "./model/enums";
 import { MatDialog } from "@angular/material/dialog";

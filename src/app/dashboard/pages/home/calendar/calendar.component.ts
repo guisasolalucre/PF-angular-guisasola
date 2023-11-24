@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class CalendarComponent {
 	viewDate: Date = new Date();
 	events: CalendarEvent[] = [];
+	isLoading: boolean = true
 
 	constructor(
 		private courseService: CourseService,
@@ -26,6 +27,7 @@ export class CalendarComponent {
 			.subscribe((courses: Course[]) => {
 				this.events = this.transformCoursesToCalendarEvents(courses);
 			});
+		this.isLoading = false
 	}
 
 	transformCoursesToCalendarEvents(courses: Course[]): CalendarEvent[] {

@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from "@angular/core/testing"
+import { TestBed } from "@angular/core/testing"
 import { RouterTestingModule } from "@angular/router/testing"
 import { LoginComponent } from "./login.component"
 import { MockProvider } from "ng-mocks"

@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable, take } from 'rxjs';
 import { Course } from '../../courses/model/Course';
 import { Student } from '../../students/model/Student';
-import { Actions, ofType } from '@ngrx/effects';
+import { Actions } from '@ngrx/effects';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { nanoid } from 'nanoid';
 import { IEnrollment } from '../model/IEnrollment';

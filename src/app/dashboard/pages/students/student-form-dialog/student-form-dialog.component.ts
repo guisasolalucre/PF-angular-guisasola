@@ -28,7 +28,6 @@ export class StudentFormDialogComponent {
     ) { 
       this.studentForm = this.formBuilder.group({
         id: [''],
-        active: [''],
         idnumber: ['',
           [Validators.required,
           Validators.pattern('^[0-9]*$'),
@@ -59,10 +58,6 @@ export class StudentFormDialogComponent {
   //* GETTERS
   get idControl() {
     return this.studentForm.controls['id'] as FormControl;
-  }
-
-  get activeControl() {
-    return this.studentForm.controls['active'] as FormControl;
   }
 
   get idnumberControl() {

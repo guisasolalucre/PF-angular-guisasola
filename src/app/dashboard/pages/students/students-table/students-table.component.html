@@ -47,30 +47,21 @@
         </th>
         <td mat-cell *matCellDef="let student">
             <mat-icon
-                *ngIf="student.active"
                 matTooltip="View student's detail"
                 (click)="goToDetail(student.id)">
                 visibility
             </mat-icon>
             <mat-icon 
-                *ngIf="student.active"
                 matTooltip="Update student's details"
                 (click)="updateStudent.emit(student)">
                 edit
             </mat-icon>
             <mat-icon 
-                *ngIf="student.active"
                 [matTooltip]="student.email"
                 (click)="sendEmail.emit(student.id)">
                 mail
             </mat-icon>
             <mat-icon 
-                matTooltip="Change student's status"
-                (click)="desactivateStudent.emit(student.id)">
-                {{ student.active ? 'person_remove' : 'person_add' }}
-            </mat-icon>
-            <mat-icon 
-                *ngIf="!student.active"
                 matTooltip="Delete student"
                 (click)="deleteStudent.emit(student.id)">
                 delete

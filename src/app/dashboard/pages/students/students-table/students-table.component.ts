@@ -18,9 +18,6 @@ export class StudentsTableComponent {
   table: Student[] = [];
 
   @Output()
-  desactivateStudent = new EventEmitter<string>();
-
-  @Output()
   updateStudent = new EventEmitter<Student>();
 
   @Output()

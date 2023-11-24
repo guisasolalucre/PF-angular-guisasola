@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, delay } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IEnrollment } from './model/IEnrollment';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
