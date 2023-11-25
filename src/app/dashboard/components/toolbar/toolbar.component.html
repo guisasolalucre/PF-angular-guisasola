@@ -1,7 +1,9 @@
 <mat-toolbar>
     <div class="mat-toolbar-content">
         <button mat-icon-button class="example-icon" (click)="openDrawer.emit()">
-            <mat-icon>menu</mat-icon>
+            <mat-icon>
+                {{ toggle ? 'menu' : 'menu_open' }}
+            </mat-icon>
         </button>
         <span>Xavier's School</span>
     </div>

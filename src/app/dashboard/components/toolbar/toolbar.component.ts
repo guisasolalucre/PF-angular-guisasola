@@ -16,6 +16,8 @@ import { AuthActions } from 'src/app/store/auth/auth.actions';
 })
 export class ToolbarComponent {
 
+  toggle = true
+
   @Output()
   openDrawer: EventEmitter<boolean> = new EventEmitter();
 
