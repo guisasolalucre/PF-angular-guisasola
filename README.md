@@ -15,7 +15,7 @@ The system allows users to log in as an administrator or assistant.
 
 ### Assistant
 
-- Create, modify, and send emails, and view student details.
+- Create, modify, send emails, and view student details.
 - View course details.
 - Create or delete an enrollment.
 
