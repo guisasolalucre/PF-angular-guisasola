@@ -118,9 +118,6 @@ export class CourseDialogComponent {
     this.dialogRef.close(result)
   }
 
-
-
-  //* GETTERS
   get idControl() {
     return this.courseForm.controls['id'] as FormControl;
   }
@@ -142,7 +139,6 @@ export class CourseDialogComponent {
   }
 
 
-  //* ERRORS
   get nameControlError(): string {
     return this.nameControl.hasError('required') ?
       'Name is required' :

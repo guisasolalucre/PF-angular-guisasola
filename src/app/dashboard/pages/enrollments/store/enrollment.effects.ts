@@ -125,7 +125,6 @@ export class EnrollmentEffects {
     ));
 
 
-
   constructor(
     private actions$: Actions,
     private httpClient: HttpClient,
@@ -155,14 +154,12 @@ export class EnrollmentEffects {
 
   }
 
-  createEnrollment(payload: IEnrollment): Observable<IEnrollment[]> {
+  createEnrollment(payload: IEnrollment): Observable<IEnrollment> {
     return this.httpClient.post<IEnrollment>(`${environment.baseUrl}/enrollments`, payload)
-      .pipe(switchMap(() => this.getEnrollments()));
   }
 
-  deleteEnrollment(id: string): Observable<IEnrollment[]> {
-    return this.httpClient.delete(`${environment.baseUrl}/enrollments/${id}`)
-      .pipe(switchMap(() => this.getEnrollments()));
+  deleteEnrollment(id: string): Observable<null> {
+    return this.httpClient.delete<null>(`${environment.baseUrl}/enrollments/${id}`)
   }
 
   getEnrollmentsByStudent(studentId: string): Observable<IEnrollment[]> {

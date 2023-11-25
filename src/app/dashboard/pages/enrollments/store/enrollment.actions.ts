@@ -10,9 +10,9 @@ export const EnrollmentActions = createActionGroup({
     'Load Enrollments': emptyProps(),
     'Load Enrollments Success': props<{ data: IEnrollment[] }>(),
     'Load Enrollments Failure': props<{ error: unknown }>(),
-    
+
     'Load Enrollment Dialog Options': emptyProps(),
-    'Load Enrollment Dialog Options Success': props<{ 
+    'Load Enrollment Dialog Options Success': props<{
       courses: Course[],
       students: Student[]
     }>(),
@@ -21,7 +21,7 @@ export const EnrollmentActions = createActionGroup({
     'Create Enrollment': props<{ payload: IEnrollment; source: string }>(),
     'Create Enrollment Failure': props<{ error: unknown }>(),
 
-    'Delete Enrollment': props<{ id : string; source: string; sourceId: string }>(),
+    'Delete Enrollment': props<{ id: string; source: string; sourceId: string }>(),
     'Delete Enrollment Failure': props<{ error: unknown }>(),
 
     'Load Enrollments By Student': props<{ id: string }>(),
@@ -31,5 +31,6 @@ export const EnrollmentActions = createActionGroup({
     'Load Enrollments By Course': props<{ id: string }>(),
     'Load Enrollments By Course Success': props<{ data: IEnrollment[] }>(),
     'Load Enrollments By Course Failure': props<{ error: unknown }>(),
+
   }
 });

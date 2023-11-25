@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { StudentActions } from './store/student.actions';
 import { isLoadingStudents, studentsSelector } from './store/student.selectors';
+import { EnrollmentActions } from '../enrollments/store/enrollment.actions';
 
 @Component({
   selector: 'app-students',

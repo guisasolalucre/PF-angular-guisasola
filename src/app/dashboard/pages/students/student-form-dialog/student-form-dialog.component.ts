@@ -55,7 +55,6 @@ export class StudentFormDialogComponent {
   }
 
 
-  //* GETTERS
   get idControl() {
     return this.studentForm.controls['id'] as FormControl;
   }
@@ -80,8 +79,7 @@ export class StudentFormDialogComponent {
     return this.studentForm.controls['email']as FormControl;
   }
 
-
-  //* ERRORS
+  
   get idnumberControlError(): string {
     return this.idnumberControl.hasError('required') ?
             'ID is required' :
