@@ -61,7 +61,7 @@
                 (click)="sendEmail.emit(student.id)">
                 mail
             </mat-icon>
-            <mat-icon 
+            <mat-icon *ngIf="isAdmin"
                 matTooltip="Delete student"
                 (click)="deleteStudent.emit(student.id)">
                 delete

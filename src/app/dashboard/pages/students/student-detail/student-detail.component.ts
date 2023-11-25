@@ -9,6 +9,7 @@ import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
 import { enrollmentsSelector, isLoadingEnrollments } from '../../enrollments/store/enrollment.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -64,13 +65,31 @@ export class StudentDetailComponent {
   }
 
   deleteEnrollment(id: string): void {
-    this.store.dispatch(EnrollmentActions
-      .deleteEnrollment({
-        id: id,
-        source: 'student',
-        sourceId: this.id
-      }))
-    this.getEnrollments()
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      heightAuto: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.store.dispatch(EnrollmentActions
+          .deleteEnrollment({
+            id: id,
+            source: 'student',
+            sourceId: this.id
+          }))
+        Swal.fire({
+          title: 'Deleted!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          heightAuto: false,
+          timer: 1500,
+          timerProgressBar: true,
+        })
+      }
+    })
   }
 
 }

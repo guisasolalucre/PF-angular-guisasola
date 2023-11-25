@@ -6,6 +6,8 @@ import { Student } from '../model/Student';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { authUser } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-students-table',
@@ -16,6 +18,8 @@ export class StudentsTableComponent {
 
   @Input()
   table: Student[] = [];
+
+  isAdmin = false
 
   @Output()
   updateStudent = new EventEmitter<Student>();
@@ -40,7 +44,13 @@ export class StudentsTableComponent {
     public dialog: MatDialog,
     public studentService: StudentService,
     private router: Router,
-  ) { }
+    private store: Store,
+  ) { 
+    this.store.select(authUser).subscribe(
+      (user) => 
+      this.isAdmin = user?.role === 'ADMINISTRATOR'
+    )
+  }
 
   ngAfterViewInit() {
     this.initialize()

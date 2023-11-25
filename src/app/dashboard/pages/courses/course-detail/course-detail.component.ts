@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EnrollmentDialogComponent } from '../../enrollments/enrollment-dialog/enrollment-dialog.component';
 import { EnrollmentActions } from '../../enrollments/store/enrollment.actions';
 import { enrollmentsSelector, isLoadingEnrollments } from '../../enrollments/store/enrollment.selectors';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-course-detail',
@@ -69,39 +70,36 @@ export class CourseDetailComponent {
     });
   }
 
-  updateCourse(): void {
-    this.dialog
-      .open(CourseDialogComponent, {
-        data: this.course,
-      })
-      .afterClosed()
-      .subscribe({
-        next: (result) => {
-
-          if (!!result) {
-            this.courseService.updateCourse(this.id, result).subscribe(
-              () => {
-                this.courseService.getById(this.id)
-                  .subscribe(c => this.course = c[0])
-              }
-            )
-          }
-        }
-      })
-  }
-
   sendEmail(id: string) {
     this.studentService.sendEmail(id)
   }
 
   deleteEnrollment(id: string): void {
-    this.store.dispatch(EnrollmentActions
-      .deleteEnrollment({
-        id: id,
-        source: 'course',
-        sourceId: this.id
-      }))
-    this.getEnrollments()
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      heightAuto: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.store.dispatch(EnrollmentActions
+          .deleteEnrollment({
+            id: id,
+            source: 'course',
+            sourceId: this.id
+          }))
+        Swal.fire({
+          title: 'Deleted!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          heightAuto: false,
+          timer: 1500,
+          timerProgressBar: true,
+        })
+      }
+    })
   }
 
 }
