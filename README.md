@@ -4,8 +4,6 @@
 
 Angular project developed as the final project for the Angular course at Coderhouse. It serves as an administrative system for an educational institution, specifically Xavier's School for Gifted Youngsters (X-MEN).
 
-## User Roles
-
 The system allows users to log in as an administrator or assistant.
 
 ### Administrator
