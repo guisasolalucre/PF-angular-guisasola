@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/pf-angular-guisasola/",
             "outputPath": "dist/pf-angular-guisasola",
             "index": "src/index.html",
             "main": "src/main.ts",
