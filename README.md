@@ -19,6 +19,19 @@ The system allows users to log in as an administrator or assistant.
 - View course details.
 - Create or delete an enrollment.
 
+## Table of Contents
+
+1. [Live Demo](#live-demo)
+2. [Installation and Configuration](#installation-and-configuration)
+3. [Features](#features)
+   - [Toolbar](#toolbar)
+   - [Side Menu](#side-menu)
+   - [Home](#home)
+   - [Students](#students)
+   - [Courses](#courses)
+   - [Enrollments](#enrollments)
+   - [Users (admin only)](#users-admin-only)
+
 ## Live Demo
 
 The API is hosted on a free web service server, so there may be a slight delay in loading. Please allow a few seconds.
@@ -143,3 +156,4 @@ This page shows a table with all the users' details (except passwords). There is
 - **Set user as administrator:** In the 'Admin' column of the table, there is an option to set the user as an administrator. It will show a person on the logged user. Note you won't be able to modify any test user or your own user.
   
 - **Delete user:** In the 'Actions' column of the table, there is an option to delete the user. This will delete the user from the database. For security, it will ask first if you are sure.
+
