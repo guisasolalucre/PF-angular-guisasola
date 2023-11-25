@@ -32,7 +32,7 @@ export class ToolbarComponent {
     this.store.select(authUser).subscribe( u => this.user = u)
   }
 
-  changePass() {
+  changePass(): void {
       if (this.user) {
         this.dialog
           .open(PassDialogComponent, {
@@ -62,7 +62,7 @@ export class ToolbarComponent {
       }
   }
 
-  logout() {
+  logout(): void {
     Swal.fire({
       title: "Are you sure?",
       icon: "question",
@@ -74,5 +74,10 @@ export class ToolbarComponent {
         this.authService.logout()
       }
     });
+  }
+
+  onToggle(): void {
+    this.toggle = !this.toggle
+    this.openDrawer.emit()
   }
 }
