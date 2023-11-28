@@ -35,7 +35,7 @@ export class ClockComponent {
 
         this.loading = false;
       },
-      error: (err) => { console.log(err) },
+      error: () => {},
       complete: () => {}
     });
   }
