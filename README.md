@@ -1,6 +1,6 @@
 # XAVIER'S SCHOOL
 
-![Badge en Desarrollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+![Badge en Desarrollo](https://img.shields.io/badge/STATUS-FINISHED-green)
 
 Angular project developed as the final project for the Angular course at Coderhouse. It serves as an administrative system for an educational institution, specifically Xavier's School for Gifted Youngsters (X-MEN).
 
